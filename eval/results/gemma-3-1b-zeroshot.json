@@ -1,0 +1,151 @@
+{
+  "candidate": "gemma-3-1b",
+  "adapter": null,
+  "files": "data/core_test.jsonl",
+  "gen_seconds": 172.5,
+  "overall": {
+    "n": 817,
+    "parse_rate": 0.9988,
+    "slot_precision": 0.0278,
+    "slot_recall": 0.0827,
+    "slot_f1": 0.0416,
+    "null_accuracy": 0.486,
+    "row_em": 0.011
+  },
+  "by_lang": {
+    "de": {
+      "n": 173,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0252,
+      "slot_recall": 0.0788,
+      "slot_f1": 0.0382,
+      "null_accuracy": 0.4415,
+      "row_em": 0.0
+    },
+    "en": {
+      "n": 154,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0229,
+      "slot_recall": 0.0769,
+      "slot_f1": 0.0353,
+      "null_accuracy": 0.4736,
+      "row_em": 0.0065
+    },
+    "es": {
+      "n": 154,
+      "parse_rate": 0.9935,
+      "slot_precision": 0.0326,
+      "slot_recall": 0.0838,
+      "slot_f1": 0.047,
+      "null_accuracy": 0.5054,
+      "row_em": 0.0195
+    },
+    "fr": {
+      "n": 170,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0206,
+      "slot_recall": 0.0563,
+      "slot_f1": 0.0302,
+      "null_accuracy": 0.5402,
+      "row_em": 0.0059
+    },
+    "pl": {
+      "n": 166,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0376,
+      "slot_recall": 0.1214,
+      "slot_f1": 0.0574,
+      "null_accuracy": 0.4688,
+      "row_em": 0.0241
+    }
+  },
+  "by_function": {
+    "here_geocode": {
+      "n": 301,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0273,
+      "slot_recall": 0.0231,
+      "slot_f1": 0.025,
+      "null_accuracy": 0.8752,
+      "row_em": 0.01
+    },
+    "here_directions": {
+      "n": 264,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0298,
+      "slot_recall": 0.1861,
+      "slot_f1": 0.0514,
+      "null_accuracy": 0.2949,
+      "row_em": 0.0
+    },
+    "nominatim_geocode": {
+      "n": 83,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0273,
+      "slot_recall": 0.04,
+      "slot_f1": 0.0324,
+      "null_accuracy": 0.6154,
+      "row_em": 0.012
+    },
+    "tomtom-geocode": {
+      "n": 44,
+      "parse_rate": 0.9773,
+      "slot_precision": 0.0609,
+      "slot_recall": 0.175,
+      "slot_f1": 0.0903,
+      "null_accuracy": 0.8666,
+      "row_em": 0.0909
+    },
+    "osrm_route": {
+      "n": 44,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.0,
+      "row_em": 0.0
+    },
+    "here_search_places": {
+      "n": 43,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.3581,
+      "row_em": 0.0
+    },
+    "open_meteo_forecast": {
+      "n": 35,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.0952,
+      "row_em": 0.0
+    },
+    "tomtom-traffic": {
+      "n": 2,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.0,
+      "row_em": 0.0
+    },
+    "here_reverse_geocode": {
+      "n": 1,
+      "parse_rate": 1.0,
+      "slot_precision": 1.0,
+      "slot_recall": 1.0,
+      "slot_f1": 1.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    }
+  },
+  "parse_failures": [
+    {
+      "utterance": "Deseo que me encuentres una ruta desde el campus hasta el centro de la ciudad, evitando peajes y carreteras cerradas por",
+      "raw": "```json\n{\n  \"query\": \"deseo que me encuentres una ruta desde el campus hasta el centro de la ciudad, evitando peajes y carreteras cerradas por el maratón\",\n  \"show_ui\": false,\n  \"response_detail\": \"co"
+    }
+  ]
+}

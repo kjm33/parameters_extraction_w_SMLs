@@ -1,0 +1,179 @@
+{
+  "candidate": "llama-3.2-3b",
+  "adapter": null,
+  "files": "data/core_test.jsonl",
+  "gen_seconds": 175.8,
+  "overall": {
+    "n": 817,
+    "parse_rate": 0.9841,
+    "slot_precision": 0.07,
+    "slot_recall": 0.189,
+    "slot_f1": 0.1021,
+    "null_accuracy": 0.5707,
+    "row_em": 0.0502
+  },
+  "by_lang": {
+    "de": {
+      "n": 173,
+      "parse_rate": 0.9884,
+      "slot_precision": 0.0558,
+      "slot_recall": 0.1576,
+      "slot_f1": 0.0824,
+      "null_accuracy": 0.5279,
+      "row_em": 0.0231
+    },
+    "en": {
+      "n": 154,
+      "parse_rate": 0.974,
+      "slot_precision": 0.0617,
+      "slot_recall": 0.1769,
+      "slot_f1": 0.0915,
+      "null_accuracy": 0.5932,
+      "row_em": 0.0714
+    },
+    "es": {
+      "n": 154,
+      "parse_rate": 0.987,
+      "slot_precision": 0.0951,
+      "slot_recall": 0.2335,
+      "slot_f1": 0.1352,
+      "null_accuracy": 0.5778,
+      "row_em": 0.039
+    },
+    "fr": {
+      "n": 170,
+      "parse_rate": 0.9941,
+      "slot_precision": 0.0831,
+      "slot_recall": 0.2313,
+      "slot_f1": 0.1223,
+      "null_accuracy": 0.5665,
+      "row_em": 0.0529
+    },
+    "pl": {
+      "n": 166,
+      "parse_rate": 0.9759,
+      "slot_precision": 0.0522,
+      "slot_recall": 0.1357,
+      "slot_f1": 0.0754,
+      "null_accuracy": 0.5922,
+      "row_em": 0.0663
+    }
+  },
+  "by_function": {
+    "here_geocode": {
+      "n": 301,
+      "parse_rate": 0.99,
+      "slot_precision": 0.1049,
+      "slot_recall": 0.1436,
+      "slot_f1": 0.1212,
+      "null_accuracy": 0.5673,
+      "row_em": 0.01
+    },
+    "here_directions": {
+      "n": 264,
+      "parse_rate": 0.9886,
+      "slot_precision": 0.0663,
+      "slot_recall": 0.3377,
+      "slot_f1": 0.1108,
+      "null_accuracy": 0.4511,
+      "row_em": 0.0038
+    },
+    "nominatim_geocode": {
+      "n": 83,
+      "parse_rate": 0.9639,
+      "slot_precision": 0.0316,
+      "slot_recall": 0.04,
+      "slot_f1": 0.0353,
+      "null_accuracy": 0.7473,
+      "row_em": 0.0241
+    },
+    "tomtom-geocode": {
+      "n": 44,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0476,
+      "slot_recall": 0.075,
+      "slot_f1": 0.0583,
+      "null_accuracy": 0.9582,
+      "row_em": 0.0909
+    },
+    "osrm_route": {
+      "n": 44,
+      "parse_rate": 0.9091,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.2045,
+      "row_em": 0.2045
+    },
+    "here_search_places": {
+      "n": 43,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0294,
+      "slot_recall": 0.12,
+      "slot_f1": 0.0472,
+      "null_accuracy": 0.4662,
+      "row_em": 0.0465
+    },
+    "open_meteo_forecast": {
+      "n": 35,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.5238,
+      "row_em": 0.5143
+    },
+    "tomtom-traffic": {
+      "n": 2,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.9375,
+      "row_em": 0.5
+    },
+    "here_reverse_geocode": {
+      "n": 1,
+      "parse_rate": 1.0,
+      "slot_precision": 1.0,
+      "slot_recall": 1.0,
+      "slot_f1": 1.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    }
+  },
+  "parse_failures": [
+    {
+      "utterance": "Buenos días, asistente. Quiero irnos de Madrid a Valencia, pero necesito que no calculemos la ruta con peajes y que cons",
+      "raw": "{\n  \"coordinates\": \"null\",\n  \"avoid\": \"peages;traffic_road_closures\",\n  \"interchanges\": \"null\",\n  \"geometries\": \"null\",\n  \"steps\": \"null\",\n  \"units\": \"km\",\n  \"language\": \"null\",\n  \"overview\": \"full\",\n"
+    },
+    {
+      "utterance": "Cześć, mam za zadanie dojechać z mojego miejsca przystanku w umiejscowieniu A do punktu docelowego B w południowej Europ",
+      "raw": "{\n  \"q\": \"A do B w południowej Europie\",\n  \"limit\": 100,\n  \"limit_cities\": null,\n  \"limit_postcodes\": null,\n  \"limit_polygons\": null,\n  \"limit_geocodes\": null,\n  \"format\": null,\n  \"addressdetails\": nu"
+    },
+    {
+      "utterance": "Je dois aller de Berlin à Varsovie, avec une liste étrange de 'Madrid' et 'Barcelone' à intégrer par la suite. Tu peux c",
+      "raw": "{\n  \"coordinates\": \"13.405,52.52;11.582,48.135;Madrid;Barcelone\",\n  \"description\": \"Je dois aller de Berlin à Varsovie, avec une liste étrange de 'Madrid' et 'Barcelone' à intégrer par la suite. Tu pe"
+    },
+    {
+      "utterance": "Dzień dobry, rozumiesz że mam wyznaczyć trasę z centrum Portland na wybrzeże Oregonu, chcę czegoś malowniczego ale bez z",
+      "raw": "{\n  \"q\": \"Portland, Oregon\",\n  \"lang\": \"pl\",\n  \"limit\": 3,\n  \"startLocation\": null,\n  \"destination\": null,\n  \"avoidTolls\": true,\n  \"avoidHighways\": false,\n  \"avoidFerries\": false,\n  \"avoidTraffic\": fa"
+    },
+    {
+      "utterance": "Ich muss von Berlin nach Warschau fahren. Bitte finde mir direkt die schnellste Route und später noch eine alternative, ",
+      "raw": "{\n  \"transportMode\": \"car\",\n  \"origin\": \"Berlin,\",\n  \"destination\": \"Warschau,\",\n  \"routingMode\": \"fast\",\n  \"avoid_features\": [\"tollRoad\", \"motorway\"],\n  \"lang\": \"de\""
+    },
+    {
+      "utterance": "Ich fahre von Stockholm nach Oslo und möchte nach jeweils 100 km eine Pause einlegen. Außerdem würde ich gern wissen, ob",
+      "raw": "{\n  \"q\": \"Stockholm nach Oslo\", \n  \"limit\": 1, \n  \"out\": null, \n  \"format\": null, \n  \"addressdetails\": null, \n  \"henc\": null, \n  \"bbox\": null, \n  \"poly\": null, \n  \"geocode\": null, \n  \"reverse\": null, "
+    },
+    {
+      "utterance": "I want to drive from Chicago to Detroit and I’d like the route to avoid any toll roads. Also, could you let me know if i",
+      "raw": "{\"q\": \"Chicago to Detroit\", \"lang\": \"en\", \"limit\": 1, \"avoid\": \"tollroads\", \"mode\": \"driving\", \"traffic_mode\": \"fastest\", \"avoid_tolls\": true, \"avoid_unrestricted_areas\": true, \"avoid_highways\": true,"
+    },
+    {
+      "utterance": "Hey, can you set up a route from Omaha to Chicago? I need to avoid toll roads, stop for lunch in Cedar Rapids, and stick",
+      "raw": "{\n  \"coordinates\": \"null\",\n  \"avoid\": \"toll_roads\",\n  \"traffic_model\": \"best_guess\",\n  \"geometries\": \"pessimistic\",\n  \"route_timeout\": \"300\",\n  \"profile\": \"driving\",\n  \"avoid_highways\": \"true\",\n  \"avo"
+    }
+  ]
+}

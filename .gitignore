@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Generated datasets (rebuild: src/build_extraction.py, src/build_augment.py)
+data/
+
+# Training artifacts: adapters, merged checkpoints (21G)
+train/runs/
+
+# Logs
+logs/
+
+# Eval per-row dumps (summary .json files are kept)
+eval/results/*_preds.jsonl
+eval/results/*_rows.jsonl
+
+# Misc
+.DS_Store

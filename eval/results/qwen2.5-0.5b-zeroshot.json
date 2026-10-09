@@ -1,0 +1,179 @@
+{
+  "candidate": "qwen2.5-0.5b",
+  "adapter": null,
+  "files": "data/core_test.jsonl",
+  "gen_seconds": 132.5,
+  "overall": {
+    "n": 817,
+    "parse_rate": 0.9804,
+    "slot_precision": 0.0332,
+    "slot_recall": 0.0945,
+    "slot_f1": 0.0492,
+    "null_accuracy": 0.4524,
+    "row_em": 0.1004
+  },
+  "by_lang": {
+    "de": {
+      "n": 173,
+      "parse_rate": 0.9942,
+      "slot_precision": 0.0217,
+      "slot_recall": 0.0667,
+      "slot_f1": 0.0328,
+      "null_accuracy": 0.3955,
+      "row_em": 0.0809
+    },
+    "en": {
+      "n": 154,
+      "parse_rate": 0.9805,
+      "slot_precision": 0.0176,
+      "slot_recall": 0.0538,
+      "slot_f1": 0.0266,
+      "null_accuracy": 0.4519,
+      "row_em": 0.0714
+    },
+    "es": {
+      "n": 154,
+      "parse_rate": 0.961,
+      "slot_precision": 0.0563,
+      "slot_recall": 0.1437,
+      "slot_f1": 0.0809,
+      "null_accuracy": 0.4391,
+      "row_em": 0.0974
+    },
+    "fr": {
+      "n": 170,
+      "parse_rate": 0.9941,
+      "slot_precision": 0.032,
+      "slot_recall": 0.0875,
+      "slot_f1": 0.0469,
+      "null_accuracy": 0.4806,
+      "row_em": 0.0941
+    },
+    "pl": {
+      "n": 166,
+      "parse_rate": 0.9699,
+      "slot_precision": 0.0399,
+      "slot_recall": 0.1143,
+      "slot_f1": 0.0591,
+      "null_accuracy": 0.4949,
+      "row_em": 0.1566
+    }
+  },
+  "by_function": {
+    "here_geocode": {
+      "n": 301,
+      "parse_rate": 0.9834,
+      "slot_precision": 0.1667,
+      "slot_recall": 0.0231,
+      "slot_f1": 0.0405,
+      "null_accuracy": 0.963,
+      "row_em": 0.0598
+    },
+    "here_directions": {
+      "n": 264,
+      "parse_rate": 0.9962,
+      "slot_precision": 0.0306,
+      "slot_recall": 0.2381,
+      "slot_f1": 0.0543,
+      "null_accuracy": 0.1562,
+      "row_em": 0.0227
+    },
+    "nominatim_geocode": {
+      "n": 83,
+      "parse_rate": 0.9759,
+      "slot_precision": 0.3333,
+      "slot_recall": 0.0267,
+      "slot_f1": 0.0494,
+      "null_accuracy": 0.989,
+      "row_em": 0.1084
+    },
+    "tomtom-geocode": {
+      "n": 44,
+      "parse_rate": 0.9091,
+      "slot_precision": 0.0238,
+      "slot_recall": 0.075,
+      "slot_f1": 0.0361,
+      "null_accuracy": 0.836,
+      "row_em": 0.0909
+    },
+    "osrm_route": {
+      "n": 44,
+      "parse_rate": 0.9545,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.8409,
+      "row_em": 0.8409
+    },
+    "here_search_places": {
+      "n": 43,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0395,
+      "slot_recall": 0.12,
+      "slot_f1": 0.0594,
+      "null_accuracy": 0.6284,
+      "row_em": 0.1395
+    },
+    "open_meteo_forecast": {
+      "n": 35,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.0286,
+      "row_em": 0.0
+    },
+    "tomtom-traffic": {
+      "n": 2,
+      "parse_rate": 0.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "here_reverse_geocode": {
+      "n": 1,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 0.0
+    }
+  },
+  "parse_failures": [
+    {
+      "utterance": "I need to drive from Suzhou to Xi’an, about 1290 km total. I’d like the fastest route, and I want to stop for EV chargin",
+      "raw": "{\"location\":{\"lat\":\"31.5074\",\"lng\":\"121.4737\"},\"route\":[{\"start\":\"Suzhou\",\"end\":\"Xi'an\",\"distance\":\"1290 km\"},{\"stop\":[{\"city\":\"Shanghai\",\"country\":\"China\"},{\"city\":\"Beijing\",\"country\":\"China\"}],\"char"
+    },
+    {
+      "utterance": "Also, ich fahre heute Nacht von Chicago nach Detroit, vermeide unbedingt Autobahnen und mache vorher in Toledo eine Ausf",
+      "raw": "{\"osrm_route\": {\"coordinates\": \"169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,-85.214;169.734,"
+    },
+    {
+      "utterance": "Hey, can you plan a route from Bao'an to Yangchun that avoids all tolls?",
+      "raw": "{\"name\":\"tomtom-geocode\",\"parameters\":{\"query\":\"Bao'an to Yangchun, China\",\"extendedPostalCodesFor\":\"None\",\"mapcodes\":\"Local\",\"radius\":1000,\"boundingBox\":[4.8,52.3,4.95,52.45],\"timeZone\":\"iana\",\"posit"
+    },
+    {
+      "utterance": "Hola, necesito que me ayudes a planificar un viaje desde Recife hasta Glória, pero quiero evitar las autopistas y prefie",
+      "raw": "{\"geocode\":{\"q\":\"Recife, Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recife, Bahía de Recif"
+    },
+    {
+      "utterance": "Cześć, chciałbym, abyś zaprowadził mnie z Wuhan do Puqi, ale musimy ominąć wszystkie autostrady płatne, więc proszę o tr",
+      "raw": "{\"name\":\"tomtom-geocode\",\"description\":\"Convert street addresses to coordinates.\",\"parameters\":{\"query\":\"Wuhan, Wuhan, China\",\"show_ui\":true,\"response_detail\":\"full\",\"limit\":5,\"language\":\"pl-PL\",\"coun"
+    },
+    {
+      "utterance": "Hola, necesito ir de Seúl a Ara-dong evitando el centro de la ciudad. ¿Podrías calcular la mejor ruta para mí?",
+      "raw": "{\"name\":\"tomtom-geocode\",\"description\":\"Convert street addresses to coordinates.\",\"parameters\":{\"query\":\"Seul, Seoul, South Korea\",\"response_detail\":\"full\",\"limit\":5,\"language\":\"es-ES\",\"countries\":[\"K"
+    },
+    {
+      "utterance": "Chcę przejechać z Pune do Mudhol bez żadnych przepraw promowych. Szukam najkrótszej drogi, która nie wymaga przepraw ani",
+      "raw": "{\"lat\":null,\"lng\":null,\"country\":\"Pl}{\"shortest_route\":\"Mudhol-Pune\",\"duration\":\"2 hours 45 minutes\"}"
+    },
+    {
+      "utterance": "Hola, quiero viajar de Denver a Salt Lake City pasando por Provo y Ogden. Además, me gustaría comparar esta ruta con la ",
+      "raw": "{\"osrm_route\": {\"coordinates\": \"127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.042;127.629,-112.04"
+    }
+  ]
+}

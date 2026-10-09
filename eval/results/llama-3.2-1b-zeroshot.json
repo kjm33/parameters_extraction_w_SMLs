@@ -1,0 +1,179 @@
+{
+  "candidate": "llama-3.2-1b",
+  "adapter": null,
+  "files": "data/core_test.jsonl",
+  "gen_seconds": 90.9,
+  "overall": {
+    "n": 817,
+    "parse_rate": 0.9474,
+    "slot_precision": 0.08,
+    "slot_recall": 0.1969,
+    "slot_f1": 0.1138,
+    "null_accuracy": 0.5888,
+    "row_em": 0.0477
+  },
+  "by_lang": {
+    "de": {
+      "n": 173,
+      "parse_rate": 0.9364,
+      "slot_precision": 0.0792,
+      "slot_recall": 0.1636,
+      "slot_f1": 0.1067,
+      "null_accuracy": 0.6323,
+      "row_em": 0.0347
+    },
+    "en": {
+      "n": 154,
+      "parse_rate": 0.987,
+      "slot_precision": 0.0867,
+      "slot_recall": 0.2308,
+      "slot_f1": 0.1261,
+      "null_accuracy": 0.6009,
+      "row_em": 0.0714
+    },
+    "es": {
+      "n": 154,
+      "parse_rate": 0.9156,
+      "slot_precision": 0.0595,
+      "slot_recall": 0.1257,
+      "slot_f1": 0.0808,
+      "null_accuracy": 0.6225,
+      "row_em": 0.0519
+    },
+    "fr": {
+      "n": 170,
+      "parse_rate": 0.9059,
+      "slot_precision": 0.084,
+      "slot_recall": 0.2,
+      "slot_f1": 0.1183,
+      "null_accuracy": 0.6136,
+      "row_em": 0.0412
+    },
+    "pl": {
+      "n": 166,
+      "parse_rate": 0.994,
+      "slot_precision": 0.0881,
+      "slot_recall": 0.2857,
+      "slot_f1": 0.1347,
+      "null_accuracy": 0.4746,
+      "row_em": 0.0422
+    }
+  },
+  "by_function": {
+    "here_geocode": {
+      "n": 301,
+      "parse_rate": 1.0,
+      "slot_precision": 0.1547,
+      "slot_recall": 0.2821,
+      "slot_f1": 0.1998,
+      "null_accuracy": 0.2164,
+      "row_em": 0.0
+    },
+    "here_directions": {
+      "n": 264,
+      "parse_rate": 0.8409,
+      "slot_precision": 0.0388,
+      "slot_recall": 0.1039,
+      "slot_f1": 0.0565,
+      "null_accuracy": 0.6966,
+      "row_em": 0.0455
+    },
+    "nominatim_geocode": {
+      "n": 83,
+      "parse_rate": 1.0,
+      "slot_precision": 0.1193,
+      "slot_recall": 0.1733,
+      "slot_f1": 0.1413,
+      "null_accuracy": 0.5165,
+      "row_em": 0.012
+    },
+    "tomtom-geocode": {
+      "n": 44,
+      "parse_rate": 0.9773,
+      "slot_precision": 0.0036,
+      "slot_recall": 0.025,
+      "slot_f1": 0.0063,
+      "null_accuracy": 0.6158,
+      "row_em": 0.0
+    },
+    "osrm_route": {
+      "n": 44,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.0227,
+      "row_em": 0.0227
+    },
+    "here_search_places": {
+      "n": 43,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0116,
+      "slot_recall": 0.04,
+      "slot_f1": 0.018,
+      "null_accuracy": 0.4865,
+      "row_em": 0.0698
+    },
+    "open_meteo_forecast": {
+      "n": 35,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.8286,
+      "row_em": 0.6
+    },
+    "tomtom-traffic": {
+      "n": 2,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.125,
+      "row_em": 0.0
+    },
+    "here_reverse_geocode": {
+      "n": 1,
+      "parse_rate": 1.0,
+      "slot_precision": 1.0,
+      "slot_recall": 1.0,
+      "slot_f1": 1.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    }
+  },
+  "parse_failures": [
+    {
+      "utterance": "Donc, je pars de Portland pour San Francisco ce soir, je veux éviter les autoroutes près de la route fermée et prendre l",
+      "raw": "{\n  \"transportMode\": \"pedestrian\",\n  \"departureTime\": null,\n  \"routingMode\": \"short\",\n  \"avoid_features\": null,\n  \"via\": null,\n  \"destination\": \"San Francisco\",\n  \"origin\": \"Portland\",\n  \"lang\": \"en\""
+    },
+    {
+      "utterance": "Ich muss eine Route von Kings Cross nach Brixton finden, dabei라 tollstraßen vermeiden. Es ist spät, und auf der A2 gibt ",
+      "raw": "{\n  \"transportMode\": null,\n  \"origin\": \"Kings Cross\",\n  \"destination\": \"Brixton\",\n  \"via\": null,\n  \"departureTime\": null,\n  \"routingMode\": null,\n  \"avoid_features\": null,\n  \"lang\": \"en\""
+    },
+    {
+      "utterance": "Hey, lass uns mal starten: Ich möchte von Horlivka nach Dovzhansk, circa 150 km. Bitte such mir eine Route ohne Fähren a",
+      "raw": "{\n  \"transportMode\": \"pedestrian\",\n  \"destination\": \"Dovzhansk\",\n  \"via\": null,\n  \"departureTime\": null,\n  \"routingMode\": \"short\",\n  \"avoid_features\": null,\n  \"lang\": \"en\""
+    },
+    {
+      "utterance": "Salut, je dois planifier un trajet en voiture de Varsovie à Lisbonne, en passant par Paris, sans prendre d'autoroute. J'",
+      "raw": "{\n  \"transportMode\": null,\n  \"origin\": \"lat,lng\",\n  \"destination\": \"lat,lng\",\n  \"via\": null,\n  \"departureTime\": null,\n  \"routingMode\": null,\n  \"avoid_features\": null,\n  \"lang\": \"fr\""
+    },
+    {
+      "utterance": "Hey, ich will von München nach Berlin fahren, aber ohne Autobahn und mit einem Kaffeeaufenthalt in Nürnberg. Heute ist S",
+      "raw": "{\n  \"transportMode\": null,\n  \"origin\": \"lat,lng\",\n  \"destination\": \"lat,lng\",\n  \"via\": null,\n  \"departureTime\": null,\n  \"routingMode\": null,\n  \"avoid_features\": null,\n  \"lang\": \"de\""
+    },
+    {
+      "utterance": "Je veux partir de Constanţa et atteindre Bieńczyce le plus vite possible, en suivant l’itinéraire le plus rapide. J’aime",
+      "raw": "{\n  \"transportMode\": null,\n  \"origin\": \"Constanţa\",\n  \"destination\": \"Bieńczyce\",\n  \"via\": null,\n  \"departureTime\": null,\n  \"routingMode\": null,\n  \"avoid_features\": null,\n  \"lang\": \"en\""
+    },
+    {
+      "utterance": "Ich möchte von Frankfurt nach München fahren, aber ich will keine mautpflichtigen Straßen benutzen. Außerdem interessier",
+      "raw": "{\n  \"transportMode\": null,\n  \"origin\": \"lat,lng\",\n  \"destination\": \"lat,lng\",\n  \"via\": null,\n  \"departureTime\": null,\n  \"routingMode\": null,\n  \"avoid_features\": null,\n  \"lang\": \"de\""
+    },
+    {
+      "utterance": "Alors, je pars de Berlin pour aller à Dresde en prenant l'autoroute A13, puis je repars sur la A14 pour arriver à Leipzi",
+      "raw": "{\n  \"transportMode\": \"pedestrian\",\n  \"departureTime\": null,\n  \"routingMode\": \"short\",\n  \"avoid_features\": null,\n  \"via\": null,\n  \"destination\": \"Dresde\",\n  \"origin\": \"Berlin\",\n  \"lang\": \"de\""
+    }
+  ]
+}
