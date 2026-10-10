@@ -20,7 +20,17 @@ Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
   (`--dump` writes per-row preds; `--model-dir` evaluates full-FT checkpoints)
 - `eval/analyze_errors.py` — FP/FN slot breakdown + samples from `*_preds.jsonl` dumps
 - `eval/detect_uncertainty.py` — per-row failure detection: logprobs + self-consistency +
-  validators vs actual errors (AUC/coverage tables → `eval/results/<tag>*.json` + `_rows.jsonl`)
+  validators vs actual errors (AUC/coverage tables → `eval/results/<tag>*.json` + `_rows.jsonl`);
+  extended: k=5 samples, per-slot logprobs (teacher-forced re-forward), per-slot semantic
+  entropy, hidden states every 4th layer → `<tag>_features.jsonl` + `<tag>_hidden.npz`
+- `eval/train_detector.py` — fits detectors on a labeled error set (`<tag>` from h90 holdout):
+  logistic combiner over scalar features, hidden-state probe (layer+λ by CV), stack, conformal
+  abstention; evaluates once on test tags → `eval/results/detector_<train-tag>.json`
+- `eval/ensemble_vote.py` — majority vote of the h90 trio on test (voted EM vs members,
+  disagreement AUC) → `eval/results/ensemble_trio{,_rows}.jsonl`
+- `src/split_holdout.py` — core_train → `core_train_h90.jsonl` + `core_train_holdout.jsonl`
+  (dialog-id-grouped, lang×fn stratified; holdout = labeled-error source for detectors)
+- `train/runs/<c>-h90/` — LoRA retrains on h90+aug (detector ensemble members)
 - `train/runs/llama-3.2-1b/merged/` — WINNER export (base+LoRA merged, see reports/RESULTS.md)
 - `data/` — datasets + `*_stats.json`; `logs/` — training logs (tee'd)
 
@@ -45,6 +55,18 @@ python3 src/build_augment.py        # needs core_train.jsonl first
 # eval (zeroshot baseline / fine-tuned adapter)
 ../function_calling_edge_fine_tuning/train/venv/bin/python eval/eval_extract.py \
   --candidate qwen2.5-0.5b [--adapter train/runs/qwen2.5-0.5b/best] --gpu 1
+
+# uncertainty features (logprobs/self-consistency/validators/hidden states)
+../function_calling_edge_fine_tuning/train/venv/bin/python eval/detect_uncertainty.py \
+  --candidate llama-3.2-1b --adapter train/runs/llama-3.2-1b-h90/best \
+  --files data/core_test.jsonl --gpu 1          # or --model-dir <merged dir>
+
+# learned detectors (combiner/probe/stack/conformal) — train on labeled-error tag
+python3 eval/train_detector.py --train-tag llama-3.2-1b-h90-holdout \
+  --test-tags llama-3.2-1b-h90-test,llama-1b-merged-test
+
+# ensemble majority vote of the h90 trio
+python3 eval/ensemble_vote.py
 ```
 
 ## Gotchas

@@ -135,3 +135,27 @@ the constraint keyword lexicons.
 - All metrics: `eval/results/*.json`; per-row predictions: `*_preds.jsonl`
 - Full technical report: `reports/RESULTS.md`
 - Pipeline code: `src/` (data), `train/` (SFT), `eval/` (metrics + error analysis)
+
+## 6. Update: teaching the system to know when it's wrong (round 2)
+
+The first detection round (chapter above / "Failure detection" in RESULTS.md) found one
+simple, free signal: the model's weakest-word confidence (min logprob), quality 0.75–0.77
+(AUC). We then tried to beat it with five fancier ideas. To get honest training labels, three
+models were retrained on 10% less data; their mistakes on the unseen 10% became the
+detector's textbook.
+
+What we tried and what happened, in plain words:
+
+| Idea | What it is | Result |
+|---|---|---|
+| **Learned combiner** | A small statistical recipe mixing ~15 signals (word confidences, agreement between 5 attempts, sanity-check flags…) | **Wins: 0.763–0.772** on 3 of 4 models (+1–3 pts). Modest but real, and it transfers to the final winner model. |
+| Brain probe | Look inside the model's activations at the moment it answers | Flop (0.60–0.68). Works in papers on big cloud models, not on our tiny fine-tuned one with few examples to learn from. |
+| Committee disagreement | 3 models vote; disagreement = suspicion | Surprise: voting **fixes** errors (67% perfect answers vs 64–66% for each model alone) — but disagreement itself detects poorly (0.65). Use the committee for accuracy, not detection. |
+| Calibrated auto-accept | "Accept only answers where I guarantee ≤X% chance of error" | Works reasonably: promising ≤5% error auto-accepts ~28% of requests at ~93% real accuracy. |
+| Per-value entropy | How scattered are the 5 sampled attempts for each individual value? | Middle of the pack (0.66–0.68) — no gain over simpler signals. |
+
+**Bottom line of round 2**: the simple free signal was already near the ceiling — a learned
+combiner squeezes out a few more points (0.77), and a 3-model committee is better used to
+*correct* answers than to *doubt* them. For the car: run the winner, auto-accept the ~45%
+most confident answers (≈85%+ accurate), and escalate the rest to the bigger model or ask
+the driver to confirm.

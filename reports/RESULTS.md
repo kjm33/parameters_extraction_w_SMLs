@@ -127,6 +127,44 @@ Findings:
    traffic halves the error rate of the auto-accepted answers at ~3× cost on the escalated
    share only.
 
+## Improving failure detection (learned detectors, probes, ensemble, conformal)
+
+Setup: to get *labeled* (natural) errors without touching core_test, the three LoRA models
+were retrained on 90% of core_train (`data/core_train_h90.jsonl` + aug; `src/split_holdout.py`,
+dialog-id-grouped, lang×fn stratified; the held-out 10% = 915 rows is the detector-training
+set). `eval/detect_uncertainty.py` was extended: k=5 samples, per-slot logprobs (teacher-forced
+re-forward), per-slot semantic entropy (norm_val clustering), and last-token hidden states
+every 4th layer → `<tag>_features.jsonl` + `<tag>_hidden.npz`. Detectors fit on holdout
+(`eval/train_detector.py`, numpy logistic + 5-fold CV) and evaluated once on core_test.
+
+### Detector AUC on core_test (n=817)
+
+| Detector | llama-h90 | llama-merged | qwen2.5-h90 | qwen3-h90 |
+|---|---|---|---|---|
+| min-logprob (prev best) | 0.756 | 0.750 | 0.745 | 0.727 |
+| **Logistic combiner (15 features)** | **0.770** | **0.763** | **0.772** | 0.725 |
+| Hidden-state probe (layer 8, CV-chosen) | 0.641 | 0.602 | 0.647 | 0.683 |
+| Stack (probe + scalars) | 0.654 | 0.610 | 0.642 | 0.691 |
+| Slot semantic entropy (se_max) | 0.676 | 0.670 | 0.683 | 0.662 |
+
+1. **Learned combiner wins on 3/4 models** (+1.2–2.7 pts over min-logprob; 0.763–0.772) and
+   transfers to the full-data winner model (fit on llama-h90 holdout → 0.763 on merged).
+   Qwen3 is the exception (tie). CV AUC on holdout 0.81 → some overfit to the 915-row set.
+2. **Hidden-state probes disappoint** (0.60–0.68 vs 0.80+ in the BFCL literature on larger
+   non-FT models): consistent with the known caveats — fine-tuned small models + 915 training
+   rows for 2048-dim states. Mid layers (h8) CV-best (0.726) but generalize worst.
+3. **Ensemble (majority vote of the h90 trio)** is an *accuracy* win, not a detection win:
+   voted row EM 0.6634 > all members (0.6561 / 0.6414 / 0.6450) despite −10% training data —
+   but slot-disagreement AUC is only 0.652 and cross-member min-logprob 0.739, below the
+   single-model combiner. Not stacked (combos never beat the combiner in any test).
+4. **Conformal abstention** (combiner score, threshold on holdout): targeting ≤5% error
+   accepts ~27–29% of rows at 92–93% accuracy; ≤10% → ~44% coverage at ~85.5%; ≤15% →
+   ~63% at ~79%. Slightly optimistic (realized error ~1.4× target) — calibrate τ on a
+   larger error set for production.
+
+Files: `eval/results/detector_<c>-h90-holdout.json`, `eval/results/ensemble_trio{,_rows}.jsonl`,
+`eval/results/<c>-h90-{holdout,val,test}{,_features,_hidden,_rows}.*`.
+
 ## Artifacts
 
 - Adapters: `train/runs/<candidate>/best/`; full-FT: `train/runs/<candidate>-full/best/`.
