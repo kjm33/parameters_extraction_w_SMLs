@@ -1,0 +1,280 @@
+{
+  "model_dir": null,
+  "candidate": "qwen2.5-0.5b",
+  "adapter": "train/runs/qwen2.5-0.5b-h90/best",
+  "files": "data/core_train_holdout.jsonl",
+  "n": 915,
+  "n_wrong": 295,
+  "row_em": 0.6776,
+  "gen_seconds": 1058.8,
+  "signals": {
+    "1-minus_mean_logprob": {
+      "auc": 0.6368097320940405
+    },
+    "minus_min_logprob": {
+      "auc": 0.7165254237288136
+    },
+    "1-minus_agree_frac": {
+      "auc": 0.6108201202843083
+    },
+    "any_validator_flag": {
+      "auc": 0.6032121377802078
+    },
+    "slot_se_max": {
+      "auc": 0.6075013668671405
+    },
+    "combined (any flag | logprob<p5-of-correct | agree<1.0)": {
+      "auc": 0.676763258611263,
+      "mean_logprob_p5_of_correct": -0.051
+    }
+  },
+  "validators": {
+    "parse_fail": {
+      "fires": 59,
+      "precision_as_error": 1.0,
+      "error_recall": 0.2
+    },
+    "keys_mismatch": {
+      "fires": 2,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    },
+    "ungrounded": {
+      "fires": 147,
+      "precision_as_error": 0.3333,
+      "error_recall": 0.1661
+    },
+    "enum_invalid": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    },
+    "lang_mismatch": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    }
+  },
+  "coverage": {
+    "combined": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 92,
+        "errors_total": 295,
+        "errors_caught": 43,
+        "error_recall": 0.1458,
+        "false_alarms": 49
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 183,
+        "errors_total": 295,
+        "errors_caught": 86,
+        "error_recall": 0.2915,
+        "false_alarms": 97
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 274,
+        "errors_total": 295,
+        "errors_caught": 130,
+        "error_recall": 0.4407,
+        "false_alarms": 144
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 366,
+        "errors_total": 295,
+        "errors_caught": 171,
+        "error_recall": 0.5797,
+        "false_alarms": 195
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 458,
+        "errors_total": 295,
+        "errors_caught": 215,
+        "error_recall": 0.7288,
+        "false_alarms": 243
+      }
+    ],
+    "validators_only": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 92,
+        "errors_total": 295,
+        "errors_caught": 44,
+        "error_recall": 0.1492,
+        "false_alarms": 48
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 183,
+        "errors_total": 295,
+        "errors_caught": 98,
+        "error_recall": 0.3322,
+        "false_alarms": 85
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 274,
+        "errors_total": 295,
+        "errors_caught": 128,
+        "error_recall": 0.4339,
+        "false_alarms": 146
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 366,
+        "errors_total": 295,
+        "errors_caught": 152,
+        "error_recall": 0.5153,
+        "false_alarms": 214
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 458,
+        "errors_total": 295,
+        "errors_caught": 177,
+        "error_recall": 0.6,
+        "false_alarms": 281
+      }
+    ],
+    "selfconsistency_only": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 92,
+        "errors_total": 295,
+        "errors_caught": 49,
+        "error_recall": 0.1661,
+        "false_alarms": 43
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 183,
+        "errors_total": 295,
+        "errors_caught": 92,
+        "error_recall": 0.3119,
+        "false_alarms": 91
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 274,
+        "errors_total": 295,
+        "errors_caught": 124,
+        "error_recall": 0.4203,
+        "false_alarms": 150
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 366,
+        "errors_total": 295,
+        "errors_caught": 156,
+        "error_recall": 0.5288,
+        "false_alarms": 210
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 458,
+        "errors_total": 295,
+        "errors_caught": 176,
+        "error_recall": 0.5966,
+        "false_alarms": 282
+      }
+    ],
+    "logprob_only": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 92,
+        "errors_total": 295,
+        "errors_caught": 54,
+        "error_recall": 0.1831,
+        "false_alarms": 38
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 183,
+        "errors_total": 295,
+        "errors_caught": 86,
+        "error_recall": 0.2915,
+        "false_alarms": 97
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 274,
+        "errors_total": 295,
+        "errors_caught": 119,
+        "error_recall": 0.4034,
+        "false_alarms": 155
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 366,
+        "errors_total": 295,
+        "errors_caught": 154,
+        "error_recall": 0.522,
+        "false_alarms": 212
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 458,
+        "errors_total": 295,
+        "errors_caught": 182,
+        "error_recall": 0.6169,
+        "false_alarms": 276
+      }
+    ],
+    "slot_se_max": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 92,
+        "errors_total": 295,
+        "errors_caught": 47,
+        "error_recall": 0.1593,
+        "false_alarms": 45
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 183,
+        "errors_total": 295,
+        "errors_caught": 90,
+        "error_recall": 0.3051,
+        "false_alarms": 93
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 274,
+        "errors_total": 295,
+        "errors_caught": 123,
+        "error_recall": 0.4169,
+        "false_alarms": 151
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 366,
+        "errors_total": 295,
+        "errors_caught": 155,
+        "error_recall": 0.5254,
+        "false_alarms": 211
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 458,
+        "errors_total": 295,
+        "errors_caught": 176,
+        "error_recall": 0.5966,
+        "false_alarms": 282
+      }
+    ]
+  },
+  "hidden_layers": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24
+  ],
+  "detect_lang_agreement_with_gold": 0.9246
+}

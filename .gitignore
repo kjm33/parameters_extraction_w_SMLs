@@ -18,3 +18,7 @@ eval/results/*_rows.jsonl
 
 # Misc
 .DS_Store
+
+# Uncertainty phase-2 per-row artifacts (regenerable: eval/detect_uncertainty.py)
+eval/results/*_features.jsonl
+eval/results/*_hidden.npz

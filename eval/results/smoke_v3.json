@@ -1,0 +1,278 @@
+{
+  "model_dir": "train/runs/llama-3.2-1b/merged",
+  "candidate": null,
+  "adapter": null,
+  "files": "data/core_test.jsonl",
+  "n": 4,
+  "n_wrong": 2,
+  "row_em": 0.5,
+  "gen_seconds": 104.8,
+  "signals": {
+    "1-minus_mean_logprob": {
+      "auc": 0.5
+    },
+    "minus_min_logprob": {
+      "auc": 0.25
+    },
+    "1-minus_agree_frac": {
+      "auc": 0.75
+    },
+    "any_validator_flag": {
+      "auc": 0.5
+    },
+    "slot_se_max": {
+      "auc": 0.75
+    },
+    "combined (any flag | logprob<p5-of-correct | agree<1.0)": {
+      "auc": 0.75,
+      "mean_logprob_p5_of_correct": -0.1251
+    }
+  },
+  "validators": {
+    "parse_fail": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    },
+    "keys_mismatch": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    },
+    "ungrounded": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    },
+    "enum_invalid": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    },
+    "lang_mismatch": {
+      "fires": 0,
+      "precision_as_error": 0.0,
+      "error_recall": 0.0
+    }
+  },
+  "coverage": {
+    "combined": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 2,
+        "error_recall": 1.0,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 2,
+        "error_recall": 1.0,
+        "false_alarms": 0
+      }
+    ],
+    "validators_only": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 1
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 1
+      }
+    ],
+    "selfconsistency_only": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 2,
+        "error_recall": 1.0,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 2,
+        "error_recall": 1.0,
+        "false_alarms": 0
+      }
+    ],
+    "logprob_only": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 0,
+        "error_recall": 0.0,
+        "false_alarms": 1
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 0,
+        "error_recall": 0.0,
+        "false_alarms": 1
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 0,
+        "error_recall": 0.0,
+        "false_alarms": 1
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 1
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 1
+      }
+    ],
+    "slot_se_max": [
+      {
+        "escalate_frac": 0.1,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.2,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.3,
+        "n_rows": 1,
+        "errors_total": 2,
+        "errors_caught": 1,
+        "error_recall": 0.5,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.4,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 2,
+        "error_recall": 1.0,
+        "false_alarms": 0
+      },
+      {
+        "escalate_frac": 0.5,
+        "n_rows": 2,
+        "errors_total": 2,
+        "errors_caught": 2,
+        "error_recall": 1.0,
+        "false_alarms": 0
+      }
+    ]
+  },
+  "hidden_layers": [
+    0,
+    4,
+    8,
+    12,
+    16
+  ],
+  "detect_lang_agreement_with_gold": 1.0
+}
