@@ -1,0 +1,15 @@
+{
+ "n": 817,
+ "voted_row_em": 0.6634,
+ "member_row_em": {
+  "llama-3.2-1b": 0.6561,
+  "qwen2.5-0.5b": 0.6414,
+  "qwen3-0.6b": 0.645
+ },
+ "auc": {
+  "slot_disagreement": 0.6516,
+  "mean_min_logprob": 0.739,
+  "min_min_logprob": 0.7271,
+  "rank_combo_dis+logprob": 0.7079
+ }
+}
