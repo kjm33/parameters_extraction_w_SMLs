@@ -165,6 +165,52 @@ every 4th layer → `<tag>_features.jsonl` + `<tag>_hidden.npz`. Detectors fit o
 Files: `eval/results/detector_<c>-h90-holdout.json`, `eval/results/ensemble_trio{,_rows}.jsonl`,
 `eval/results/<c>-h90-{holdout,val,test}{,_features,_hidden,_rows}.*`.
 
+## Addendum: Jev decision-model probes (OpenRouter, `typesafe/jev-1.13`)
+
+Jev (TypeSafe "System One") answers typed questions (`choice`/`noul`/`score`) against a shared
+state — it cannot generate text. Probes used the OpenRouter alpha decisions endpoint via
+`eval/jev_client.py` (retry/backoff, 8 workers, mock mode; key from `../.env`).
+
+### Probe 1 — Jev as direct enum-slot extractor (`eval/jev_enum_probe.py`, core_val, n=227
+enum-bearing rows, $0.013): one call/row, `noul` presence + `choice` value (single) or
+per-value `noul` (multi) per enum param, threshold 0.5.
+
+| System (enum slots only) | slot F1 | null acc | row EM |
+|---|---|---|---|
+| Jev zeroshot | 0.696 | 0.949 | 0.762 |
+| Llama-3.2-1B FT (same rows) | **0.895** | **0.976** | **0.916** |
+
+By language (F1): fr 0.88 / en 0.75 / es 0.73 / de 0.70 / **pl 0.36** — the reported
+multilingual weakness is real and concentrated in Polish (precision 0.28). By param:
+routingMode 0.82, avoid_features 0.76 (presence over-fires, null acc 0.79), transportMode
+0.36. Decent zeroshot, clearly behind the FT 1B model; viable only as an enums-only fallback
+where no local model exists.
+
+### Probe 2 — Jev as verification gate (`eval/jev_verify.py`, llama-merged test rows, n=817,
+$0.024, 39 s): one call/row, per slot `noul` "value grounded in utterance" (risk=1−p) or
+"utterance specifies value" for predicted nulls; row risk = max slot risk.
+
+| Detector (row-level AUC) | AUC |
+|---|---|
+| Jev grounding risk | 0.577 |
+| min-logprob baseline | **0.750** |
+| rank-avg(Jev, min-logprob) | 0.715 |
+
+Jev ≈ the free validator flags (any-flag AUC 0.572) and adds nothing on top of logprobs.
+Slot-level AUC 0.657 is strong exactly where errors are rare (routingMode 0.92, destination
+0.75, via/at 1.00) and weak on the dominant errors — `lang` 0.54 (26% err) and `q` 0.56
+(22% err): span-boundary and grounded-but-wrong mistakes pass a grounding check by
+construction. The cookbook's Jev-verified cascade pattern targets hallucination-style
+failures, which this FT model barely makes.
+
+**Verdict**: decision models are cheap ($0.04/M in, free out), calibrated, and native on
+enums/nulls, but (a) can't produce text spans, (b) Polish collapses, (c) grounding ≠
+correctness — the exact failure modes that dominate here. Logprob combiner stays the
+escalation gate. Untried: Jev per-slot risk as an extra feature in `train_detector.py`'s
+combiner (plausible small gain on enum slots), selection-over-candidates for `q`.
+
+Files: `eval/results/jev_enum_val{,_rows}.jsonl`, `eval/results/jev_verify_llama-1b-merged-test{,_rows}.jsonl`.
+
 ## Artifacts
 
 - Adapters: `train/runs/<candidate>/best/`; full-FT: `train/runs/<candidate>-full/best/`.

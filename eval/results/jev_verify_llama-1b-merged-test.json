@@ -1,0 +1,254 @@
+{
+  "model": "typesafe/jev-1.13",
+  "rows_file": "/home/kamil/projects/here/slot_filling/eval/results/llama-1b-merged-test_rows.jsonl",
+  "files": "data/core_test.jsonl",
+  "n_rows": 817,
+  "n_wrong": 272,
+  "n_calls_failed": 0,
+  "mock": false,
+  "wall_seconds": 38.1,
+  "usage": {
+    "calls": 817,
+    "input_tokens": 566992,
+    "output_tokens": 83993,
+    "cost": 0.02381366399999999
+  },
+  "row_auc_jev": 0.5767,
+  "row_coverage_jev": [
+    {
+      "escalate_frac": 0.1,
+      "n_rows": 82,
+      "errors_total": 272,
+      "errors_caught": 37,
+      "error_recall": 0.136,
+      "false_alarms": 45
+    },
+    {
+      "escalate_frac": 0.2,
+      "n_rows": 163,
+      "errors_total": 272,
+      "errors_caught": 65,
+      "error_recall": 0.239,
+      "false_alarms": 98
+    },
+    {
+      "escalate_frac": 0.3,
+      "n_rows": 245,
+      "errors_total": 272,
+      "errors_caught": 87,
+      "error_recall": 0.3199,
+      "false_alarms": 158
+    },
+    {
+      "escalate_frac": 0.4,
+      "n_rows": 327,
+      "errors_total": 272,
+      "errors_caught": 117,
+      "error_recall": 0.4301,
+      "false_alarms": 210
+    },
+    {
+      "escalate_frac": 0.5,
+      "n_rows": 408,
+      "errors_total": 272,
+      "errors_caught": 149,
+      "error_recall": 0.5478,
+      "false_alarms": 259
+    }
+  ],
+  "slot_auc_jev": 0.6575,
+  "n_slot_scored": 4184,
+  "slot_auc_by_param": {
+    "lang": {
+      "n": 568,
+      "err_rate": 0.2588,
+      "auc": 0.5391
+    },
+    "limit": {
+      "n": 471,
+      "err_rate": 0.0064,
+      "auc": 0.6239
+    },
+    "q": {
+      "n": 427,
+      "err_rate": 0.2178,
+      "auc": 0.5631
+    },
+    "transportMode": {
+      "n": 264,
+      "err_rate": 0.0341,
+      "auc": 0.4547
+    },
+    "origin": {
+      "n": 264,
+      "err_rate": 0.0114,
+      "auc": 0.6731
+    },
+    "destination": {
+      "n": 264,
+      "err_rate": 0.0152,
+      "auc": 0.7534
+    },
+    "via": {
+      "n": 264,
+      "err_rate": 0.0038,
+      "auc": 1.0
+    },
+    "departureTime": {
+      "n": 264,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "routingMode": {
+      "n": 264,
+      "err_rate": 0.0379,
+      "auc": 0.9246
+    },
+    "avoid_features": {
+      "n": 264,
+      "err_rate": 0.1402,
+      "auc": 0.6439
+    },
+    "show_ui": {
+      "n": 46,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "response_detail": {
+      "n": 46,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "language": {
+      "n": 46,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "radius": {
+      "n": 45,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "at": {
+      "n": 44,
+      "err_rate": 0.0682,
+      "auc": 1.0
+    },
+    "query": {
+      "n": 44,
+      "err_rate": 0.1818,
+      "auc": 0.6181
+    },
+    "countries": {
+      "n": 44,
+      "err_rate": 0.0227,
+      "auc": 0.4419
+    },
+    "view": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "extendedPostalCodesFor": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "mapcodes": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "timeZone": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "position": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "boundingBox": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "entityTypeSet": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "ofs": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "coordinates": {
+      "n": 44,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "in_country": {
+      "n": 43,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "latitude": {
+      "n": 35,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "longitude": {
+      "n": 35,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "days": {
+      "n": 35,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "bbox": {
+      "n": 2,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "categoryFilter": {
+      "n": 2,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "timeValidityFilter": {
+      "n": 2,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "maxResults": {
+      "n": 2,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "fields": {
+      "n": 2,
+      "err_rate": 0.0,
+      "auc": NaN
+    },
+    "routeType": {
+      "n": 1,
+      "err_rate": 0.0,
+      "auc": NaN
+    }
+  },
+  "row_auc_min_logprob": 0.7502,
+  "row_auc_jev_plus_min_logprob_rankavg": 0.7152,
+  "features_file": "/home/kamil/projects/here/slot_filling/eval/results/llama-1b-merged-test_features.jsonl",
+  "baseline_signals_detect_uncertainty": {
+    "1-minus_mean_logprob": 0.7457096600107933,
+    "minus_min_logprob": 0.750215866162979,
+    "1-minus_agree_frac": 0.6725175391257421,
+    "any_validator_flag": 0.5718024824608743,
+    "slot_se_max": 0.6695122773880194,
+    "combined (any flag | logprob<p5-of-correct | agree<1.0)": 0.6850715056664868
+  }
+}

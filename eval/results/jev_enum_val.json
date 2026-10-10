@@ -1,0 +1,219 @@
+{
+  "model": "typesafe/jev-1.13",
+  "files": "data/core_val.jsonl",
+  "n_rows": 227,
+  "n_calls_failed": 0,
+  "mock": false,
+  "wall_seconds": 11.0,
+  "usage": {
+    "calls": 227,
+    "input_tokens": 312480,
+    "output_tokens": 59863,
+    "cost": 0.013124160000000001
+  },
+  "compare_src": "/home/kamil/projects/here/slot_filling/eval/results/llama-3.2-1b-h90-val_rows.jsonl",
+  "jev_enum_overall": {
+    "n": 227,
+    "slot_precision": 0.627,
+    "slot_recall": 0.7822,
+    "slot_f1": 0.696,
+    "null_accuracy": 0.949,
+    "row_em": 0.7621
+  },
+  "jev_enum_by_lang": {
+    "de": {
+      "n": 47,
+      "slot_precision": 0.6129,
+      "slot_recall": 0.8261,
+      "slot_f1": 0.7037,
+      "null_accuracy": 0.9357,
+      "row_em": 0.7447
+    },
+    "en": {
+      "n": 11,
+      "slot_precision": 0.6,
+      "slot_recall": 1.0,
+      "slot_f1": 0.75,
+      "null_accuracy": 0.9474,
+      "row_em": 0.8182
+    },
+    "es": {
+      "n": 46,
+      "slot_precision": 0.7037,
+      "slot_recall": 0.76,
+      "slot_f1": 0.7308,
+      "null_accuracy": 0.9298,
+      "row_em": 0.7391
+    },
+    "fr": {
+      "n": 58,
+      "slot_precision": 0.8824,
+      "slot_recall": 0.8824,
+      "slot_f1": 0.8824,
+      "null_accuracy": 0.9781,
+      "row_em": 0.8793
+    },
+    "pl": {
+      "n": 65,
+      "slot_precision": 0.2759,
+      "slot_recall": 0.5,
+      "slot_f1": 0.3556,
+      "null_accuracy": 0.944,
+      "row_em": 0.6769
+    }
+  },
+  "jev_enum_by_param": {
+    "transportMode[single]": {
+      "n": 134,
+      "slot_precision": 0.3333,
+      "slot_recall": 0.4,
+      "slot_f1": 0.3636,
+      "null_accuracy": 0.9355,
+      "row_em": 0.8955
+    },
+    "routingMode[single]": {
+      "n": 134,
+      "slot_precision": 0.7273,
+      "slot_recall": 0.9412,
+      "slot_f1": 0.8205,
+      "null_accuracy": 0.9487,
+      "row_em": 0.9478
+    },
+    "avoid_features[multi]": {
+      "n": 134,
+      "slot_precision": 0.7,
+      "slot_recall": 0.8358,
+      "slot_f1": 0.7619,
+      "null_accuracy": 0.791,
+      "row_em": 0.8134
+    },
+    "response_detail[single]": {
+      "n": 93,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "routeType[single]": {
+      "n": 39,
+      "slot_precision": 0.4286,
+      "slot_recall": 0.6,
+      "slot_f1": 0.5,
+      "null_accuracy": 0.8824,
+      "row_em": 0.8462
+    },
+    "travelMode[single]": {
+      "n": 36,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.9706,
+      "row_em": 0.9167
+    },
+    "vehicleEngineType[single]": {
+      "n": 36,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.9167,
+      "row_em": 0.9167
+    },
+    "hilliness[single]": {
+      "n": 34,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "windingness[single]": {
+      "n": 34,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "alternativeType[single]": {
+      "n": 33,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "routeRepresentation[single]": {
+      "n": 33,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "instructionsType[single]": {
+      "n": 31,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "computeTravelTimeFor[single]": {
+      "n": 31,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "traffic[single]": {
+      "n": 8,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "vehicleHasElectricTollCollectionTransponder[single]": {
+      "n": 5,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 0.8,
+      "row_em": 0.8
+    },
+    "arrivalSidePreference[single]": {
+      "n": 5,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "timeValidityFilter[single]": {
+      "n": 4,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "reconstructionMode[single]": {
+      "n": 2,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    }
+  },
+  "local_enum_on_same_rows": {
+    "n": 191,
+    "slot_precision": 0.8854,
+    "slot_recall": 0.9043,
+    "slot_f1": 0.8947,
+    "null_accuracy": 0.976,
+    "row_em": 0.9162
+  }
+}

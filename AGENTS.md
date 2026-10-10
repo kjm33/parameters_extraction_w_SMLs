@@ -28,6 +28,12 @@ Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
   abstention; evaluates once on test tags → `eval/results/detector_<train-tag>.json`
 - `eval/ensemble_vote.py` — majority vote of the h90 trio on test (voted EM vs members,
   disagreement AUC) → `eval/results/ensemble_trio{,_rows}.jsonl`
+- `eval/jev_client.py` — OpenRouter Jev decision-model client (alpha decisions endpoint,
+  retry/backoff, thread pool, mock mode; OPENROUTER_API_KEY from env or `../.env`)
+- `eval/jev_enum_probe.py` — Jev as direct enum-slot extractor (noul presence + choice /
+  per-value noul) vs local FT on same rows → `eval/results/jev_enum_*`
+- `eval/jev_verify.py` — Jev grounding verification of local preds as failure detector
+  (row/slot AUC + coverage vs logprob baseline) → `eval/results/jev_verify_*`
 - `src/split_holdout.py` — core_train → `core_train_h90.jsonl` + `core_train_holdout.jsonl`
   (dialog-id-grouped, lang×fn stratified; holdout = labeled-error source for detectors)
 - `train/runs/<c>-h90/` — LoRA retrains on h90+aug (detector ensemble members)
