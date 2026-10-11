@@ -392,12 +392,9 @@ monotonic subsequence → appendage-prefix (≤2 leftover chars); rest nulled ho
 ### Track B — JointBERT-style encoder (`train/train_tagger.py`, `eval/eval_tagger.py`)
 
 bert-base-multilingual (wikineural init) + schema string prepended (`name=v1|v2` for enums)
-+ tag head + lang head (CLS). 5 epochs, val tag-acc 98.34%.
-
-| system (core_test, n=817) | slot F1 | P | R | row EM | null acc | parse | ms/row |
-|---|---|---|---|---|---|---|---|
-| JSON winner (llama-3.2-1b LoRA) | **0.7515** | .7550 | .7480 | **0.6671** | .9626 | 1.0 | 43.1 gpu |
-| BERT tagger (ours) | 0.7152 | .7088 | .7218 | 0.6279 | .9585 | 1.0 | **5.0 gpu / 96.6 cpu** |
++ tag head + lang head (CLS). 5 epochs, val tag-acc 98.34%. core_test: slot F1 0.7152
+(P .7088 / R .7218), row EM 0.6279, null-acc .9585, parse 1.0; 5.0 ms/row GPU (bs 64),
+96.6 ms/row CPU — full comparison table in Track A below.
 
 by-lang F1: tagger de .7642 en .7306 es .6978 fr .7327 pl .6403 vs JSON
 de .7859 en .7849 es .7412 fr .7077 pl .7399 — tagger wins fr (+2.5) only; pl collapses
@@ -414,7 +411,27 @@ plus encoder capacity cap it below the adoption bar.
 Trained on core+aug tags (14,432 rows). Greedy decode with one sampled regen on
 tag-count mismatch, then `decode_tags` → JSON, scored identically to eval_extract.
 
-<!-- TAGS_LLM_RESULTS_PLACEHOLDER -->
+| system (core_test, n=817) | slot F1 | P | R | row EM | null acc | parse | ms/row |
+|---|---|---|---|---|---|---|---|
+| JSON winner (llama-3.2-1b LoRA) | **0.7515** | .7550 | .7480 | **0.6671** | .9626 | 1.0 | 43.1 gpu |
+| llama-3.2-1b LoRA + tags (Track A) | 0.4745 | .5246 | .4331 | 0.4529 | .9658 | 1.0 | 126.3 gpu |
+| BERT tagger (Track B) | 0.7152 | .7088 | .7218 | 0.6279 | .9585 | 1.0 | **5.0 gpu / 96.6 cpu** |
+
+Track A detail: tag_count_ok 67.3%, 343/817 rows needed sampled regen, 267 left-align
+fallback; avg 36.4 new tokens; by-lang F1 de .5993 en .4141 es .4685 fr .4415 pl .4280.
+Emit-count delta vs required (tags−words): 550 exact, 131 short, 136 long — errors
+concentrate at ±1. **Diagnosis: small-LM word-counting failure** — the contract "emit
+exactly one tag per whitespace word" demands implicit length control; JSON generation
+has natural closure (braces) and no counting requirement. Both decision-rule criteria
+FAIL: F1 0.4745 ≪ 0.735, and decode is 2.9× slower (126.3 vs 43.1 ms/row; regen pass
+doubles work despite fewer avg tokens).
+
+**Round verdict: both tracks REJECT; the JSON-generative winner stands.** Tagging
+formulation is cap-able for encoder models (91.1% structural ceiling) and length-hostile
+for 1B decoders. Artifacts kept: `data/*_tags.jsonl`, `src/build_tags.py`,
+`train/train_tagger.py`, `eval/eval_tags.py`, `eval/eval_tagger.py`,
+`eval/results/{bert-tagger-ft,llama-3.2-1b-tags-ft}*.json[l]`, adapters
+`train/runs/{bert-tagger,llama-3.2-1b-tags}/best`.
 
 ## Artifacts
 

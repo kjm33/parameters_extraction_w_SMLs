@@ -17,6 +17,19 @@ SYSTEM_PROMPT = (
     "message does not state it. Output the JSON object and nothing else."
 )
 
+TAG_SYSTEM_PROMPT = (
+    "You tag the words of user messages with function parameters for an in-car navigation "
+    "assistant. Given a function schema and a user message, output exactly one tag per "
+    "whitespace-separated word of the user message, in word order, tags separated by single "
+    "spaces. Use O for words that are not part of any parameter value. Use B-<parameter> for "
+    "the first word of a parameter value and I-<parameter> for the following words of the same "
+    "value; after a gap, start again with B-<parameter>. For parameters with an enum, append "
+    "the canonical enum value to the tag, like B-<parameter>:<value>, and tag only the first "
+    "word of the phrase that expresses it. If the schema has a lang parameter, first output "
+    "lang:<value> or lang:null as a single leading tag before the word tags. Output the tags "
+    "and nothing else."
+)
+
 
 def user_content(row: dict) -> str:
     schema = json.dumps(row["function"], ensure_ascii=False, separators=(",", ":"))
@@ -29,12 +42,16 @@ def user_content(row: dict) -> str:
 
 
 def assistant_content(row: dict) -> str:
+    tags = row.get("bio_tags")
+    if tags:  # tagging formulation (round 4); absent field -> JSON rendering
+        return " ".join(tags)
     return json.dumps(row["target"], ensure_ascii=False, separators=(",", ":"))
 
 
 def build_messages(row: dict) -> list[dict]:
+    system = TAG_SYSTEM_PROMPT if "bio_tags" in row else SYSTEM_PROMPT
     return [
-        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "system", "content": system},
         {"role": "user", "content": user_content(row)},
         {"role": "assistant", "content": assistant_content(row)},
     ]
