@@ -2,6 +2,7 @@
 
 Generated 2026-10-10 from `reports/2026-10-10_related-work-slot-filling.md`.
 Updated 2026-10-10: teacher = OpenAI free tier (keys verified working, see below).
+Updated 2026-10-11: items 1–3 executed (see `reports/RESULTS.md` Round 4); item 4 in flight.
 Baseline to beat: Llama-3.2-1B+LoRA, slot F1 0.7515, row EM 0.667 (en/de ~0.785,
 pl/es/fr 0.70–0.74); detector combiner AUC 0.77.
 
@@ -25,44 +26,70 @@ OpenAI keys in parent `../.env` — free daily usage per account: 250k tokens ac
 
 ## High priority
 
-- [ ] **1. Teacher distillation for pl/es/fr** *(research rank 1; attacks the language gap —
+- [x] **1. Teacher distillation for pl/es/fr** *(research rank 1; attacks the language gap —
       biggest measured weakness, literature effect size up to +26 F1)*
-      - [ ] Teacher = gpt-5.4-mini via OpenAI free tier (KEY_1/KEY_3, see resources above);
+      - [x] Teacher = gpt-5.4-mini via OpenAI free tier (KEY_1/KEY_3, see resources above);
             local fcft 3B/4B only as offline fallback. Cost: free, ~5–8k rows/day.
-      - [ ] Distillation prompt: reuse our SYSTEM_PROMPT + function schema + candidate
+      - [x] Distillation prompt: reuse our SYSTEM_PROMPT + function schema + candidate
             utterance; ask for the same compact-JSON target format; temperature 0.
-      - [ ] Generate slot annotations for unannotated instruction_extraction texts
+      - [x] Generate slot annotations for unannotated instruction_extraction texts
             (dialogues.jsonl driver turns, v3 leftovers) in pl/es/fr; validate with existing
             verbatim/enum/number grounding checks (reuse `src/build_extraction.py` helpers)
             — drop rows where teacher output fails grounding (Data-Turnstile-style loop).
       - [ ] Optionally add code-switched variants (foreign place names in native utterances).
-      - [ ] Retrain llama-3.2-1b LoRA on core + new data; acceptance: pl/es/fr F1 each +3 pts,
+      - [x] Retrain llama-3.2-1b LoRA on core + new data; acceptance: pl/es/fr F1 each +3 pts,
             en/de not worse than −0.5 pt.
+      **OUTCOME (2026-10-11): FAIL on acceptance.** Runs: `ds` (+distill 6933 +syn),
+      `d2` (+distill directions-only +syn), `d5`, `d4`. Best overall F1 0.7548 (ds) vs base
+      0.7515, but pl regressed −3.1 under ds (distill geocode-local q policy conflicts with
+      core gold style: inflected surface forms vs canonical, q-hallucination on route-intent
+      rows); no mix beats base in every lang (±1.5–2pt LoRA run variance > effect size).
+      directions distill is genuinely useful (+2–3 F1 on here_directions). Root cause of the
+      residual pl gap: `lang` slot label inconsistency in core (same utterance gold-null and
+      gold-lang; resolver context) — structural ceiling ~2–3 pts, not fixable by data scaling
+      in the single-turn formulation.
 
-- [ ] **2. Synthetic data closed loop (Data-Turnstile style)** *(research rank 2; SLMs are
+- [x] **2. Synthetic data closed loop (Data-Turnstile style)** *(research rank 2; SLMs are
       data-bound)*
-      - [ ] Templated utterance generator per function schema (5 langs), seeded from core
+      - [x] Templated utterance generator per function schema (5 langs), seeded from core
             vocab (places, constraints, vehicle types).
-      - [ ] Deterministic validators = detector validators (ungrounded / enum_invalid /
+      - [x] Deterministic validators = detector validators (ungrounded / enum_invalid /
             keys_mismatch) run in generation loop until pass; coverage check per
             function×lang×slot.
-      - [ ] Cap synthetic ≤40% of mix (same policy as current aug); dedup vs core shingles.
+      - [x] Cap synthetic ≤40% of mix (same policy as current aug); dedup vs core shingles.
+      **OUTCOME (2026-10-11):** `src/build_synthetic.py` → data/syn_train 5700 rows, all
+      langs×fns×slots covered, 98 enum combos. en gained +3.3 F1 in ds (mostly syn), but
+      syn-pl correlated with pl geocode.q regressions (multi-word q nulling) → syn_nopl
+      variant tested in d5; net verdict: keep as future lever, don't ship alone.
 
-- [ ] **3. Grammar-constrained decoding for deployment** *(research rank 3; free at
+- [x] **3. Grammar-constrained decoding for deployment** *(research rank 3; free at
       inference, zero training)*
-      - [ ] Export GBNF grammar (llama.cpp) or xgrammar spec per function: exact key set,
+      - [x] Export GBNF grammar (llama.cpp) or xgrammar spec per function: exact key set,
             enum vocabularies (routingMode, travel modes, avoid_features values).
-      - [ ] Measure: enum_invalid → 0, F1 unchanged, latency delta on 3090/CPU.
-      - [ ] Optional: re-run eval_extract with outlines/xgrammar to confirm no accuracy loss.
+      - [x] Measure: enum_invalid → 0, F1 unchanged, latency delta on 3090/CPU.
+      - [x] Optional: re-run eval_extract with outlines/xgrammar to confirm no accuracy loss.
+      **OUTCOME (2026-10-11):** `src/target_schema.py` + `src/export_grammar.py`
+      (grammars/*.gbnf for 25 fns) + `eval/eval_constrained.py` (xgrammar LogitsProcessor).
+      Full-test A/B on FT adapter: F1 0.7515→0.7510, EM 0.6671→0.6659, parse 1.0 both —
+      metrics-neutral, hard schema-validity guarantee at inference. Ship-worthy for edge.
 
 ## Medium priority
 
-- [ ] **4. Hammer-style negative training** *(research rank 4; targets the 128 hallucinated
+- [x] **4. Hammer-style negative training** *(research rank 4; targets the 128 hallucinated
       slots)*
-      - [ ] Build adversarial rows: near-miss schemas (similar param names/descriptions),
+      - [x] Build adversarial rows: near-miss schemas (similar param names/descriptions),
             utterances that mention plausible-but-wrong values, all-null gold targets.
-      - [ ] Mix ~5–10% negatives into training data; retrain; acceptance: FP slots −20%,
+      - [x] Mix ~5–10% negatives into training data; retrain; acceptance: FP slots −20%,
             null acc ≥ 0.96 maintained.
+      **EXECUTED 2026-10-11:** `src/build_negatives.py` → data/neg_train 1067 rows (B1
+      avoid-use-mentions 228 / B2 chatter place-mentions 372 / B3 vehicle-incidental 240 /
+      A constraint-phrase-under-geocode 260; lang slot off-limits — structural label noise).
+      Lexical guards (no route/search intent) since enum grounding cannot validate
+      mention-vs-extraction traps. Run `llama-3.2-1b-neg` = core+aug+neg.
+      **OUTCOME (2026-10-11): FAIL.** F1 0.7368 (−1.5), true-halluc FP slots 128→126
+      (noise; lang −5, q +4, avoid +2), total FP 185→193, null_acc 0.9632 held. Trap-template
+      negatives at ~7% of the mix do not generalize to real-dialog hallucinations; slot
+      shifts are within ±run variance. Details: Round 4 §N in reports/RESULTS.md.
 
 - [ ] **5. Output-format ablation** *(research rank 5; cheap experiment — ACL 2026 says
       format skews IE accuracy)*

@@ -278,6 +278,144 @@ Files: `eval/results/snap_spans_report.json`, `eval/results/{baseline-hinted,ner
 `data/{core_train,aug_train,core_test}_ner.jsonl`, `data/ner_spans.json`,
 `scripts/run_ner_experiment.sh`.
 
+## Round 4 (2026-10-11) — teacher distillation, synthetic data, constrained decoding, negative training
+
+Motivation: `plans/2026-10-10_improvement-todo.md` (top-3 research-ranked improvements) + the
+128 true hallucinated FP slots from Round 3 error analysis. All runs use the identical
+llama-3.2-1b LoRA recipe as the 0.7515 reference; core_test n=817.
+
+### D — teacher distillation (`src/build_distill.py`)
+
+gpt-5.4-mini (OpenAI free tier, KEY_1) annotates unused instruction_extraction texts
+(pl/es/fr) using the EXACT training prompt; outputs pass the gold-builder grounding
+(`param_target`, Data-Turnstile-style: keys⊆schema, verbatim/enum/number grounding,
+origin/destination/via force-nulled). Teacher usage logged per-request
+(logs/distill_usage.jsonl); rejects logged with reasons.
+
+- Run 1 (seed 42, 2 fns): `data/distill_train.jsonl` 6933 rows — 1157 directions (teacher)
+  + 5776 geocode-local (deterministic regex q=origin; no API call). 1.2M-token key budget.
+- Run 2 (seed 43, directions-only, dedup vs all existing data): `data/distill2_train.jsonl`
+  1100 rows (avoid_features-heavy).
+
+Five retrains (train mix varies, core+aug always included):
+
+| run | extra data | slot F1 | row EM | de | en | es | fr | pl |
+|---|---|---|---|---|---|---|---|---|
+| base | — | **0.7515** | **0.6671** | .7859 | .7849 | .7412 | .7077 | **.7399** |
+| ds | distill + syn | **0.7548** | .6634 | .7811 | **.8178** | **.7548** | .7147 | .7085 |
+| d2 | distill_dir + syn | .7500 | .6597 | **.7884** | .7970 | .7308 | .7222 | .7090 |
+| d5 | distill_dir + distill2 + syn_nopl | .7431 | .6585 | .7638 | .7794 | .7395 | .7183 | .7138 |
+| d4 | distill_dir + distill2 | .7459 | .6524 | .7543 | .7849 | .7358 | **.7234** | .7361 |
+
+Findings:
+
+- **here_directions distill works**: fn F1 .7257 → .7558 (ds, +3.0); survives across mixes.
+- **geocode-local distill is poison for pl**: surface-form q (inflected "Torunia") and
+  q-hallucination on route-intent rows conflict with core gold style → pl −3.1 (ds). Note it
+  *helped* es (+1.4 ds) — the policy conflict is lang-specific morphology, not universal.
+- **No mix dominates** — each gain in some langs is paid in others. Identical-recipe LoRA
+  reruns vary ±1.5–2 pts per lang; effect sizes here are inside that noise band. Squeezing
+  more from data scaling needs seed-averaged evals (compute-bound) — out of scope this round.
+- **Structural ceiling found — `lang` slot**: core gold is context-dependent (same utterance
+  appears with lang=dialog-lang AND lang=null; the resolver decides). Single-turn input
+  cannot resolve it: base FNs on gold-lang rows = en 7 / de 18 / pl 23 / es 28 / fr 26.
+  ~2–3 pts F1 headroom locked behind multi-turn/context features, not data volume.
+- Acceptance (pl/es/fr each +3) **FAIL**; ds kept as the best-F1 variant but the shipped
+  winner stays `train/runs/llama-3.2-1b/best` (round-to-round consistency).
+
+### S — synthetic closed loop (`src/build_synthetic.py`)
+
+Templated generator seeded from core vocab (places harvested from targets/sources), phrasing
+tables built so every constraint phrase contains its ENUM_STEMS grounding stem; validators =
+keys⊆schema + grounding + coverage(fn×lang×slot, 98 enum combos); shingle-dedup vs
+core+aug+distill. 5700 rows (1140/lang) → syn_train.jsonl. Effect: en +3.3 in ds (syn is the
+only new en data), but pl-only analysis pointed at syn-pl templates for geocode.q multi-word
+nulling; a syn_nopl ablation (d5) did not recover pl. Verdict: useful generator, do not ship
+the current templates wholesale; regenerate per-lang after template audit.
+
+### G — grammar-constrained decoding (`src/target_schema.py`, `src/export_grammar.py`, `eval/eval_constrained.py`)
+
+- Per-fn JSON schemas → xgrammar (compile_json_schema any_order) + llama.cpp GBNF exports
+  (`grammars/<fn>.gbnf`, 25 fns; enums incl. lang ∈ {de,en,es,fr,pl}, all params required +
+  nullable).
+- Full-test A/B on the FT adapter: F1 0.7515→0.7510, EM 0.6671→0.6659, parse 1.0 both,
+  null_acc 0.9626 both — **metrics-neutral with a hard schema-validity guarantee** (FT model
+  already parses perfectly on-distribution; the guarantee pays off OOD/edge). Fits in VRAM
+  alongside training (~3.4GB for 1B bf16, bs 4).
+
+### N — Hammer-style negative training (`src/build_negatives.py`)
+
+Targets the 128 true hallucinated slots (geocode.q 29, avoid_features 29, lang 46
+[structural, off-limits], routingMode 6, transportMode 5, nominatim q 6, tomtom query 5,
+search q 2). Families: B1 avoid-use-mentions ("I use toll roads" → avoid null), B2 chatter
+place-mentions (no search intent), B3 vehicle-incidental clauses, A constraint-phrase under
+geocode-family schema. Grounding CANNOT validate mention-vs-extraction (enum stems present)
+→ lexical intent guards reject any route/search phrasing. 1067 rows + 33 val
+(data/neg_train.jsonl). Run `llama-3.2-1b-neg` (core+aug+neg, 15,484 rows):
+
+`llama-3.2-1b-neg` (core+aug+neg, 15,484 rows): slot F1 0.7368 (−1.5), EM 0.6548 (−1.2),
+null_acc 0.9632 (≥0.96 held), parse 1.0. Hallucination counters vs base: true-halluc FP
+slots 128→126 (noise; lang 46→41, q 37→41, avoid_features 29→31), total FP 185→193.
+**Acceptance FAIL** — trap-template negatives at ~7% of mix do not generalize to real-dialog
+hallucinations; the shift between slots is within run variance. Consistent with the round's
+lesson: at 1B+LoRA the remaining error mass is structural (lang label context, canonical-form
+gold) or needs inference-time mechanisms, not more data of this kind.
+
+Files: `src/build_{distill,synthetic,negatives}.py`, `data/{distill,distill2,syn,neg}_{train,val}.jsonl`,
+`scripts/run_{distill_retrain,d2_retrain,d5_d4_chain,neg_retrain}.sh`,
+`eval/results/llama-3.2-1b-{ds,d2,d4,d5}-ft{,-g}.json`, `grammars/`.
+
+## Round 5 (2026-10-11) — BIO-tagging formulation (param names as output vocabulary)
+
+Plan + full analysis: `notes/2026-10-11-tagging-formulation-round4.md`. Two user ideas
+combined: (1) parameter names injected so the model attends to schema-relevant input parts,
+(2) recast generation as per-word tagging (utterance → one tag per whitespace word) instead of
+JSON synthesis. Decision rules fixed before running: Track A (llama LoRA emitting tags) adopts
+if F1 ≥ ~0.735 AND shorter decode; Track B (BERT encoder tagger) adopts as edge candidate if
+within ~2 pts of the 0.7515 JSON winner.
+
+### Data — `src/build_tags.py`
+
+`data/*_tags.jsonl` add `bio_tags`: O / B-<param>[:<enumval>] / I-<param>, one per
+whitespace word, optional leading `lang:<v>` pseudo-tag. Enum canonical values are embedded
+in the tag (`B-avoid_features:tollRoad`) because fr/pl/es utterances never contain the
+canonical form (péage → tollRoad). Alignment cascade: substring → enum-stem word →
+monotonic subsequence → appendage-prefix (≤2 leftover chars); rest nulled honestly.
+
+- Gold roundtrip (decode(tags)==target, norm): core 92.1/91.4/91.8% (train/val/test),
+  aug 99.7/100% → **structural ceiling on core_test: 91.1% of non-null slots / 91.8% of
+  rows** recoverable from tags alone.
+- Ceiling losses: Polish inflection slice-vs-canonical (utterance "Krakowa", gold
+  "Kraków", ~1%), US-state appendage ("Seattle, WA" → q="Seattle", ~2%), 2-char codes
+  that pass the old substring check but have no span ("DE", "es", ~0.5%).
+
+### Track B — JointBERT-style encoder (`train/train_tagger.py`, `eval/eval_tagger.py`)
+
+bert-base-multilingual (wikineural init) + schema string prepended (`name=v1|v2` for enums)
++ tag head + lang head (CLS). 5 epochs, val tag-acc 98.34%.
+
+| system (core_test, n=817) | slot F1 | P | R | row EM | null acc | parse | ms/row |
+|---|---|---|---|---|---|---|---|
+| JSON winner (llama-3.2-1b LoRA) | **0.7515** | .7550 | .7480 | **0.6671** | .9626 | 1.0 | 43.1 gpu |
+| BERT tagger (ours) | 0.7152 | .7088 | .7218 | 0.6279 | .9585 | 1.0 | **5.0 gpu / 96.6 cpu** |
+
+by-lang F1: tagger de .7642 en .7306 es .6978 fr .7327 pl .6403 vs JSON
+de .7859 en .7849 es .7412 fr .7077 pl .7399 — tagger wins fr (+2.5) only; pl collapses
+(−9.9, morphology slice losses + lang head). Error profile mirrors the generative models:
+fn q 95, fn+fp lang 150 (84+66), fp q 34, fp avoid_features 29 — tagging removes value
+fabrication but keeps the same dominant confusion classes.
+
+**Verdict: REJECT as edge candidate** (0.7152 is 3.6 pts below winner; rule allowed −2).
+8.6× faster on GPU and CPU-viable at ~97 ms/row, but the structural ceiling (91.1% slots)
+plus encoder capacity cap it below the adoption bar.
+
+### Track A — llama-3.2-1b LoRA emitting tags (`src/render.py` TAG_SYSTEM_PROMPT, `eval/eval_tags.py`)
+
+Trained on core+aug tags (14,432 rows). Greedy decode with one sampled regen on
+tag-count mismatch, then `decode_tags` → JSON, scored identically to eval_extract.
+
+<!-- TAGS_LLM_RESULTS_PLACEHOLDER -->
+
 ## Artifacts
 
 - Adapters: `train/runs/<candidate>/best/`; full-FT: `train/runs/<candidate>-full/best/`.
