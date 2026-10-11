@@ -1,0 +1,208 @@
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "response_detail": {
+      "anyOf": [
+        {
+          "enum": [
+            "compact",
+            "full"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "limit": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "language": {
+      "anyOf": [
+        {
+          "enum": [
+            "de",
+            "en",
+            "es",
+            "fr",
+            "pl"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "countrySet": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "view": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "extendedPostalCodesFor": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mapcodes": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timeZone": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "geometries": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "addressRanges": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lat": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lon": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "radius": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "topLeft": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "btmRight": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "entityTypeSet": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "query",
+    "response_detail",
+    "limit",
+    "language",
+    "countrySet",
+    "view",
+    "extendedPostalCodesFor",
+    "mapcodes",
+    "timeZone",
+    "geometries",
+    "addressRanges",
+    "lat",
+    "lon",
+    "radius",
+    "topLeft",
+    "btmRight",
+    "entityTypeSet"
+  ],
+  "additionalProperties": false
+}

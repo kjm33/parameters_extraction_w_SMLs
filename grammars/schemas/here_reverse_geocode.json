@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lang": {
+      "anyOf": [
+        {
+          "enum": [
+            "de",
+            "en",
+            "es",
+            "fr",
+            "pl"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "at",
+    "lang"
+  ],
+  "additionalProperties": false
+}

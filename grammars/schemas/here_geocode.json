@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "q": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lang": {
+      "anyOf": [
+        {
+          "enum": [
+            "de",
+            "en",
+            "es",
+            "fr",
+            "pl"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "limit": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "q",
+    "lang",
+    "limit"
+  ],
+  "additionalProperties": false
+}

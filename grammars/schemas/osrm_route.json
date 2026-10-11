@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "coordinates": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "coordinates"
+  ],
+  "additionalProperties": false
+}

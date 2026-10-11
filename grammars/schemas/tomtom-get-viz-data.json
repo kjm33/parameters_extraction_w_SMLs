@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "viz_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "viz_id"
+  ],
+  "additionalProperties": false
+}

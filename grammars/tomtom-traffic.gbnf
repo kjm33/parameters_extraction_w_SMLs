@@ -1,0 +1,17 @@
+root ::= "{" kvs "}"
+kvs ::= kv-0 "," kv-1 "," kv-2 "," kv-3 "," kv-4 "," kv-5
+ws ::= [ \t\n]*
+str ::= "\"" ([^"\\\x7F\x00-\x1F] | "\\" (["\\bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]))* "\""
+num ::= [0-9]+
+kv-0 ::= "response_detail" ":" val-0
+val-0 ::= ("compact" | "full" | "null")
+kv-1 ::= "bbox" ":" val-1
+val-1 ::= (str | "null")
+kv-2 ::= "language" ":" val-2
+val-2 ::= (str | "null")
+kv-3 ::= "maxResults" ":" val-3
+val-3 ::= (num | "null")
+kv-4 ::= "categoryFilter" ":" val-4
+val-4 ::= (str | "null")
+kv-5 ::= "timeValidityFilter" ":" val-5
+val-5 ::= ("present" | "future" | "null")

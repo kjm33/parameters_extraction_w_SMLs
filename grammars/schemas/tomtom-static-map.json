@@ -1,0 +1,150 @@
+{
+  "type": "object",
+  "properties": {
+    "center": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "bbox": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "zoom": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "width": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "height": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "style": {
+      "anyOf": [
+        {
+          "enum": [
+            "main",
+            "night"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "layer": {
+      "anyOf": [
+        {
+          "enum": [
+            "basic",
+            "labels",
+            "hybrid"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "format": {
+      "anyOf": [
+        {
+          "enum": [
+            "png",
+            "jpg"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "view": {
+      "anyOf": [
+        {
+          "enum": [
+            "Unified",
+            "IL",
+            "IN",
+            "MA",
+            "PK",
+            "AR",
+            "Arabic",
+            "RU",
+            "TR",
+            "CN",
+            "US"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "language": {
+      "anyOf": [
+        {
+          "enum": [
+            "de",
+            "en",
+            "es",
+            "fr",
+            "pl"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "center",
+    "bbox",
+    "zoom",
+    "width",
+    "height",
+    "style",
+    "layer",
+    "format",
+    "view",
+    "language"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,124 @@
+{
+  "type": "object",
+  "properties": {
+    "transportMode": {
+      "anyOf": [
+        {
+          "enum": [
+            "car",
+            "truck",
+            "pedestrian",
+            "bicycle",
+            "scooter"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "origin": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "destination": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "via": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "departureTime": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "routingMode": {
+      "anyOf": [
+        {
+          "enum": [
+            "fast",
+            "short"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "avoid_features": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "enum": [
+              "tollRoad",
+              "ferry",
+              "motorway",
+              "tunnel"
+            ]
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lang": {
+      "anyOf": [
+        {
+          "enum": [
+            "de",
+            "en",
+            "es",
+            "fr",
+            "pl"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "transportMode",
+    "origin",
+    "destination",
+    "via",
+    "departureTime",
+    "routingMode",
+    "avoid_features",
+    "lang"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,208 @@
+{
+  "type": "object",
+  "properties": {
+    "origin": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "destination": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "waypoints": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "currentChargePercent": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "maxChargeKWH": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "consumptionInKWH": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "batteryCurve": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "minChargeAtDestinationPercent": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "minChargeAtChargingStopsPercent": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "routeType": {
+      "anyOf": [
+        {
+          "enum": [
+            "fast",
+            "short",
+            "efficient"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "traffic": {
+      "anyOf": [
+        {
+          "enum": [
+            "live",
+            "historical"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "avoid": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "departAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "show_ui": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "response_detail": {
+      "anyOf": [
+        {
+          "enum": [
+            "compact",
+            "geometry",
+            "full"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "origin",
+    "destination",
+    "waypoints",
+    "currentChargePercent",
+    "maxChargeKWH",
+    "consumptionInKWH",
+    "batteryCurve",
+    "minChargeAtDestinationPercent",
+    "minChargeAtChargingStopsPercent",
+    "routeType",
+    "traffic",
+    "avoid",
+    "departAt",
+    "show_ui",
+    "response_detail"
+  ],
+  "additionalProperties": false
+}

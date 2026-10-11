@@ -1,0 +1,607 @@
+{
+  "type": "object",
+  "properties": {
+    "waypoints": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "response_detail": {
+      "anyOf": [
+        {
+          "enum": [
+            "compact",
+            "full"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "routeType": {
+      "anyOf": [
+        {
+          "enum": [
+            "fastest",
+            "shortest",
+            "eco",
+            "thrilling"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "travelMode": {
+      "anyOf": [
+        {
+          "enum": [
+            "car",
+            "pedestrian",
+            "bicycle",
+            "truck",
+            "taxi",
+            "bus",
+            "van"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "traffic": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "avoid": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "departAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "arriveAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "maxAlternatives": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "alternativeType": {
+      "anyOf": [
+        {
+          "enum": [
+            "anyRoute",
+            "betterRoute"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "instructionsType": {
+      "anyOf": [
+        {
+          "enum": [
+            "coded",
+            "text",
+            "tagged"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "language": {
+      "anyOf": [
+        {
+          "enum": [
+            "de",
+            "en",
+            "es",
+            "fr",
+            "pl"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "computeBestOrder": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "supportingPoints": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleHeading": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "includeTollPaymentTypes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "report": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "routeRepresentation": {
+      "anyOf": [
+        {
+          "enum": [
+            "polyline",
+            "summaryOnly",
+            "encodedPolyline",
+            "none"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "extendedRouteRepresentation": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "computeTravelTimeFor": {
+      "anyOf": [
+        {
+          "enum": [
+            "all",
+            "none"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "hilliness": {
+      "anyOf": [
+        {
+          "enum": [
+            "low",
+            "normal",
+            "high"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "windingness": {
+      "anyOf": [
+        {
+          "enum": [
+            "low",
+            "normal",
+            "high"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleMaxSpeed": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleWeight": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleWidth": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleHeight": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleLength": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleCommercial": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleAxleWeight": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleNumberOfAxles": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleLoadType": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleAdrTunnelRestrictionCode": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vehicleEngineType": {
+      "anyOf": [
+        {
+          "enum": [
+            "combustion",
+            "electric"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "currentChargeInkWh": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "maxChargeInkWh": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "constantSpeedConsumptionInkWhPerHundredkm": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "auxiliaryPowerInkW": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "chargeMarginsInkWh": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "constantSpeedConsumptionInLitersPerHundredkm": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "currentFuelInLiters": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "auxiliaryPowerInLitersPerHour": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fuelEnergyDensityInMJoulesPerLiter": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "accelerationEfficiency": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decelerationEfficiency": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "uphillEfficiency": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "downhillEfficiency": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "consumptionInkWhPerkmAltitudeGain": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recuperationInkWhPerkmAltitudeLoss": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sectionType": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "waypoints",
+    "response_detail",
+    "routeType",
+    "travelMode",
+    "traffic",
+    "avoid",
+    "departAt",
+    "arriveAt",
+    "maxAlternatives",
+    "alternativeType",
+    "instructionsType",
+    "language",
+    "computeBestOrder",
+    "supportingPoints",
+    "vehicleHeading",
+    "includeTollPaymentTypes",
+    "report",
+    "routeRepresentation",
+    "extendedRouteRepresentation",
+    "computeTravelTimeFor",
+    "hilliness",
+    "windingness",
+    "vehicleMaxSpeed",
+    "vehicleWeight",
+    "vehicleWidth",
+    "vehicleHeight",
+    "vehicleLength",
+    "vehicleCommercial",
+    "vehicleAxleWeight",
+    "vehicleNumberOfAxles",
+    "vehicleLoadType",
+    "vehicleAdrTunnelRestrictionCode",
+    "vehicleEngineType",
+    "currentChargeInkWh",
+    "maxChargeInkWh",
+    "constantSpeedConsumptionInkWhPerHundredkm",
+    "auxiliaryPowerInkW",
+    "chargeMarginsInkWh",
+    "constantSpeedConsumptionInLitersPerHundredkm",
+    "currentFuelInLiters",
+    "auxiliaryPowerInLitersPerHour",
+    "fuelEnergyDensityInMJoulesPerLiter",
+    "accelerationEfficiency",
+    "decelerationEfficiency",
+    "uphillEfficiency",
+    "downhillEfficiency",
+    "consumptionInkWhPerkmAltitudeGain",
+    "recuperationInkWhPerkmAltitudeLoss",
+    "sectionType"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+root ::= "{" kvs "}"
+kvs ::= kv-0
+ws ::= [ \t\n]*
+str ::= "\"" ([^"\\\x7F\x00-\x1F] | "\\" (["\\bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]))* "\""
+num ::= [0-9]+
+kv-0 ::= "coordinates" ":" val-0
+val-0 ::= (str | "null")

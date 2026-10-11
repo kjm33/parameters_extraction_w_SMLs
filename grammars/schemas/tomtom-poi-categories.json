@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "filters": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "filters"
+  ],
+  "additionalProperties": false
+}

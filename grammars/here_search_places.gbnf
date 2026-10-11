@@ -1,0 +1,13 @@
+root ::= "{" kvs "}"
+kvs ::= kv-0 "," kv-1 "," kv-2 "," kv-3
+ws ::= [ \t\n]*
+str ::= "\"" ([^"\\\x7F\x00-\x1F] | "\\" (["\\bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]))* "\""
+num ::= [0-9]+
+kv-0 ::= "q" ":" val-0
+val-0 ::= (str | "null")
+kv-1 ::= "at" ":" val-1
+val-1 ::= (str | "null")
+kv-2 ::= "in_country" ":" val-2
+val-2 ::= (str | "null")
+kv-3 ::= "limit" ":" val-3
+val-3 ::= (num | "null")

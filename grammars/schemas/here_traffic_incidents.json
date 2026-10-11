@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "location": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "location"
+  ],
+  "additionalProperties": false
+}
