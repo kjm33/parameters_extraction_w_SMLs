@@ -12,6 +12,10 @@ Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
   comma-segment rewrite ("Lyon, France" → "Lyon"), prefix-inflection token matching
 - `src/build_augment.py` — heuristic augmentation from `../instruction_extraction`
   (`data/aug_{train,val}.jsonl`); shingle dedup vs core; lang-balanced (en boosted)
+- `src/extract_ner.py` — multilingual NER spans (wikineural) over core+aug+test →
+  `data/ner_spans.json` (+ `data/*_ner.jsonl` hinted dataset copies for the NER experiment)
+- `eval/snap_spans.py` — span-snapping post-processor ablation over `*_ft_preds.jsonl`
+  dumps + lenient (tok_match) re-scoring → `eval/results/snap_spans_report.json`
 - `src/render.py` — chat rendering + prompt-masked labels (string-level split; matches
   inference tokenization). SYSTEM_PROMPT lives here.
 - `train/train_sft.py` — transformers+peft LoRA/full SFT, single pinned GPU
@@ -73,6 +77,11 @@ python3 eval/train_detector.py --train-tag llama-3.2-1b-h90-holdout \
 
 # ensemble majority vote of the h90 trio
 python3 eval/ensemble_vote.py
+
+# NER-hint experiment (round 3 — dropped; artifacts kept): rebuild spans / hinted data
+../function_calling_edge_fine_tuning/train/venv/bin/python src/extract_ner.py --gpu 1
+# span-snapping + lenient re-score ablation over existing preds dumps (CPU)
+python3 eval/snap_spans.py
 ```
 
 ## Gotchas

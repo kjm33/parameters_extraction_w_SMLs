@@ -20,7 +20,12 @@ SYSTEM_PROMPT = (
 
 def user_content(row: dict) -> str:
     schema = json.dumps(row["function"], ensure_ascii=False, separators=(",", ":"))
-    return f"FUNCTION: {schema}\n\nUSER_MESSAGE: {row['utterance']}"
+    base = f"FUNCTION: {schema}\n\nUSER_MESSAGE: {row['utterance']}"
+    spans = row.get("ner_spans")
+    if spans:  # NER-hint variant (Experiment B); absent field -> byte-identical prompt
+        hint = json.dumps(list(spans)[:12], ensure_ascii=False, separators=(",", ":"))
+        base += f"\nCANDIDATE_SPANS: {hint}"
+    return base
 
 
 def assistant_content(row: dict) -> str:

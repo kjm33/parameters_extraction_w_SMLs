@@ -155,7 +155,23 @@ What we tried and what happened, in plain words:
 | Per-value entropy | How scattered are the 5 sampled attempts for each individual value? | Middle of the pack (0.66–0.68) — no gain over simpler signals. |
 
 **Bottom line of round 2**: the simple free signal was already near the ceiling — a learned
-combiner squeezes out a few more points (0.77), and a 3-model committee is better used to
+combiner squeezes out a few points (0.77), and a 3-model committee is better used to
 *correct* answers than to *doubt* them. For the car: run the winner, auto-accept the ~45%
 most confident answers (≈85%+ accurate), and escalate the rest to the bigger model or ask
 the driver to confirm.
+
+## 7. Update: classic NLP helpers — tried, didn't help (round 3)
+
+Two old-school ideas were tested, motivated by the error breakdown (place-name boundaries,
+invented values, spelling variants):
+
+| Idea | What it is | Result |
+|---|---|---|
+| **Span snapping** | After the model answers, force any slightly-off place name onto the exact wording from the driver's sentence | **No-op** (changed ≤5 values per model, +0.001 F1 at best). The model already copies almost verbatim — the "boundary errors" we measured are mostly the *scoring* being stricter than the *answer-key builder* about spelling variants (Torunia vs Toruń). Re-scoring leniently is worth +2.5–3.5 pts for free. |
+| **NER hints in the prompt** | Run a classical named-entity detector over the sentence and show the model a list of "candidate place/person names" | **Hurt** (0.737 vs 0.752 F1). The model starts copying candidates into slots the driver never filled; retraining on hints cancels that but still lands below the plain baseline — and the hinted model falls apart when hints are absent. |
+
+**Bottom line of round 3**: no classic-NLP crutch beats the plain fine-tuned model. Keep
+the winner as-is. Two useful leftovers: the eval should score leniently (spelling variants
+are not real errors), and the remaining *true* invented values (128) belong to a
+constrained-decoding fix, not to NER.
+

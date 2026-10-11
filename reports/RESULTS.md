@@ -211,6 +211,73 @@ combiner (plausible small gain on enum slots), selection-over-candidates for `q`
 
 Files: `eval/results/jev_enum_val{,_rows}.jsonl`, `eval/results/jev_verify_llama-1b-merged-test{,_rows}.jsonl`.
 
+## Addendum: classical-NLP assistance (span snapping + NER hints, `plans/PLAN_NER.md`)
+
+Question: do classic NLP tricks (span alignment, prompt-injected NER spans) help the tiny
+slot-filler? Error analysis motivated both: ~66 q-span-boundary errors, 128 hallucinated
+values, 14% of misses normalization near-misses. **Answer: no — both dropped.**
+
+### A — Span-snapping post-processor (`eval/snap_spans.py`, 7 FT pred dumps)
+
+For each non-null free-text predicted value failing the verbatim check, snap to the
+best-aligned utterance span (token-window scoring, fold-normalized; enums/numbers/lang and
+list items skipped item-wise).
+
+| Model | strict F1 | snapped F1 | Δ | values snapped |
+|---|---|---|---|---|
+| llama-3.2-1b-ft | 0.7515 | 0.7515 | 0.0000 | 3 |
+| llama-3.2-3b-ft | 0.7449 | 0.7462 | +0.0013 | 5 |
+| qwen2.5-0.5b-ft | 0.7189 | 0.7189 | 0.0000 | 5 |
+| qwen3-0.6b-ft | 0.7315 | 0.7315 | 0.0000 | 2 |
+| gemma-3-1b-ft | 0.7259 | 0.7259 | 0.0000 | 5 |
+| qwen2.5-0.5b-fullft | 0.7251 | 0.7251 | 0.0000 | 1 |
+| qwen3-0.6b-fullft | 0.7343 | 0.7343 | 0.0000 | 1 |
+
+**A2 free ablation** (re-score ORIGINAL preds with the gold-builder's inflection-tolerant
+`tok_match`): F1 +2.4–3.7 pts everywhere (llama-1b 0.7515→0.7779, EM 0.6671→0.6903;
+qwen3-fullft +0.0371). The FT models already copy utterance spans nearly verbatim — the
+"boundary error" mass is mostly **eval-normalization artifact**: `norm_val` is fold-strict
+while the gold builder tolerates inflection/clipping (Torunia↔Toruń), and gold may keep
+canonical forms the user never said (`Los Angeles, CA`, <3-char tokens skip checks).
+Snapping toward utterance forms therefore can't help against such gold (all snapped values
+scored neutral; 1 row fixed net across all 7 models). **Verdict: drop the post-processor;
+the actionable finding is a ~2.5–3.5 pt lenient-compare headroom in the eval itself.**
+
+### B — NER hints in the prompt (`src/extract_ner.py`, `src/render.py`)
+
+NER spans (`Babelscape/wikineural-multilingual-ner` — Davlan repo substituted: it needs
+sentencepiece, absent from the venv; wikineural is the same XLM-R-base class) extracted for
+all 15.5k train/aug/test utterances → `data/ner_spans.json`; LOC-first, ≤12 spans appended
+as `CANDIDATE_SPANS: [...]` (rows without the field render byte-identically). llama-3.2-1b
+LoRA retrained on hinted core_train+aug (identical recipe) → `train/runs/llama-3.2-1b-ner`.
+
+2×2 on core_test (n=817; error classes = hallucinated FP slots / missed-or-wrong FN slots):
+
+| Cell | slot F1 | row EM | FP | FN |
+|---|---|---|---|---|
+| baseline × plain (reference) | **0.7515** | **0.6671** | 128 | 192 |
+| baseline × hinted | 0.7176 | 0.6071 | 198 | 180 |
+| ner-trained × hinted | 0.7366 | 0.6524 | 128 | 207 |
+| ner-trained × plain | 0.7124 | 0.5655 | 258 | 155 |
+
+- Hints alone **hurt** the baseline (−3.4 F1): the model copies CANDIDATE_SPANS into slots
+  (hallucinations 128→198).
+- NER training neutralizes the copying (FP back to 128) but FN rises 192→207 — still −1.5
+  F1 below baseline. The +2–3 pt expectation inverted.
+- Strong hint-dependence: ner-trained without hints drops EM −10 pts (0.5655) — unusable
+  robustness profile for edge deployment.
+- Polish remains weakest under hints (ner-hinted pl F1 0.7106 vs de 0.7697) — the known
+  multilingual-NER weakness shows up as predicted.
+
+**Verdict: drop.** Classic-NLP assistance — post-hoc snapping or prompt NER — does not help
+this model family; the 0.7515/0.667 winner and its prompt format stand. What WOULD be worth
+a next round: fix the eval to lenient compare (A2), and attack the 128 true hallucinations
+with constrained decoding over schema enums (not utterance spans).
+
+Files: `eval/results/snap_spans_report.json`, `eval/results/{baseline-hinted,ner-hinted,ner-plain}{,_preds.jsonl}`,
+`data/{core_train,aug_train,core_test}_ner.jsonl`, `data/ner_spans.json`,
+`scripts/run_ner_experiment.sh`.
+
 ## Artifacts
 
 - Adapters: `train/runs/<candidate>/best/`; full-FT: `train/runs/<candidate>-full/best/`.
