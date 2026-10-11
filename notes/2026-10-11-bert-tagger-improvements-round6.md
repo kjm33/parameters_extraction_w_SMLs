@@ -60,24 +60,38 @@ Non-lang errors total just **128 slots**; lang is **216** (150 FN + 66 FP):
 
 ## 4. Plan (approved scope: B1+B2+B3 separate ablations; B4 conditional)
 
-- **Phase 0 (CPU only, ~30 min)** — B2 canonicalizer prototype: alias gazetteer from
-  train utterance→target pairs + pl suffix rules; measure on existing BERT dump
-  (ship if ≥+0.5 F1). Bonus: same post-proc + `, XX` rule on the JSON winner dump
-  (measures JSON-track gain; simulated 0.7752 for the boundary part alone).
-- **Phase 1 (CPU ~10 min)** — B1: relax `build_tags.py` appendage rule to join trailing
-  `,<space><2-letter uppercase>` into the span; first audit gold keep-vs-drop consistency
-  (how often gold itself drops the state — rule must match gold majority behavior);
-  rebuild `data/*_tags.jsonl`; verify roundtrip stats + new ceiling.
-- **Phase 2 (GPU, 4 separate ablations ~30–45 min each; watcher scripts — parallel
-  session occupies both GPUs; mBERT bs16 ≈5.7 GB)**:
-  1. mBERT+fix (isolates B1 gain alone)
-  2. mBERT+fix+distill (+6,933 rows)
-  3. XLM-R-base+fix (capacity swap)
-  4. XLM-R+fix+distill (combined)
-  Eval each with existing `eval/eval_tagger.py` (same scorer, latency incl. --cpu).
-- **Phase 3 (conditional)** — B4 CRF layer on the best B3 config, only if it lands
-  within 1 pt of 0.7515.
-- **Phase 4** — RESULTS.md round-6 section + this note updated with outcomes.
+### TODO list
+
+Phase 0 — simulations (CPU only):
+
+- [ ] B2a: canonicalizer prototype (`eval/canonicalize.py`) — alias gazetteer from train
+      utterance→target pairs + pl suffix rules; measure on existing BERT dump
+      (ship criterion ≥+0.5 F1)
+- [ ] B2b: same post-proc + `, XX` append-state rule on the JSON winner dump
+      (expect ~0.7752)
+
+Phase 1 — data fix (CPU):
+
+- [ ] B1a: audit gold keep-vs-drop of `, XX` state suffixes (rule must match gold
+      majority behavior)
+- [ ] B1b: relax `build_tags.py` appendage rule (join trailing comma + 2-letter
+      uppercase into span), rebuild `data/*_tags.jsonl`, verify roundtrip + ceiling
+
+Phase 2 — ablations (GPU, separate runs; watcher scripts if GPUs busy):
+
+- [ ] B3.1: mBERT+fix retrain + eval (isolates data-fix gain alone)
+- [ ] B3.2: mBERT+fix+distill (+6,933 rows) retrain + eval
+- [ ] B3.3: XLM-R-base+fix retrain + eval (capacity swap)
+- [ ] B3.4: XLM-R+fix+distill combined retrain + eval
+      (eval each with existing `eval/eval_tagger.py`, same scorer, latency incl. --cpu)
+
+Phase 3 — conditional:
+
+- [ ] B4: CRF layer on best B3 config, only if it lands within 1 pt of 0.7515
+
+Phase 4 — write-up:
+
+- [ ] RESULTS.md round-6 section + update this note with outcomes
 
 Decision rules (from round 5, user-agreed):
 - adopt BERT as edge candidate if F1 ≥ 0.735 with latency intact;
