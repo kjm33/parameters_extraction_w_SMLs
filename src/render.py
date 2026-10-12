@@ -17,6 +17,18 @@ SYSTEM_PROMPT = (
     "message does not state it. Output the JSON object and nothing else."
 )
 
+SPAN_SYSTEM_PROMPT = (
+    "You extract function parameters from user messages for an in-car navigation assistant. "
+    "Given a function schema and a user message, output ONLY a JSON object with one key per "
+    "function parameter. For free-text values, output the location of the value in the "
+    "message as [first,last] word numbers: words are counted by whitespace starting at 1, "
+    "one pair per contiguous part of the value, several pairs if the parts are separate. "
+    "For parameters with a fixed list of allowed values (enum), output the exact allowed "
+    "value instead of a span. If a value cannot be pointed at, output the value itself. "
+    "Set a key to null when the message does not state it. Output the JSON object and "
+    "nothing else."
+)
+
 TAG_SYSTEM_PROMPT = (
     "You tag the words of user messages with function parameters for an in-car navigation "
     "assistant. Given a function schema and a user message, output exactly one tag per "
@@ -33,7 +45,10 @@ TAG_SYSTEM_PROMPT = (
 
 def user_content(row: dict) -> str:
     schema = json.dumps(row["function"], ensure_ascii=False, separators=(",", ":"))
-    base = f"FUNCTION: {schema}\n\nUSER_MESSAGE: {row['utterance']}"
+    utt = row["utterance"]
+    if row.get("span_numbering"):  # span-list variant with copyable word indices
+        utt = " ".join(f"{i}|{w}" for i, w in enumerate(utt.split(), 1))
+    base = f"FUNCTION: {schema}\n\nUSER_MESSAGE: {utt}"
     spans = row.get("ner_spans")
     if spans:  # NER-hint variant (Experiment B); absent field -> byte-identical prompt
         hint = json.dumps(list(spans)[:12], ensure_ascii=False, separators=(",", ":"))
@@ -42,6 +57,8 @@ def user_content(row: dict) -> str:
 
 
 def assistant_content(row: dict) -> str:
+    if "span_target" in row:  # span-list formulation (round 9)
+        return json.dumps(row["span_target"], ensure_ascii=False, separators=(",", ":"))
     tags = row.get("bio_tags")
     if tags:  # tagging formulation (round 4); absent field -> JSON rendering
         return " ".join(tags)
@@ -49,7 +66,12 @@ def assistant_content(row: dict) -> str:
 
 
 def build_messages(row: dict) -> list[dict]:
-    system = TAG_SYSTEM_PROMPT if "bio_tags" in row else SYSTEM_PROMPT
+    if "span_target" in row:
+        system = SPAN_SYSTEM_PROMPT
+    elif "bio_tags" in row:
+        system = TAG_SYSTEM_PROMPT
+    else:
+        system = SYSTEM_PROMPT
     return [
         {"role": "system", "content": system},
         {"role": "user", "content": user_content(row)},

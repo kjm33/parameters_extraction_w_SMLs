@@ -60,6 +60,52 @@ stated on the lang-free metric: replace the winner at > winner-v2 score; adopt a
 candidate at ≥ edge-v2 + 0.5.
 
 
+## Round 9 (2026-10-12) — span-list formulation (pointers instead of strings)
+
+Plan + pre-registered rules: `notes/2026-10-12-spanlist-round9.md`. Same winner recipe
+(llama-3.2-1b LoRA, core+aug v2), but free-text param values become `[first,last]`
+1-based word-index pairs pointing into the utterance; enums stay canonical literals;
+nulls stay null. Two prompt variants: plain vs **numbered** (`1|word 2|word …` so indices
+are copyable — the mitigation for the round-5 word-counting failure). Hybrid targets via
+`src/build_spans.py` (reuses the build_tags alignment cascade; core_test gold roundtrip
+0.9388, 97.9% of non-null values pointable). Reference R = winner-v2 lang-free canon
+F1 **0.7958** (round-7 retrain; v1-converted 0.7993).
+
+| System (lang-free, canon) | F1 | EM | note |
+|---|---|---|---|
+| Llama-3.2-1B LoRA v2 JSON (R) | **0.7958** | **0.7956** | reference |
+| spans plain | 0.5679 | 0.6512 | collapsed |
+| spans numbered (spansn) | 0.7748 | 0.7834 | best span variant |
+
+Span-index diagnostics (vs gold spans): plain exact 218 / ±1 96 / ±2 26 / >2 35 —
+numbered **347 / 7 / 6 / 13** (95% exact). Rule 5 fired: the 0.207 plain↔numbered gap
+proves index arithmetic was the binding constraint; copyable indices essentially solve
+pointing itself (parse 1.0, avg 26.6 new tokens ≈ 3.4× shorter decode, null acc 0.9791).
+
+Why spansn still loses 2.1 F1 (per-lang canon: de .8413 / en .7317 / es .7932 / fr .7891
+/ pl .6854 vs winner-v2 de .8492 / en .7961 / es .7932 / fr .7752 / pl .7541):
+
+1. **Canonical-form fidelity is the cost, not pointing**: pl −6.9 and en −6.4 concentrate
+   where gold keeps forms absent from the utterance (inflected canonicals "Toruń" vs
+   surface "Torunia", ", CA" appendages). Generative models absorb canonical style from
+   targets; pointers structurally emit surface forms — canonicalize recovers only part
+   (pl 0.573→0.685). fr actually wins (+1.4).
+2. **Grounding did not buy anti-hallucination**: free-text FP slots 41→37 (−10%, rule-2
+   required −30%); avoid_features FP 29→30 unchanged — the hallucination mass is
+   enum/null-judgment, not free-text fabrication (consistent with round-3 census). q FN
+   rose 68→90 (boundary + appendage losses).
+3. **Verdict: REJECT** (rule 4, 0.7748 < 0.7758 = R−0.02 by 0.001 — honestly inside the
+   ±1.5–2 pt run-noise band, but pre-registered). With round-5 Track A this closes
+   pointer-style outputs at 1B scale: both per-word (BIO) and index-pair contracts lose
+   to plain JSON generation, whose "copy + canonicalize" behavior is what gold style
+   rewards. Round-10 recalibration: an embedding enum-matcher addresses enums only —
+   the measured pl/en losses are canonical-form, not enum.
+
+Artifacts: `src/build_spans.py`, `src/render.py` SPAN_SYSTEM_PROMPT, `eval/eval_spans.py`,
+`data/*_spans{,n}.jsonl` (+ `enum_spans` side-fields), `train/runs/llama-3.2-1b-spans{,n}/`,
+`eval/results/llama-3.2-1b-spans{,n}-ft{,_preds}.jsonl`, `no_lang_*` (canon),
+`scripts/run_span_round9_when_free.sh`, `scripts/run_spansn_gpu0.sh` (parallel lanes).
+
 ## Setup
 
 - Data: core 9,186 train rows from fcft verified dialogs + 5,818 heuristic-augmented rows from

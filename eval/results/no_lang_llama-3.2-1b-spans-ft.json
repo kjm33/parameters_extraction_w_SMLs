@@ -1,0 +1,167 @@
+{
+  "preds": "eval/results/llama-3.2-1b-spans-ft_preds.jsonl",
+  "canon": true,
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.5318,
+      "slot_recall": 0.5659,
+      "slot_f1": 0.5484,
+      "null_accuracy": 0.9802,
+      "row_em": 0.6377,
+      "tp": 309,
+      "fp": 272,
+      "fn": 237
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.5508,
+      "slot_recall": 0.5861,
+      "slot_f1": 0.5679,
+      "null_accuracy": 0.9802,
+      "row_em": 0.6512,
+      "tp": 320,
+      "fp": 261,
+      "fn": 226
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.5318,
+      "slot_recall": 0.5659,
+      "slot_f1": 0.5484,
+      "null_accuracy": 0.9762,
+      "row_em": 0.6377,
+      "tp": 309,
+      "fp": 272,
+      "fn": 237
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.5508,
+      "slot_recall": 0.5861,
+      "slot_f1": 0.5679,
+      "null_accuracy": 0.9762,
+      "row_em": 0.6512,
+      "tp": 320,
+      "fp": 261,
+      "fn": 226
+    }
+  },
+  "applied": {
+    "alias": 12,
+    "city2code": 2,
+    "pl_fallback": 1
+  },
+  "changed_examples": [
+    {
+      "id": "gold-5abffc421414",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-d6246b734c28",
+      "param": "q",
+      "rule": "city2code",
+      "before": "Canterbury",
+      "after": "Canterbury, UK",
+      "gold": "Canterbury, UK"
+    },
+    {
+      "id": "gold-5fff469acf43",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-3706630f3d2e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-ad25a7ec08f3",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Gdańsk"
+    },
+    {
+      "id": "gold-0dbe193a9ea0",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Alwary",
+      "after": "Alwar",
+      "gold": "Alwary"
+    },
+    {
+      "id": "gold-b1afb7fd935e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-c880552e6581",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-3cae6ed01ff6",
+      "param": "q",
+      "rule": "alias",
+      "before": "Łodzi",
+      "after": "Łódź",
+      "gold": "Łódź"
+    },
+    {
+      "id": "gold-79c5caf459de",
+      "param": "q",
+      "rule": "alias",
+      "before": "Berlina",
+      "after": "Berlin",
+      "gold": "Berlin"
+    },
+    {
+      "id": "gold-43611135ccfc",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-2e8dcac1f208",
+      "param": "q",
+      "rule": "alias",
+      "before": "Berlina",
+      "after": "Berlin",
+      "gold": "Berlin"
+    }
+  ]
+}
