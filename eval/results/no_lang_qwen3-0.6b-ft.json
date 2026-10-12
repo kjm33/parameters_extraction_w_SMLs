@@ -1,0 +1,59 @@
+{
+  "preds": "eval/results/qwen3-0.6b-ft_preds.jsonl",
+  "canon": false,
+  "gazetteer": null,
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7282,
+      "slot_recall": 0.7349,
+      "slot_f1": 0.7315,
+      "null_accuracy": 0.9594,
+      "row_em": 0.6389,
+      "tp": 560,
+      "fp": 209,
+      "fn": 202
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7282,
+      "slot_recall": 0.7349,
+      "slot_f1": 0.7315,
+      "null_accuracy": 0.9594,
+      "row_em": 0.6389,
+      "tp": 560,
+      "fp": 209,
+      "fn": 202
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7458,
+      "slot_recall": 0.8223,
+      "slot_f1": 0.7822,
+      "null_accuracy": 0.9726,
+      "row_em": 0.787,
+      "tp": 449,
+      "fp": 153,
+      "fn": 97
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7458,
+      "slot_recall": 0.8223,
+      "slot_f1": 0.7822,
+      "null_accuracy": 0.9726,
+      "row_em": 0.787,
+      "tp": 449,
+      "fp": 153,
+      "fn": 97
+    }
+  },
+  "applied": {},
+  "changed_examples": []
+}

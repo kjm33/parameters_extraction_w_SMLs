@@ -4,6 +4,62 @@ Task: (function schema + user utterance) → compact JSON, one key per schema pa
 verbatim-normalized from the utterance or `null` when not stated. 5 languages (en/de/pl/fr/es).
 Eval on `core_test.jsonl` (817 execution-verified gold rows, balanced langs).
 
+## Round 7 (2026-10-12): metric change — `lang` removed
+
+**The lang-free F1/EM (all schema params except `lang`/`language`) is the official headline
+metric from round 7 on.** All earlier sections report the all-slots metric and stand as history.
+
+Why (measured in round-6 error census):
+- `lang` is an optional HERE resolver-side param (ISO-639-1 "language for results") — present
+  in 566/817 test schemas, **never in `required`**; the resolver can decide it from dialog config.
+- Models never get the *value* wrong (0 wrong-language values; gold==dialog-lang 216/216 when
+  set) — the entire error mass is the set-vs-null coin flip.
+- 216 test utterances appear with `lang` BOTH set and null across dialogs → the label is
+  dialog-context-decided, unextractable from the utterance by any tool. It was 46% of the edge
+  model's error events (158/341).
+
+Conversion of round-5/6 systems via `eval/score_no_lang.py` (drops `lang` from target+pred,
+exact metric replica; dumps embed their targets so historical runs re-score exactly;
+`--canon` applies the canonicalize post-processor):
+
+| System (round 5/6) | all-slots F1/EM | lang-free F1/EM |
+|---|---|---|
+| Qwen2.5-0.5B LoRA | 0.719 / 0.639 | 0.7575 / 0.7699 |
+| Qwen2.5-0.5B full-FT | 0.725 / 0.644 | 0.7513 / 0.7662 |
+| Qwen3-0.6B LoRA | 0.732 / 0.639 | 0.7822 / 0.7870 |
+| Qwen3-0.6B full-FT | 0.734 / 0.647 | 0.7789 / 0.7846 |
+| gemma-3-1b LoRA | 0.726 / 0.639 | 0.7675 / 0.7674 |
+| Llama-3.2-3B LoRA | 0.745 / 0.649 | 0.7899 / 0.7882 |
+| **Llama-3.2-1B LoRA (winner)** | **0.7515 / 0.6671** | **0.7993 / 0.8005** |
+| Llama-3.2-1B LoRA + canon | 0.7502 / 0.6659 | 0.7975 / 0.7993 |
+| bert-tagger-fixd + canon (edge) | 0.7366 / 0.6340 | 0.7792 / 0.7870 |
+
+(Zeroshot rows of the main table predate per-row dumps and are not convertible; FT ranking is
+unchanged on the lang-free metric.)
+
+Benchmark v2 (flagged `benchmark` key in `data/*_stats.json`): `lang` forced null in targets
+(`lang-dropped` branch in `src/build_extraction.py`). Core rebuilt; **aug/distill normalized
+in place** (v1 row membership kept — rebuilding aug is no longer reproducible: the
+`../instruction_extraction` pool drifted after round 2, and `random.seed(42)` selection over a
+changed pool swaps ~3.8k rows). Tags rebuilt over the 6 files. Old dumps stay scorable
+(targets are embedded; dropping `lang` needs no dataset join).
+
+V2 retrains on benchmark v2 (`lang` stays visible in the prompt schema; models trained to
+emit `null`):
+
+| System v2 | lang-free F1/EM | note |
+|---|---|---|
+| bert-tagger-fixd-v2 + canon (edge) | 0.7813 / 0.7846 | vs 0.7792 v1 converted (+0.21); lang emitted null 0/817, all-slots == lang-free by construction |
+| **Llama-3.2-1B LoRA v2 (winner)** | **0.7958 / 0.7956** | vs 0.7993 v1 converted (−0.35, within run variance); lang null 0/817, 0 parse errors; canon neutral (5 applies, Δ0) |
+
+**Round-7 outcome:** champion = **Llama-3.2-1B LoRA v2 (0.7958 / 0.7956)**, edge =
+**bert-tagger-fixd-v2 + canon (0.7813 / 0.7846)**. Replacement bar (winner-v2 0.7958) not
+crossed — the JSON generator stays the recommended system; the edge tagger keeps its role as
+the small/fast fallback (4.3 ms/row GPU, 107 ms/row CPU). Decision bars going forward are
+stated on the lang-free metric: replace the winner at > winner-v2 score; adopt an edge
+candidate at ≥ edge-v2 + 0.5.
+
+
 ## Setup
 
 - Data: core 9,186 train rows from fcft verified dialogs + 5,818 heuristic-augmented rows from
@@ -432,6 +488,76 @@ for 1B decoders. Artifacts kept: `data/*_tags.jsonl`, `src/build_tags.py`,
 `train/train_tagger.py`, `eval/eval_tags.py`, `eval/eval_tagger.py`,
 `eval/results/{bert-tagger-ft,llama-3.2-1b-tags-ft}*.json[l]`, adapters
 `train/runs/{bert-tagger,llama-3.2-1b-tags}/best`.
+
+## Round 6 (2026-10-12) — BERT tagger improvements: post-processing + data ablations
+
+Plan: `notes/2026-10-11-bert-tagger-improvements-round6.md`. Goal: lift the round-5
+BERT tagger (0.7152) toward the JSON winner (0.7515) via (B1) `, XX` suffix handling,
+(B2) train-derived canonicalization, (B3) data/capacity ablations, (B4) conditional CRF.
+Decision rules (pre-registered): adopt as edge candidate at F1 ≥ 0.735, replace winner
+at ≥ 0.7515, B4 only if best B3 ≥ 0.7415.
+
+### B1 — audit falsified the data-fix premise (honest correction)
+
+The round-5 census attributed ~52 slots to a `build_tags.py` appendage-rule bug ("pred
+`Los Angeles` vs gold `Los Angeles, CA`"). Auditing gold vs utterances shows the state/
+country codes are **gold-side knowledge, absent from the utterance**: 23/23 test and
+99/101 train `, XX` values have no corresponding word (wfold check). The round-6 note's
++3.0 simulation was oracle-tinted (it appended *gold's own* suffix); no span-level data
+rule can recover these. Resolution: keep tags data as-is, recover via a train-derived
+city→code gazetteer at post-processing (B2). Corollary: `data/distill_train_tags.jsonl`
+built (6,933 rows, 99.71% roundtrip) so the tagger could train on the full corpus.
+
+### B2 — `eval/canonicalize.py` (ships)
+
+CPU-only post-processor; gazetteers built from core+aug train via contiguous alignment:
+**alias** map (inflected→canonical, e.g. `krakowa→Kraków`; guards: clean-target punct,
+≥3 votes, lang-plurality at apply), **city2code** (evidence gate: ≥3 with-code AND ≥75%
+share — only `Canterbury→UK` survives; 43 weak entries like London gated off), **pl
+suffix fallback**. Deterministic; `--ceiling` mode for tags roundtrip, `--dump` mode
+rescores any `*_preds.jsonl` with the exact eval_tagger metrics.
+
+| dump | before F1/EM | after F1/EM | applied |
+|---|---|---|---|
+| bert-tagger-ft | 0.7152/0.6279 | **0.7321/0.6389** (+1.69) | alias 14, pl 4, code 2 |
+| llama-3.2-1b-ft (winner) | 0.7515/0.6671 | 0.7502/0.6659 (−0.13) | alias 3, pl 2 |
+| core_test_tags ceiling | 0.9180 | 0.9364 | — |
+
+B2 ships (≥+0.5 on BERT) as a tagger-side post-processor; the JSON winner pipeline
+stays untouched (post-proc is ≈neutral there). The note's expected 0.7752 for winner
++state-append was the oracle artifact above.
+
+### B3 — data/capacity ablations (all scored with the same post-processor)
+
+| run | base / data | val tag-acc | raw F1/EM | +postproc F1/EM | ms/row |
+|---|---|---|---|---|---|
+| B3.1 bert-tagger (round-5 ckpt) | mBERT / core+aug | .9834 | 0.7152/0.6279 | 0.7321/0.6389 | 5.0 gpu / 96.6 cpu |
+| B3.2 bert-tagger-fixd | mBERT / +distill (21,937) | .9832 | 0.7199/0.6218 | **0.7366**/0.6340 | 4.5 gpu / 107.3 cpu |
+| B3.3 xlmr-fix | XLM-R / core+aug | .9824 | 0.7010/0.6255 | 0.7186/0.6389 | 3.5 gpu |
+| B3.4 xlmr-fixd | XLM-R / +distill | .9835 | 0.7168/0.6340 | 0.7340/**0.6475** | 3.0 gpu / 91.7 cpu |
+
+Findings:
+
+- **Distill helps the tagger**: +0.5 raw F1 (mBERT), +1.6 (XLM-R) — unlike the JSON
+  models where mixes were noise-bound; the encoder soaks up the 6.9k grounded rows.
+- **XLM-R does not beat mBERT on F1** despite capacity (278M vs 178M): en drops
+  (.7138→.6873 with distill) while pl recovers a little (.6099→.6182). It is faster
+  (3.0 ms/row gpu, 91.7 cpu) and has the best row EM (0.6475) — a latency/EM-tuned
+  alternative, not the F1 pick.
+- pl remains the structural weak spot for all taggers (.61–.62 vs winner .7399) —
+  morphology + lang-head; post-proc recovers only part (alias/pl_fallback ≈ +1.5 of it).
+
+### Decision
+
+Best = **bert-tagger-fixd + canonicalize: 0.7366 F1 ≥ 0.735 → ADOPTED as edge
+candidate** (4.5 ms/row GPU, 107 ms/row CPU + negligible dict-lookup post-proc).
+0.7366 < 0.7415 → **B4 CRF skipped**; < 0.7515 → **JSON winner stands** overall
+(`train/runs/llama-3.2-1b/merged/`). Edge deployment profile: mBERT tagger +
+canonicalize, 16.7× faster than the winner on GPU, CPU-real-time.
+
+Files: `eval/canonicalize.py`, `data/distill_train_tags.jsonl`,
+`eval/results/canonicalize_*.json`, `eval/results/{bert-tagger-fixd,xlmr-fix,xlmr-fixd}-ft*.json[l]`,
+`train/runs/{bert-tagger-fixd,xlmr-fix,xlmr-fixd}/`, `scripts/run_round6_{b3,xlmr_when_free}.sh`.
 
 ## Artifacts
 

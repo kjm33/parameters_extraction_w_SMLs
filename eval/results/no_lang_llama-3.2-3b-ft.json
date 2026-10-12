@@ -1,0 +1,59 @@
+{
+  "preds": "eval/results/llama-3.2-3b-ft_preds.jsonl",
+  "canon": false,
+  "gazetteer": null,
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7246,
+      "slot_recall": 0.7664,
+      "slot_f1": 0.7449,
+      "null_accuracy": 0.953,
+      "row_em": 0.6487,
+      "tp": 584,
+      "fp": 222,
+      "fn": 178
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7246,
+      "slot_recall": 0.7664,
+      "slot_f1": 0.7449,
+      "null_accuracy": 0.953,
+      "row_em": 0.6487,
+      "tp": 584,
+      "fp": 222,
+      "fn": 178
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7508,
+      "slot_recall": 0.8333,
+      "slot_f1": 0.7899,
+      "null_accuracy": 0.9702,
+      "row_em": 0.7882,
+      "tp": 455,
+      "fp": 151,
+      "fn": 91
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7508,
+      "slot_recall": 0.8333,
+      "slot_f1": 0.7899,
+      "null_accuracy": 0.9702,
+      "row_em": 0.7882,
+      "tp": 455,
+      "fp": 151,
+      "fn": 91
+    }
+  },
+  "applied": {},
+  "changed_examples": []
+}

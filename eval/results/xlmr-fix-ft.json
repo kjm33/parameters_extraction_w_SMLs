@@ -1,0 +1,147 @@
+{
+  "formulation": "bert-tagger",
+  "ckpt": "train/runs/xlmr-fix/best.pt",
+  "files": "data/core_test_tags.jsonl",
+  "device": "cuda",
+  "seconds": 2.9,
+  "ms_per_row": 3.5,
+  "overall": {
+    "n": 817,
+    "parse_rate": 1.0,
+    "slot_precision": 0.7251,
+    "slot_recall": 0.6785,
+    "slot_f1": 0.701,
+    "null_accuracy": 0.967,
+    "row_em": 0.6255
+  },
+  "by_lang": {
+    "de": {
+      "n": 173,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7974,
+      "slot_recall": 0.7394,
+      "slot_f1": 0.7673,
+      "null_accuracy": 0.9708,
+      "row_em": 0.6705
+    },
+    "en": {
+      "n": 154,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7222,
+      "slot_recall": 0.7,
+      "slot_f1": 0.7109,
+      "null_accuracy": 0.9689,
+      "row_em": 0.6883
+    },
+    "es": {
+      "n": 154,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7931,
+      "slot_recall": 0.6886,
+      "slot_f1": 0.7372,
+      "null_accuracy": 0.9831,
+      "row_em": 0.6364
+    },
+    "fr": {
+      "n": 170,
+      "parse_rate": 1.0,
+      "slot_precision": 0.707,
+      "slot_recall": 0.6937,
+      "slot_f1": 0.7003,
+      "null_accuracy": 0.9557,
+      "row_em": 0.5941
+    },
+    "pl": {
+      "n": 166,
+      "parse_rate": 1.0,
+      "slot_precision": 0.5909,
+      "slot_recall": 0.5571,
+      "slot_f1": 0.5735,
+      "null_accuracy": 0.9579,
+      "row_em": 0.5422
+    }
+  },
+  "by_function": {
+    "here_geocode": {
+      "n": 301,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7135,
+      "slot_recall": 0.6513,
+      "slot_f1": 0.681,
+      "null_accuracy": 0.9103,
+      "row_em": 0.485
+    },
+    "here_directions": {
+      "n": 264,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7256,
+      "slot_recall": 0.6753,
+      "slot_f1": 0.6996,
+      "null_accuracy": 0.9734,
+      "row_em": 0.6174
+    },
+    "nominatim_geocode": {
+      "n": 83,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7625,
+      "slot_recall": 0.8133,
+      "slot_f1": 0.7871,
+      "null_accuracy": 0.9341,
+      "row_em": 0.759
+    },
+    "tomtom-geocode": {
+      "n": 44,
+      "parse_rate": 1.0,
+      "slot_precision": 0.8421,
+      "slot_recall": 0.8,
+      "slot_f1": 0.8205,
+      "null_accuracy": 0.9936,
+      "row_em": 0.7273
+    },
+    "osrm_route": {
+      "n": 44,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "here_search_places": {
+      "n": 43,
+      "parse_rate": 1.0,
+      "slot_precision": 0.5833,
+      "slot_recall": 0.56,
+      "slot_f1": 0.5714,
+      "null_accuracy": 0.9527,
+      "row_em": 0.6047
+    },
+    "open_meteo_forecast": {
+      "n": 35,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "tomtom-traffic": {
+      "n": 2,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 1.0
+    },
+    "here_reverse_geocode": {
+      "n": 1,
+      "parse_rate": 1.0,
+      "slot_precision": 0.0,
+      "slot_recall": 0.0,
+      "slot_f1": 0.0,
+      "null_accuracy": 1.0,
+      "row_em": 0.0
+    }
+  }
+}

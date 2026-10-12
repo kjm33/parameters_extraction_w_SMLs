@@ -1,0 +1,111 @@
+{
+  "preds": "eval/results/llama-3.2-1b-v2-ft_preds.jsonl",
+  "canon": true,
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7661,
+      "slot_recall": 0.8278,
+      "slot_f1": 0.7958,
+      "null_accuracy": 0.9788,
+      "row_em": 0.7956,
+      "tp": 452,
+      "fp": 138,
+      "fn": 94
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7661,
+      "slot_recall": 0.8278,
+      "slot_f1": 0.7958,
+      "null_accuracy": 0.9788,
+      "row_em": 0.7956,
+      "tp": 452,
+      "fp": 138,
+      "fn": 94
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7661,
+      "slot_recall": 0.8278,
+      "slot_f1": 0.7958,
+      "null_accuracy": 0.9745,
+      "row_em": 0.7956,
+      "tp": 452,
+      "fp": 138,
+      "fn": 94
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7661,
+      "slot_recall": 0.8278,
+      "slot_f1": 0.7958,
+      "null_accuracy": 0.9745,
+      "row_em": 0.7956,
+      "tp": 452,
+      "fp": 138,
+      "fn": 94
+    }
+  },
+  "applied": {
+    "city2code": 1,
+    "alias": 2,
+    "pl_fallback": 2
+  },
+  "changed_examples": [
+    {
+      "id": "gold-d6246b734c28",
+      "param": "q",
+      "rule": "city2code",
+      "before": "Canterbury",
+      "after": "Canterbury, UK",
+      "gold": "Canterbury, UK"
+    },
+    {
+      "id": "gold-986c5cf1e3cf",
+      "param": "q",
+      "rule": "alias",
+      "before": "restaurante",
+      "after": "restaurant",
+      "gold": "restaurante"
+    },
+    {
+      "id": "gold-0dbe193a9ea0",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Alwary",
+      "after": "Alwar",
+      "gold": "Alwary"
+    },
+    {
+      "id": "gold-6199a434ec02",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Kopenhaga",
+      "after": "Kopenhagen",
+      "gold": null
+    },
+    {
+      "id": "gold-e3d9c3f252aa",
+      "param": "q",
+      "rule": "alias",
+      "before": "restaurante",
+      "after": "restaurant",
+      "gold": "restaurant"
+    }
+  ]
+}

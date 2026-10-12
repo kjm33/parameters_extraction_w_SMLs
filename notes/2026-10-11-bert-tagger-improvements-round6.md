@@ -107,3 +107,29 @@ Decision rules (from round 5, user-agreed):
   add distill list), `eval/eval_tagger.py` (unchanged)
 - runs: `train/runs/bert-tagger-{fix,fixd,xlmr-fix,xlmr-fixd}/`, optional CRF variant
 - results: `eval/results/bert-tagger-*.json` + RESULTS.md round-6
+
+## 6. Outcomes (2026-10-12)
+
+- **B1a audit falsified §2.1**: the `, XX` codes are gold-side (23/23 test, 99/101 train
+  absent from utterances) — the +3.0 simulation was oracle-tinted (it appended gold's own
+  suffix). No span rule possible; mechanism moved to a city→code gazetteer in post-proc.
+  B1b: tags data unchanged; `data/distill_train_tags.jsonl` added (6,933 rows) so B3
+  could train on the full corpus; `tags_build_stats.json` rebuilt over all 6 files.
+- **B2 ships**: `eval/canonicalize.py` v3 — BERT dump 0.7152→**0.7321** (+1.69 ≥ +0.5);
+  winner dump 0.7515→0.7502 (−0.13 ≈ neutral, winner pipeline untouched; the expected
+  0.7752 was the oracle artifact); ceiling 0.9180→0.9364. Keeps 24 aliases / 44
+  city2code (evidence gate kills London-style bare-gold entries; Canterbury→UK only
+  survivor at apply time).
+- **B3** (same post-proc on all): mBERT+distill **0.7366** (best F1) > XLM-R+distill
+  0.7340 (best EM 0.6475, fastest: 3.0 ms/row gpu / 91.7 cpu) > mBERT 0.7321 >
+  XLM-R 0.7186. Distill: +0.5 (mBERT) / +1.6 (XLM-R) raw. XLM-R does not beat mBERT
+  on F1 (en drops, pl recovers slightly). pl stays the tagger weak spot (.61–.62).
+- **Decisions**: adopt bert-tagger-fixd+canonicalize as edge candidate (0.7366 ≥ 0.735;
+  4.5 ms/row gpu, 107.3 cpu); B4 CRF skipped (0.7366 < 0.7415); JSON winner stands
+  (0.7366 < 0.7515). Expected landing 0.75–0.77 was wrong because +3.0 of it was the
+  oracle B1. Full section: reports/RESULTS.md round 6.
+
+Addendum (round 7, 2026-10-12): the round-6 error census showed `lang` = 46% of edge-model
+error events and unextractable by construction (216 dual-labeled test utterances) → round 7
+dropped `lang` from targets (benchmark v2) and switched the headline metric to lang-free
+F1/EM (winner 0.7515 → 0.7993; edge 0.7366 → 0.7792). See RESULTS.md round 7.

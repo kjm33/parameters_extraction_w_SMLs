@@ -1,0 +1,59 @@
+{
+  "preds": "eval/results/llama-3.2-1b-ft_preds.jsonl",
+  "canon": false,
+  "gazetteer": null,
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.755,
+      "slot_recall": 0.748,
+      "slot_f1": 0.7515,
+      "null_accuracy": 0.9626,
+      "row_em": 0.6671,
+      "tp": 570,
+      "fp": 185,
+      "fn": 192
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.755,
+      "slot_recall": 0.748,
+      "slot_f1": 0.7515,
+      "null_accuracy": 0.9626,
+      "row_em": 0.6671,
+      "tp": 570,
+      "fp": 185,
+      "fn": 192
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7664,
+      "slot_recall": 0.8352,
+      "slot_f1": 0.7993,
+      "null_accuracy": 0.9729,
+      "row_em": 0.8005,
+      "tp": 456,
+      "fp": 139,
+      "fn": 90
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7664,
+      "slot_recall": 0.8352,
+      "slot_f1": 0.7993,
+      "null_accuracy": 0.9729,
+      "row_em": 0.8005,
+      "tp": 456,
+      "fp": 139,
+      "fn": 90
+    }
+  },
+  "applied": {},
+  "changed_examples": []
+}

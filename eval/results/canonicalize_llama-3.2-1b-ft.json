@@ -1,0 +1,85 @@
+{
+  "preds": "eval/results/llama-3.2-1b-ft_preds.jsonl",
+  "train": [
+    "data/core_train.jsonl",
+    "data/aug_train.jsonl"
+  ],
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "before": {
+    "n": 817,
+    "parse_rate": 1.0,
+    "slot_precision": 0.755,
+    "slot_recall": 0.748,
+    "slot_f1": 0.7515,
+    "null_accuracy": 0.9626,
+    "row_em": 0.6671,
+    "tp": 570,
+    "fp": 185,
+    "fn": 192
+  },
+  "after": {
+    "n": 817,
+    "parse_rate": 1.0,
+    "slot_precision": 0.7536,
+    "slot_recall": 0.7467,
+    "slot_f1": 0.7502,
+    "null_accuracy": 0.9626,
+    "row_em": 0.6659,
+    "tp": 569,
+    "fp": 186,
+    "fn": 193
+  },
+  "applied": {
+    "alias": 3,
+    "pl_fallback": 2
+  },
+  "changed_examples": [
+    {
+      "id": "gold-5e12eb1b7d05",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": null
+    },
+    {
+      "id": "gold-986c5cf1e3cf",
+      "param": "q",
+      "rule": "alias",
+      "before": "restaurante",
+      "after": "restaurant",
+      "gold": "restaurante"
+    },
+    {
+      "id": "gold-0dbe193a9ea0",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Alwary",
+      "after": "Alwar",
+      "gold": "Alwary"
+    },
+    {
+      "id": "gold-6199a434ec02",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Kopenhaga",
+      "after": "Kopenhagen",
+      "gold": null
+    },
+    {
+      "id": "gold-e3d9c3f252aa",
+      "param": "q",
+      "rule": "alias",
+      "before": "restaurante",
+      "after": "restaurant",
+      "gold": "restaurant"
+    }
+  ]
+}

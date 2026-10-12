@@ -133,7 +133,9 @@ def param_target(pname: str, pschema: dict, value, utt_f: str, utt_tokens: set[s
         return (value if number_found(value, utt_f) else None), "number"
     # string
     if pname == "lang":
-        return (value if fold(str(value)) == fold(lang) else None), "lang-infer"
+        # round 7: lang dropped entirely — optional resolver-side param, set/null is
+        # dialog-context-decided (216 test utterances appear with lang both set and null)
+        return None, "lang-dropped"
     if pschema and "enum" in pschema:
         return (value if enum_supported(value, utt_f) else None), "enum"
     if verbatim(value, utt_f, utt_tokens):

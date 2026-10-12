@@ -5,6 +5,13 @@ navigation assistant: given (user utterance, selected function schema) → JSON 
 per parameter, value from the utterance or `null`. 5 languages (en/de/pl/fr/es).
 Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
 
+## Workflow
+
+- Delegate self-contained Python coding work (new scripts, refactors, prototyping, debugging)
+  to the `python-coder` subagent (Task tool) instead of editing files inline. Give it a precise
+  spec (inputs/outputs, file paths, conventions) and require a verification command
+  (e.g. the venv interpreter run) in its report.
+
 ## Layout
 
 - `src/build_extraction.py` — core dataset from fcft verified dialogs + gold
@@ -16,6 +23,10 @@ Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
   `data/ner_spans.json` (+ `data/*_ner.jsonl` hinted dataset copies for the NER experiment)
 - `eval/snap_spans.py` — span-snapping post-processor ablation over `*_ft_preds.jsonl`
   dumps + lenient (tok_match) re-scoring → `eval/results/snap_spans_report.json`
+- `eval/canonicalize.py` — gazetteer post-processor (alias/city2code/pl-fallback) + dump
+  re-scorer; `eval/score_no_lang.py` — OFFICIAL lang-free metric re-scorer (`--canon` applies
+  canonicalize) → `eval/results/no_lang_<tag>.json` (round-7 headline metric; benchmark v2 =
+  lang dropped from targets)
 - `src/render.py` — chat rendering + prompt-masked labels (string-level split; matches
   inference tokenization). SYSTEM_PROMPT lives here.
 - `train/train_sft.py` — transformers+peft LoRA/full SFT, single pinned GPU
