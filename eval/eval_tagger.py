@@ -31,6 +31,7 @@ def main():
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--gpu", type=int, default=0, choices=[0, 1])
     ap.add_argument("--cpu", action="store_true")
+    ap.add_argument("--bf16", action="store_true")
     ap.add_argument("--tag", default="bert-tagger-ft")
     ap.add_argument("--dump", action="store_true")
     a = ap.parse_args()
@@ -46,7 +47,9 @@ def main():
     label2id = {t: i for i, t in enumerate(labels)}
     tok = AutoTokenizer.from_pretrained(ck["base"])
     device = "cpu" if a.cpu or not torch.cuda.is_available() else "cuda"
-    model = Joint(ck["base"], len(labels)).to(device)
+    model = Joint(ck["base"], len(labels)).to(
+        device=device, dtype=torch.bfloat16 if a.bf16 else torch.float32
+    )
     model.load_state_dict(ck["state_dict"])
     model.eval()
 
@@ -67,7 +70,8 @@ def main():
         chunk = rows[s:s + a.bs]
         enc = [encode(tok, r, label2id) for r in chunk]
         mx = max(len(e["input_ids"]) for e in enc)
-        ids = torch.full((len(enc), mx), tok.pad_token_id, dtype=torch.long)
+        pad = tok.pad_token_id if tok.pad_token_id is not None else tok.eos_token_id
+        ids = torch.full((len(enc), mx), pad, dtype=torch.long)
         att = torch.zeros((len(enc), mx), dtype=torch.long)
         for j, e in enumerate(enc):
             ids[j, :len(e["input_ids"])] = torch.tensor(e["input_ids"])

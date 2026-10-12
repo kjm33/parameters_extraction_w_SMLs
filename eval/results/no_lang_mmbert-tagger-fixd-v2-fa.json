@@ -1,0 +1,167 @@
+{
+  "preds": "eval/results/mmbert-tagger-fixd-v2-fa_preds.jsonl",
+  "canon": true,
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7482,
+      "slot_recall": 0.7674,
+      "slot_f1": 0.7577,
+      "null_accuracy": 0.9808,
+      "row_em": 0.7687,
+      "tp": 419,
+      "fp": 141,
+      "fn": 127
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7732,
+      "slot_recall": 0.793,
+      "slot_f1": 0.783,
+      "null_accuracy": 0.9808,
+      "row_em": 0.7858,
+      "tp": 433,
+      "fp": 127,
+      "fn": 113
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7482,
+      "slot_recall": 0.7674,
+      "slot_f1": 0.7577,
+      "null_accuracy": 0.9769,
+      "row_em": 0.7687,
+      "tp": 419,
+      "fp": 141,
+      "fn": 127
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7732,
+      "slot_recall": 0.793,
+      "slot_f1": 0.783,
+      "null_accuracy": 0.9769,
+      "row_em": 0.7858,
+      "tp": 433,
+      "fp": 127,
+      "fn": 113
+    }
+  },
+  "applied": {
+    "pl_fallback": 4,
+    "alias": 14,
+    "city2code": 2
+  },
+  "changed_examples": [
+    {
+      "id": "gold-7fb56fbc8095",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Hotelu",
+      "after": "Hotel",
+      "gold": "Hotel Riverside"
+    },
+    {
+      "id": "gold-5abffc421414",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-073d3f33f46b",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Stockholmu",
+      "after": "Stockholm",
+      "gold": "Stockholm"
+    },
+    {
+      "id": "gold-f289a1e88da3",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "parkingu",
+      "after": "parking",
+      "gold": "parking"
+    },
+    {
+      "id": "gold-d6246b734c28",
+      "param": "q",
+      "rule": "city2code",
+      "before": "Canterbury",
+      "after": "Canterbury, UK",
+      "gold": "Canterbury, UK"
+    },
+    {
+      "id": "gold-5fff469acf43",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-3706630f3d2e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-986c5cf1e3cf",
+      "param": "q",
+      "rule": "alias",
+      "before": "restaurante",
+      "after": "restaurant",
+      "gold": "restaurante"
+    },
+    {
+      "id": "gold-ad25a7ec08f3",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Gdańsk"
+    },
+    {
+      "id": "gold-0dbe193a9ea0",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Alwary",
+      "after": "Alwar",
+      "gold": "Alwary"
+    },
+    {
+      "id": "gold-b1afb7fd935e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-c880552e6581",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    }
+  ]
+}

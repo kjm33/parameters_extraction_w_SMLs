@@ -16,6 +16,7 @@ import argparse
 import json
 import pathlib
 import random
+import os
 import sys
 import time
 
@@ -67,10 +68,11 @@ def encode(tok, row, label2id):
     word_ids = []
     utt_ids = []
     for wi, w in enumerate(words):
-        ids = tok(w, add_special_tokens=False)["input_ids"] or tok("[UNK]")["input_ids"]
+        ids = tok(w, add_special_tokens=False)["input_ids"] or tok(tok.unk_token or "[UNK]")["input_ids"]
         word_ids.extend([wi] + [None] * (len(ids) - 1))
         utt_ids.extend(ids)
-    cls, sep = tok.cls_token_id, tok.sep_token_id
+    cls = tok.cls_token_id if tok.cls_token_id is not None else tok.bos_token_id
+    sep = tok.sep_token_id if tok.sep_token_id is not None else tok.eos_token_id
     ids = [cls] + schema_ids[: MAX_LEN - len(utt_ids) - 3] + [sep] + utt_ids + [sep]
     n_utt = len(utt_ids)
     labels = [-100] * len(ids)
@@ -97,7 +99,17 @@ def encode(tok, row, label2id):
 class Joint(nn.Module):
     def __init__(self, base_id, n_labels):
         super().__init__()
-        self.bert = AutoModel.from_pretrained(base_id)
+        impls = []
+        env = os.environ.get("TAGGER_ATTN_IMPL")
+        if env:
+            impls.extend(env.split(","))
+        impls.extend(["sdpa", "eager"])
+        for impl in impls:
+            try:
+                self.bert = AutoModel.from_pretrained(base_id, attn_implementation=impl)
+                break
+            except Exception:
+                continue
         hid = self.bert.config.hidden_size
         self.drop = nn.Dropout(0.1)
         self.tag_head = nn.Linear(hid, n_labels)
@@ -158,7 +170,8 @@ def main():
         for s in range(0, len(idx), bs):
             chunk = [enc[i] for i in idx[s:s + bs]]
             mx = max(len(c["input_ids"]) for c in chunk)
-            ids = torch.full((len(chunk), mx), tok.pad_token_id, dtype=torch.long)
+            pad = tok.pad_token_id if tok.pad_token_id is not None else tok.eos_token_id
+            ids = torch.full((len(chunk), mx), pad, dtype=torch.long)
             att = torch.zeros((len(chunk), mx), dtype=torch.long)
             lab = torch.full((len(chunk), mx), -100, dtype=torch.long)
             lang = torch.full((len(chunk),), -100, dtype=torch.long)

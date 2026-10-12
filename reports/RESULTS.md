@@ -559,6 +559,65 @@ Files: `eval/canonicalize.py`, `data/distill_train_tags.jsonl`,
 `eval/results/canonicalize_*.json`, `eval/results/{bert-tagger-fixd,xlmr-fix,xlmr-fixd}-ft*.json[l]`,
 `train/runs/{bert-tagger-fixd,xlmr-fix,xlmr-fixd}/`, `scripts/run_round6_{b3,xlmr_when_free}.sh`.
 
+## Round 8 (2026-10-12) — mmBERT backbone swap for the edge tagger
+
+Plan: `notes/2026-10-12-mmbert-tagger-round8.md` (rules pre-registered before the run).
+Prompt: "different models, e.g. ModernBERT". Vanilla ModernBERT is English-only → unfit;
+the multilingual successor **mmBERT** (`jhu-clsp/mmBERT-base`: ModernBERT arch, 22L,
+RoPE + unpadding, Gemma-2 tokenizer, 3T tokens, 1,833 langs; authors' own caveat: on
+token-tagging/NER only ≈ previous gen; flash-attn not in the venv → sdpa). Recipe
+identical to bert-tagger-fixd-v2 (core+aug+distill v2 tags = 21,937 rows, 5 ep, bs 16,
+lr 5e-5, seed 42). Code change is compat-only: tokenizer-agnostic special tokens
+(cls→bos / sep→eos / unk / pad fallbacks) + sdpa→eager attention fallback in
+`train_tagger.py`/`eval_tagger.py` (mBERT/XLM-R regression-checked unchanged).
+
+| System v2 (lang-free, + canon) | F1 / EM | GPU ms/row | CPU ms/row |
+|---|---|---|---|
+| bert-tagger-fixd-v2 (mBERT) | 0.7813 / 0.7846 | 4.3 | ~107 |
+| mmbert-tagger-fixd-v2 | **0.7838 / 0.7870** | 4.3 | 123.8 |
+
+(Raw before canon: 0.7586/0.7699 vs 0.7566/0.7674; best val tag-acc 0.9837 vs 0.9832;
+canon applied alias 14 / pl 4 / code 2.)
+
+By-lang F1 vs mBERT: en drops .7463→.7236 (same en-drop pattern XLM-R showed), pl is the
+best of any tagger .6292 vs .6129 (still ≪ winner .7399), de/es/fr ≈ tie. Third backbone
+confirms rounds 5–6: backbone/architecture is not decisive in this lane — the 91.1%
+tag-formulation ceiling and pl morphology dominate.
+
+Decision (pre-registered): F1 0.7838 > 0.7813 → rule 1 **nominally adopts**, but the
++0.25 margin sits inside the ±0.5 noise band the same note pre-registered → treat as a
+statistical tie, not a win. The hypothesized latency win did not materialize (CPU
+regresses ~16% without flash-attn/unpadding; GPU ties). **Edge pick stays mBERT where
+CPU latency matters; mmBERT documented as a tie-alternative. JSON-winner lane untouched.
+Backbone-swap lane closed** (mBERT ≈ XLM-R ≈ mmBERT).
+
+### Flash-attn addendum (tested, negative)
+
+User follow-up: install flash-attention + unpadding and re-check. Built flash-attn
+2.8.3.post1 from source for torch 2.14 (C++20 patch, `FLASH_ATTN_CUDA_ARCHS=80`, sm80
+cubin on the sm86 GPU), verified `flash_attn_func`/`flash_attn_varlen_func` work.
+Attn path now overridable via `TAGGER_ATTN_IMPL` env (train_tagger.py), `--bf16` added
+to eval_tagger.py. GPU 1, n=817:
+
+| pass | attn / dtype | ms/row | raw F1 |
+|---|---|---|---|
+| ft (baseline) | sdpa / fp32 | 4.3 | 0.7586 |
+| control | sdpa / bf16 | 4.3 | 0.7563 |
+| flash | flash_attn2 / bf16 | **5.0** | 0.7577 |
+| flash, bs 128 | flash_attn2 / bf16 | 4.7 | 0.7577 |
+
+**Flash-attn is ~16% slower than sdpa here.** Sequences are short (schema+utterance,
+≈50–80 tokens, cap 256) and batches small — exactly the regime where flash varlen's
+pack/unpack overhead dominates and sdpa is already efficient; its win only appears at
+long context. bf16 alone changes nothing (4.3, F1 noise −0.2). Lang-free+canon of the
+flash dump: 0.783/0.7858 (vs 0.7838/0.787 fp32 — kernel noise). Round-8 conclusion
+unchanged and now fully checked: mmBERT = tie on F1, regression on CPU latency, no
+flash-attn rescue. Files: `scripts/run_round8_flash.sh`,
+`eval/results/*mmbert-tagger-fixd-v2-{fa,sdpa-bf16,fa-bs128}*`.
+
+Files: `train/runs/mmbert-tagger-fixd-v2/`, `eval/results/mmbert-tagger-fixd-v2-ft*.{json,jsonl}`,
+`eval/results/no_lang_mmbert-tagger-fixd-v2-ft.json`, `scripts/run_round8_mmbert.sh`.
+
 ## Artifacts
 
 - Adapters: `train/runs/<candidate>/best/`; full-FT: `train/runs/<candidate>-full/best/`.
