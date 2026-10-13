@@ -1,0 +1,482 @@
+{
+ "files": "data/core_test.jsonl",
+ "sources": {
+  "gliner": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/gliner_core_test_spans.jsonl",
+   "lang_filter": null,
+   "per_lang": {
+    "en": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 91.76,
+     "n_spans": 462,
+     "span_useful_pct": 13.42
+    },
+    "all": {
+     "n_values": 404,
+     "exact_pct": 76.49,
+     "contained_pct": 76.49,
+     "overlap_pct": 88.86,
+     "n_spans": 2305,
+     "span_useful_pct": 13.93
+    },
+    "de": {
+     "n_values": 88,
+     "exact_pct": 86.36,
+     "contained_pct": 86.36,
+     "overlap_pct": 94.32,
+     "n_spans": 516,
+     "span_useful_pct": 15.12
+    },
+    "pl": {
+     "n_values": 62,
+     "exact_pct": 58.06,
+     "contained_pct": 58.06,
+     "overlap_pct": 64.52,
+     "n_spans": 446,
+     "span_useful_pct": 8.3
+    },
+    "es": {
+     "n_values": 85,
+     "exact_pct": 80.0,
+     "contained_pct": 80.0,
+     "overlap_pct": 90.59,
+     "n_spans": 431,
+     "span_useful_pct": 16.94
+    },
+    "fr": {
+     "n_values": 84,
+     "exact_pct": 80.95,
+     "contained_pct": 80.95,
+     "overlap_pct": 96.43,
+     "n_spans": 450,
+     "span_useful_pct": 15.78
+    }
+   }
+  },
+  "flair_multi": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/flair_entity-multilingual-4class_core_test_spans.jsonl",
+   "lang_filter": null,
+   "per_lang": {
+    "en": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 433,
+     "span_useful_pct": 14.32
+    },
+    "all": {
+     "n_values": 404,
+     "exact_pct": 75.99,
+     "contained_pct": 75.99,
+     "overlap_pct": 85.4,
+     "n_spans": 2230,
+     "span_useful_pct": 14.26
+    },
+    "de": {
+     "n_values": 88,
+     "exact_pct": 87.5,
+     "contained_pct": 87.5,
+     "overlap_pct": 92.05,
+     "n_spans": 500,
+     "span_useful_pct": 15.8
+    },
+    "pl": {
+     "n_values": 62,
+     "exact_pct": 54.84,
+     "contained_pct": 54.84,
+     "overlap_pct": 62.9,
+     "n_spans": 424,
+     "span_useful_pct": 8.25
+    },
+    "es": {
+     "n_values": 85,
+     "exact_pct": 78.82,
+     "contained_pct": 78.82,
+     "overlap_pct": 89.41,
+     "n_spans": 425,
+     "span_useful_pct": 16.71
+    },
+    "fr": {
+     "n_values": 84,
+     "exact_pct": 80.95,
+     "contained_pct": 80.95,
+     "overlap_pct": 92.86,
+     "n_spans": 448,
+     "span_useful_pct": 15.85
+    }
+   }
+  },
+  "flair_multi_loc": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/flair_entity-multilingual-4class_core_test_spans.jsonl",
+   "lang_filter": null,
+   "per_lang": {
+    "en": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 431,
+     "span_useful_pct": 14.39
+    },
+    "all": {
+     "n_values": 404,
+     "exact_pct": 75.74,
+     "contained_pct": 75.74,
+     "overlap_pct": 85.15,
+     "n_spans": 2212,
+     "span_useful_pct": 14.33
+    },
+    "de": {
+     "n_values": 88,
+     "exact_pct": 87.5,
+     "contained_pct": 87.5,
+     "overlap_pct": 92.05,
+     "n_spans": 496,
+     "span_useful_pct": 15.93
+    },
+    "pl": {
+     "n_values": 62,
+     "exact_pct": 54.84,
+     "contained_pct": 54.84,
+     "overlap_pct": 62.9,
+     "n_spans": 420,
+     "span_useful_pct": 8.33
+    },
+    "es": {
+     "n_values": 85,
+     "exact_pct": 78.82,
+     "contained_pct": 78.82,
+     "overlap_pct": 89.41,
+     "n_spans": 423,
+     "span_useful_pct": 16.78
+    },
+    "fr": {
+     "n_values": 84,
+     "exact_pct": 79.76,
+     "contained_pct": 79.76,
+     "overlap_pct": 91.67,
+     "n_spans": 442,
+     "span_useful_pct": 15.84
+    }
+   }
+  },
+  "flair_de": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/flair_entity-german-4class_core_test_spans.jsonl",
+   "lang_filter": "de",
+   "per_lang": {
+    "de": {
+     "n_values": 88,
+     "exact_pct": 87.5,
+     "contained_pct": 87.5,
+     "overlap_pct": 92.05,
+     "n_spans": 491,
+     "span_useful_pct": 16.09
+    },
+    "all": {
+     "n_values": 88,
+     "exact_pct": 87.5,
+     "contained_pct": 87.5,
+     "overlap_pct": 92.05,
+     "n_spans": 491,
+     "span_useful_pct": 16.09
+    }
+   }
+  },
+  "flair_de_loc": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/flair_entity-german-4class_core_test_spans.jsonl",
+   "lang_filter": "de",
+   "per_lang": {
+    "de": {
+     "n_values": 88,
+     "exact_pct": 87.5,
+     "contained_pct": 87.5,
+     "overlap_pct": 92.05,
+     "n_spans": 489,
+     "span_useful_pct": 16.16
+    },
+    "all": {
+     "n_values": 88,
+     "exact_pct": 87.5,
+     "contained_pct": 87.5,
+     "overlap_pct": 92.05,
+     "n_spans": 489,
+     "span_useful_pct": 16.16
+    }
+   }
+  },
+  "flair_en": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/flair_entity-english-4class_core_test_spans.jsonl",
+   "lang_filter": "en",
+   "per_lang": {
+    "en": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 433,
+     "span_useful_pct": 14.32
+    },
+    "all": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 433,
+     "span_useful_pct": 14.32
+    }
+   }
+  },
+  "flair_en_loc": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner/flair_entity-english-4class_core_test_spans.jsonl",
+   "lang_filter": "en",
+   "per_lang": {
+    "en": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 431,
+     "span_useful_pct": 14.39
+    },
+    "all": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 431,
+     "span_useful_pct": 14.39
+    }
+   }
+  },
+  "wikineural": {
+   "path": "/home/kamil/projects/here/slot_filling/data/ner_spans.json",
+   "lang_filter": null,
+   "per_lang": {
+    "en": {
+     "n_values": 85,
+     "exact_pct": 71.76,
+     "contained_pct": 71.76,
+     "overlap_pct": 83.53,
+     "n_spans": 407,
+     "span_useful_pct": 14.99
+    },
+    "all": {
+     "n_values": 404,
+     "exact_pct": 75.0,
+     "contained_pct": 75.0,
+     "overlap_pct": 84.16,
+     "n_spans": 2029,
+     "span_useful_pct": 14.93
+    },
+    "de": {
+     "n_values": 88,
+     "exact_pct": 84.09,
+     "contained_pct": 84.09,
+     "overlap_pct": 88.64,
+     "n_spans": 442,
+     "span_useful_pct": 16.74
+    },
+    "pl": {
+     "n_values": 62,
+     "exact_pct": 53.23,
+     "contained_pct": 53.23,
+     "overlap_pct": 61.29,
+     "n_spans": 391,
+     "span_useful_pct": 8.44
+    },
+    "es": {
+     "n_values": 85,
+     "exact_pct": 78.82,
+     "contained_pct": 78.82,
+     "overlap_pct": 89.41,
+     "n_spans": 376,
+     "span_useful_pct": 17.82
+    },
+    "fr": {
+     "n_values": 84,
+     "exact_pct": 80.95,
+     "contained_pct": 80.95,
+     "overlap_pct": 91.67,
+     "n_spans": 413,
+     "span_useful_pct": 16.46
+    }
+   }
+  }
+ },
+ "notes": {
+  "decision_rule": "Adopt Flair as feature/arbitration source only if it beats the best in-house span source on >=2 of 5 langs; else document+drop.",
+  "inhouse_sources": [
+   "gliner",
+   "wikineural"
+  ],
+  "best_inhouse_by_lang": {
+   "en": {
+    "exact": [
+     71.76,
+     "wikineural"
+    ],
+    "contained": [
+     71.76,
+     "wikineural"
+    ]
+   },
+   "de": {
+    "exact": [
+     86.36,
+     "gliner"
+    ],
+    "contained": [
+     86.36,
+     "gliner"
+    ]
+   },
+   "pl": {
+    "exact": [
+     58.06,
+     "gliner"
+    ],
+    "contained": [
+     58.06,
+     "gliner"
+    ]
+   },
+   "fr": {
+    "exact": [
+     80.95,
+     "wikineural"
+    ],
+    "contained": [
+     80.95,
+     "wikineural"
+    ]
+   },
+   "es": {
+    "exact": [
+     80.0,
+     "gliner"
+    ],
+    "contained": [
+     80.0,
+     "gliner"
+    ]
+   }
+  },
+  "flair_per_source_wins": {
+   "flair_multi": {
+    "exact_wins": [
+     "de"
+    ],
+    "contained_wins": [
+     "de"
+    ]
+   },
+   "flair_multi_loc": {
+    "exact_wins": [
+     "de"
+    ],
+    "contained_wins": [
+     "de"
+    ]
+   },
+   "flair_de": {
+    "exact_wins": [
+     "de"
+    ],
+    "contained_wins": [
+     "de"
+    ]
+   },
+   "flair_de_loc": {
+    "exact_wins": [
+     "de"
+    ],
+    "contained_wins": [
+     "de"
+    ]
+   },
+   "flair_en": {
+    "exact_wins": [],
+    "contained_wins": []
+   },
+   "flair_en_loc": {
+    "exact_wins": [],
+    "contained_wins": []
+   }
+  },
+  "flair_combined_vs_inhouse": {
+   "exact_wins": [
+    "de"
+   ],
+   "contained_wins": [
+    "de"
+   ],
+   "flair_best_by_lang": {
+    "en": {
+     "flair": [
+      "flair_multi_loc",
+      71.76
+     ],
+     "inhouse_best": [
+      "wikineural",
+      71.76
+     ],
+     "flair_exact_win": false,
+     "flair_contained_win": false
+    },
+    "de": {
+     "flair": [
+      "flair_multi_loc",
+      87.5
+     ],
+     "inhouse_best": [
+      "gliner",
+      86.36
+     ],
+     "flair_exact_win": true,
+     "flair_contained_win": true
+    },
+    "pl": {
+     "flair": [
+      "flair_multi_loc",
+      54.84
+     ],
+     "inhouse_best": [
+      "gliner",
+      58.06
+     ],
+     "flair_exact_win": false,
+     "flair_contained_win": false
+    },
+    "fr": {
+     "flair": [
+      "flair_multi",
+      80.95
+     ],
+     "inhouse_best": [
+      "wikineural",
+      80.95
+     ],
+     "flair_exact_win": false,
+     "flair_contained_win": false
+    },
+    "es": {
+     "flair": [
+      "flair_multi_loc",
+      78.82
+     ],
+     "inhouse_best": [
+      "gliner",
+      80.0
+     ],
+     "flair_exact_win": false,
+     "flair_contained_win": false
+    }
+   }
+  },
+  "verdict": "DROP (<2/5 langs; document)",
+  "license_note": "All Flair 2.0 entity-* models (and 1.0 ner-*) are Flukes NC 1.0 NONCOMMERCIAL per HF model cards (2026-10-12) - measurement only."
+ }
+}

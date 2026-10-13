@@ -1,0 +1,277 @@
+{
+  "preds": "eval/results/bert-tagger-fixd-v2-ft_preds.jsonl",
+  "train": [
+    "data/core_train.jsonl",
+    "data/aug_train.jsonl"
+  ],
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "rules_config": {
+    "g1_gated": true,
+    "g1_gate": "G1 fires only when fold(v) not in alt2gids (valid GeoNames name-forms skipped -> g1_skipped_valid)",
+    "g2_gated": true,
+    "g2_gate": "G2 skipped when fold(v) in alt2gids (valid GeoNames name-forms skipped -> g2_skipped_valid); replacement == value is not counted as a fire",
+    "g3_cutoff": 0.0,
+    "g3_second_max": 88.0,
+    "g4_mode": "after_g1_g2_append_admin1_code2_if_ge_1_train_code_vote"
+  },
+  "geo": {
+    "pickle": "data/geo_gazetteer.pkl",
+    "available": true,
+    "morfeusz2": true,
+    "rapidfuzz": true,
+    "g3_cutoff": 0.0,
+    "g3_second_max": 88.0,
+    "summary": {
+      "cities": 34160,
+      "altnames_kept": 45034,
+      "unique_keys": 38443,
+      "dropped_ambiguous": 1522,
+      "attribution": "© GeoNames CC-BY 4.0"
+    }
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7296,
+      "slot_recall": 0.7857,
+      "slot_f1": 0.7566,
+      "null_accuracy": 0.9777,
+      "row_em": 0.7674,
+      "tp": 429,
+      "fp": 159,
+      "fn": 117
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7534,
+      "slot_recall": 0.8114,
+      "slot_f1": 0.7813,
+      "null_accuracy": 0.9777,
+      "row_em": 0.7846,
+      "tp": 443,
+      "fp": 145,
+      "fn": 103
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7296,
+      "slot_recall": 0.7857,
+      "slot_f1": 0.7566,
+      "null_accuracy": 0.9732,
+      "row_em": 0.7674,
+      "tp": 429,
+      "fp": 159,
+      "fn": 117
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7534,
+      "slot_recall": 0.8114,
+      "slot_f1": 0.7813,
+      "null_accuracy": 0.9732,
+      "row_em": 0.7846,
+      "tp": 443,
+      "fp": 145,
+      "fn": 103
+    }
+  },
+  "v1_only": {
+    "all_slots": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7296,
+        "slot_recall": 0.7857,
+        "slot_f1": 0.7566,
+        "null_accuracy": 0.9777,
+        "row_em": 0.7674,
+        "tp": 429,
+        "fp": 159,
+        "fn": 117
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7534,
+        "slot_recall": 0.8114,
+        "slot_f1": 0.7813,
+        "null_accuracy": 0.9777,
+        "row_em": 0.7846,
+        "tp": 443,
+        "fp": 145,
+        "fn": 103
+      }
+    },
+    "lang_free": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7296,
+        "slot_recall": 0.7857,
+        "slot_f1": 0.7566,
+        "null_accuracy": 0.9732,
+        "row_em": 0.7674,
+        "tp": 429,
+        "fp": 159,
+        "fn": 117
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7534,
+        "slot_recall": 0.8114,
+        "slot_f1": 0.7813,
+        "null_accuracy": 0.9732,
+        "row_em": 0.7846,
+        "tp": 443,
+        "fp": 145,
+        "fn": 103
+      }
+    }
+  },
+  "per_lang_f1": {
+    "de": {
+      "before": 0.8346,
+      "v1_only": 0.8346,
+      "after": 0.8346
+    },
+    "en": {
+      "before": 0.7463,
+      "v1_only": 0.7562,
+      "after": 0.7562
+    },
+    "es": {
+      "before": 0.7848,
+      "v1_only": 0.7932,
+      "after": 0.7932
+    },
+    "fr": {
+      "before": 0.7656,
+      "v1_only": 0.7656,
+      "after": 0.7656
+    },
+    "pl": {
+      "before": 0.6129,
+      "v1_only": 0.7419,
+      "after": 0.7419
+    }
+  },
+  "g1_skipped_valid": 15,
+  "g2_skipped_valid": 39,
+  "applied": {
+    "alias": 14,
+    "pl_fallback": 3,
+    "city2code": 2
+  },
+  "changed_examples": [
+    {
+      "id": "gold-5abffc421414",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-073d3f33f46b",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Stockholmu",
+      "after": "Stockholm",
+      "gold": "Stockholm"
+    },
+    {
+      "id": "gold-f289a1e88da3",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "parkingu",
+      "after": "parking",
+      "gold": "parking"
+    },
+    {
+      "id": "gold-d6246b734c28",
+      "param": "q",
+      "rule": "city2code",
+      "before": "Canterbury",
+      "after": "Canterbury, UK",
+      "gold": "Canterbury, UK"
+    },
+    {
+      "id": "gold-5fff469acf43",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-3706630f3d2e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-986c5cf1e3cf",
+      "param": "q",
+      "rule": "alias",
+      "before": "restaurante",
+      "after": "restaurant",
+      "gold": "restaurante"
+    },
+    {
+      "id": "gold-ad25a7ec08f3",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Gdańsk"
+    },
+    {
+      "id": "gold-0dbe193a9ea0",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Alwary",
+      "after": "Alwar",
+      "gold": "Alwary"
+    },
+    {
+      "id": "gold-b1afb7fd935e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-c880552e6581",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-3cae6ed01ff6",
+      "param": "q",
+      "rule": "alias",
+      "before": "Łodzi",
+      "after": "Łódź",
+      "gold": "Łódź"
+    }
+  ]
+}

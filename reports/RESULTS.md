@@ -664,6 +664,51 @@ flash-attn rescue. Files: `scripts/run_round8_flash.sh`,
 Files: `train/runs/mmbert-tagger-fixd-v2/`, `eval/results/mmbert-tagger-fixd-v2-ft*.{json,jsonl}`,
 `eval/results/no_lang_mmbert-tagger-fixd-v2-ft.json`, `scripts/run_round8_mmbert.sh`.
 
+## Round 11 (2026-10-12) — external NER systems, ontologies, post-hoc post-processing
+
+Research: `notes/2026-10-12-external-ner-ontologies-research.md`; plan with pre-registered
+acceptance: `plans/2026-10-12_external-ner-ontology-todo.md`. Constraint: strictly offline
+at inference; external NER post-hoc only (round-3 lesson). Baselines: winner-v2 lang-free
+0.7958/0.7956; edge tagger v1-canon 0.7813/0.7846.
+
+| Item | Outcome | Δ F1 (winner / tagger) |
+|---|---|---|
+| 1. GeoNames canonicalize v2 (cities15000+alternateNames, Morfeusz2, rapidfuzz; `src/build_gazetteer.py`, `eval/canonicalize_v2.py`) | **NEUTRAL** — 0 fires after safety gates, 0/3996 train corruption | 0.0000 / 0.0000 |
+| 2. Embedding enum-matcher | **KILLED pre-build** — 0 invalid enum emissions in dumps; avoid_features FPs are mention-present (24/33 gold-structural: explicit user avoid-request, reference call omitted it) | — |
+| 3. GLiNER span arbitration (`eval/gliner_spans.py` + `eval/gliner_arbitrate.py`, gliner_multi-v2.1) | **FAIL** — truncate breaks:fixes ≈ 2:1 (fluff vs gold qualifier geometrically identical); GLiNER fires on coordinates | −0.0102 / −0.0027 |
+| 4. Flair benchmark (entity-{multi,de,en}-4class; `eval/flair_spans.py` + `eval/compare_ner.py`) | **DROP** — beats GLiNER only on de (87.5 vs 86.4 exact coverage); **all entity-* models are Flukes NC 1.0 noncommercial** (research-note correction) | — |
+| 5. Wikidata alias enrichment | KILLED — enriches a 0-fire layer | — |
+| 6. Stanza per-lang NER | KILLED — coverage ceiling is gold-distribution, not span quality | — |
+
+Cross-cutting findings (the round's real yield):
+
+- **Gold is utterance-verbatim**: GeoNames display-name rewrites are exonym-corrupting
+  (Stockholm→Sztokholm, Krakow→Cracovia; ungated G1 111/114 train corruptions, ungated
+  Morfeusz-G2 42/42). The v1 train-derived alias map already carries all recoverable
+  canonicalization value (tagger pl +12.9 via alias alone). External gazetteers are only
+  safe as never-firing backstops — kept gated-off in `canonicalize_v2`.
+- **Enum validity is solved by the models** (0 invalid); the avoid_features error mass is
+  label-structural (reference tool calls omit user-requested avoids — same class as the
+  round-4 lang-slot noise) + a handful of adjacent-feature/polarity cases needing intent
+  understanding, not post-hoc similarity.
+- **NER span-source quality is not the binding constraint**: four independent systems
+  (wikineural, GLiNER, Flair×3) hit nearly identical per-lang exact gold-value coverage
+  (en 71.8 / fr 81.0 identical for all) — the missing values are categories, addresses
+  and POI phrases that are not classic NER entities. And even correct spans cannot
+  arbitrate boundaries post-hoc (item 3). Together with rounds 3/5/9 this closes the
+  external-NER lane in every formulation: hints, training targets, pointers, arbitration.
+- **Post-hoc q-boundary repair needs a signal that distinguishes fluff from gold
+  qualifiers** ("our hotel on Maple Street" vs "Detroit, Michigan") — only the generative
+  model (or gold-side style consistency) can provide it.
+
+Files: `src/build_gazetteer.py`, `eval/canonicalize_v2.py`, `eval/gliner_spans.py`,
+`eval/gliner_arbitrate.py`, `eval/flair_spans.py`, `eval/compare_ner.py`;
+`data/geo/` + `data/geo_gazetteer.pkl`, `data/ner/*_spans.jsonl`;
+`eval/results/canonicalize_v2_*`, `eval/results/gliner_arb_*`,
+`eval/results/compare_ner.json`. Isolated venvs (not the training venv):
+`/var/tmp/gliner_venv` (transformers pinned 4.51.3 — 5.16+ misroutes mdeberta spm
+tokenizers via tiktoken), `/var/tmp/flair_venv`. Winner and edge picks unchanged.
+
 ## Artifacts
 
 - Adapters: `train/runs/<candidate>/best/`; full-FT: `train/runs/<candidate>-full/best/`.

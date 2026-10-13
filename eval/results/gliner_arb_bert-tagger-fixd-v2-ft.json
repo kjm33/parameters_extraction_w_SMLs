@@ -1,0 +1,697 @@
+{
+  "preds": "eval/results/bert-tagger-fixd-v2-ft_preds.jsonl",
+  "spans": "/home/kamil/projects/here/slot_filling/data/ner/gliner_core_test_spans.jsonl",
+  "spans_available": true,
+  "train": [
+    "data/core_train.jsonl",
+    "data/aug_train.jsonl"
+  ],
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "rules_config": {
+    "span_threshold": 0.5,
+    "repair_threshold": 0.6,
+    "fn_repair": true,
+    "geo_fns": [
+      "here_geocode",
+      "nominatim_geocode",
+      "tomtom-geocode"
+    ],
+    "q_params": [
+      "q",
+      "query"
+    ],
+    "repair_labels": [
+      "city",
+      "location",
+      "point of interest",
+      "street address"
+    ],
+    "extend_gate": "extend only for geocode q/query params",
+    "locate": "word-fold contiguous match (_contiguous), no partial"
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7296,
+      "slot_recall": 0.7857,
+      "slot_f1": 0.7566,
+      "null_accuracy": 0.9777,
+      "row_em": 0.7674,
+      "tp": 429,
+      "fp": 159,
+      "fn": 117
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7483,
+      "slot_recall": 0.8114,
+      "slot_f1": 0.7786,
+      "null_accuracy": 0.9777,
+      "row_em": 0.7858,
+      "tp": 443,
+      "fp": 149,
+      "fn": 103
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7296,
+      "slot_recall": 0.7857,
+      "slot_f1": 0.7566,
+      "null_accuracy": 0.9732,
+      "row_em": 0.7674,
+      "tp": 429,
+      "fp": 159,
+      "fn": 117
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7483,
+      "slot_recall": 0.8114,
+      "slot_f1": 0.7786,
+      "null_accuracy": 0.9732,
+      "row_em": 0.7858,
+      "tp": 443,
+      "fp": 149,
+      "fn": 103
+    }
+  },
+  "v1_only": {
+    "all_slots": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7296,
+        "slot_recall": 0.7857,
+        "slot_f1": 0.7566,
+        "null_accuracy": 0.9777,
+        "row_em": 0.7674,
+        "tp": 429,
+        "fp": 159,
+        "fn": 117
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7534,
+        "slot_recall": 0.8114,
+        "slot_f1": 0.7813,
+        "null_accuracy": 0.9777,
+        "row_em": 0.7846,
+        "tp": 443,
+        "fp": 145,
+        "fn": 103
+      }
+    },
+    "lang_free": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7296,
+        "slot_recall": 0.7857,
+        "slot_f1": 0.7566,
+        "null_accuracy": 0.9732,
+        "row_em": 0.7674,
+        "tp": 429,
+        "fp": 159,
+        "fn": 117
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7534,
+        "slot_recall": 0.8114,
+        "slot_f1": 0.7813,
+        "null_accuracy": 0.9732,
+        "row_em": 0.7846,
+        "tp": 443,
+        "fp": 145,
+        "fn": 103
+      }
+    }
+  },
+  "per_lang_f1": {
+    "de": {
+      "before": 0.8346,
+      "v1_only": 0.8346,
+      "after": 0.8346
+    },
+    "en": {
+      "before": 0.7463,
+      "v1_only": 0.7562,
+      "after": 0.7463
+    },
+    "es": {
+      "before": 0.7848,
+      "v1_only": 0.7932,
+      "after": 0.7899
+    },
+    "fr": {
+      "before": 0.7656,
+      "v1_only": 0.7656,
+      "after": 0.7578
+    },
+    "pl": {
+      "before": 0.6129,
+      "v1_only": 0.7419,
+      "after": 0.7513
+    }
+  },
+  "q_boundary": {
+    "before": {
+      "fp": 108,
+      "fn": 84
+    },
+    "v1_only": {
+      "fp": 95,
+      "fn": 71
+    },
+    "after": {
+      "fp": 98,
+      "fn": 70
+    }
+  },
+  "applied": {
+    "agree": 367,
+    "fn_repair": 4,
+    "fn_repair_skip_0_cands": 3,
+    "fn_repair_skip_2_cands": 7,
+    "fn_repair_skip_3_cands": 1,
+    "fn_repair_skip_6_cands": 1,
+    "no_span": 36,
+    "not_locatable": 5,
+    "truncate": 10
+  },
+  "change_outcomes": {
+    "neutral": 5,
+    "break": 3,
+    "fix": 2
+  },
+  "canon_applied_v1_only": {
+    "alias": 14,
+    "pl_fallback": 3,
+    "city2code": 2
+  },
+  "canon_applied_after": {
+    "alias": 14,
+    "pl_fallback": 3,
+    "city2code": 2
+  },
+  "changed_examples": {
+    "canon_after": [
+      {
+        "id": "gold-5abffc421414",
+        "param": "q",
+        "rule": "alias",
+        "before": "Wrocławia",
+        "after": "Wrocław",
+        "gold": "Wrocław"
+      },
+      {
+        "id": "gold-073d3f33f46b",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Stockholmu",
+        "after": "Stockholm",
+        "gold": "Stockholm"
+      },
+      {
+        "id": "gold-f289a1e88da3",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "parkingu",
+        "after": "parking",
+        "gold": "parking"
+      },
+      {
+        "id": "gold-d6246b734c28",
+        "param": "q",
+        "rule": "city2code",
+        "before": "Canterbury",
+        "after": "Canterbury, UK",
+        "gold": "Canterbury, UK"
+      },
+      {
+        "id": "gold-5fff469acf43",
+        "param": "q",
+        "rule": "alias",
+        "before": "Krakowa",
+        "after": "Kraków",
+        "gold": "Kraków"
+      },
+      {
+        "id": "gold-3706630f3d2e",
+        "param": "q",
+        "rule": "alias",
+        "before": "Poznania",
+        "after": "Poznań",
+        "gold": "Poznań"
+      },
+      {
+        "id": "gold-986c5cf1e3cf",
+        "param": "q",
+        "rule": "alias",
+        "before": "restaurante",
+        "after": "restaurant",
+        "gold": "restaurante"
+      },
+      {
+        "id": "gold-ad25a7ec08f3",
+        "param": "q",
+        "rule": "alias",
+        "before": "Krakowa",
+        "after": "Kraków",
+        "gold": "Gdańsk"
+      },
+      {
+        "id": "gold-0dbe193a9ea0",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Alwary",
+        "after": "Alwar",
+        "gold": "Alwary"
+      },
+      {
+        "id": "gold-b1afb7fd935e",
+        "param": "q",
+        "rule": "alias",
+        "before": "Wrocławia",
+        "after": "Wrocław",
+        "gold": "Wrocław"
+      },
+      {
+        "id": "gold-c880552e6581",
+        "param": "q",
+        "rule": "alias",
+        "before": "Poznania",
+        "after": "Poznań",
+        "gold": "Poznań"
+      },
+      {
+        "id": "gold-3cae6ed01ff6",
+        "param": "q",
+        "rule": "alias",
+        "before": "Łodzi",
+        "after": "Łódź",
+        "gold": "Łódź"
+      }
+    ],
+    "canon_v1": [
+      {
+        "id": "gold-5abffc421414",
+        "param": "q",
+        "rule": "alias",
+        "before": "Wrocławia",
+        "after": "Wrocław",
+        "gold": "Wrocław"
+      },
+      {
+        "id": "gold-073d3f33f46b",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Stockholmu",
+        "after": "Stockholm",
+        "gold": "Stockholm"
+      },
+      {
+        "id": "gold-f289a1e88da3",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "parkingu",
+        "after": "parking",
+        "gold": "parking"
+      },
+      {
+        "id": "gold-d6246b734c28",
+        "param": "q",
+        "rule": "city2code",
+        "before": "Canterbury",
+        "after": "Canterbury, UK",
+        "gold": "Canterbury, UK"
+      },
+      {
+        "id": "gold-5fff469acf43",
+        "param": "q",
+        "rule": "alias",
+        "before": "Krakowa",
+        "after": "Kraków",
+        "gold": "Kraków"
+      },
+      {
+        "id": "gold-3706630f3d2e",
+        "param": "q",
+        "rule": "alias",
+        "before": "Poznania",
+        "after": "Poznań",
+        "gold": "Poznań"
+      },
+      {
+        "id": "gold-986c5cf1e3cf",
+        "param": "q",
+        "rule": "alias",
+        "before": "restaurante",
+        "after": "restaurant",
+        "gold": "restaurante"
+      },
+      {
+        "id": "gold-ad25a7ec08f3",
+        "param": "q",
+        "rule": "alias",
+        "before": "Krakowa",
+        "after": "Kraków",
+        "gold": "Gdańsk"
+      },
+      {
+        "id": "gold-0dbe193a9ea0",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Alwary",
+        "after": "Alwar",
+        "gold": "Alwary"
+      },
+      {
+        "id": "gold-b1afb7fd935e",
+        "param": "q",
+        "rule": "alias",
+        "before": "Wrocławia",
+        "after": "Wrocław",
+        "gold": "Wrocław"
+      },
+      {
+        "id": "gold-c880552e6581",
+        "param": "q",
+        "rule": "alias",
+        "before": "Poznania",
+        "after": "Poznań",
+        "gold": "Poznań"
+      },
+      {
+        "id": "gold-3cae6ed01ff6",
+        "param": "q",
+        "rule": "alias",
+        "before": "Łodzi",
+        "after": "Łódź",
+        "gold": "Łódź"
+      }
+    ],
+    "fn_repair": [
+      {
+        "id": "gold-7fb56fbc8095",
+        "param": "q",
+        "rule": "fn_repair",
+        "before": null,
+        "after": "terminal lotniska",
+        "gold": "Hotel Riverside",
+        "utt": "Okej, muszę przejechać z Hotelu \"Riverside\" na terminal lotniska, ale jak uniknąć opłat drogowych, skoro zależy mi na os"
+      },
+      {
+        "id": "gold-0510e3b4ef5a",
+        "param": "query",
+        "rule": "fn_repair",
+        "before": null,
+        "after": "Grand Hotel",
+        "gold": "centro de la ciudad",
+        "utt": "Quiero ir del centro de la ciudad al Grand Hotel, pero por favor evita carreteras con peajes. Además, ¿puedes sugerirme "
+      },
+      {
+        "id": "gold-0b6a868eead7",
+        "param": "q",
+        "rule": "fn_repair",
+        "before": null,
+        "after": "Portland",
+        "gold": "Oregon",
+        "utt": "Dzień dobry, rozumiesz że mam wyznaczyć trasę z centrum Portland na wybrzeże Oregonu, chcę czegoś malowniczego ale bez z"
+      },
+      {
+        "id": "gold-111e7a635fa8",
+        "param": "q",
+        "rule": "fn_repair",
+        "before": null,
+        "after": "A821",
+        "gold": "A821",
+        "utt": "Cześć, podpowiedz mi, jak dostać się na A821, potem skręcić w prawo na autostradę A85 w kierunku Callader."
+      }
+    ],
+    "no_span": [
+      {
+        "id": "gold-26cbcdb0515d",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Główna de Cracovia",
+        "after": "Główna de Cracovia",
+        "gold": null,
+        "utt": "Hola, necesito que instales el sistema de navegación para un viaje en tren desde el estación de Główna de Cracovia hasta"
+      },
+      {
+        "id": "gold-652cbecbabfd",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurant",
+        "after": "restaurant",
+        "gold": "restaurant",
+        "utt": "Je veux partir de Constanţa et atteindre Bieńczyce le plus vite possible, en suivant l’itinéraire le plus rapide. J’aime"
+      },
+      {
+        "id": "gold-3d80ed0b78e2",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Restaurant",
+        "after": "Restaurant",
+        "gold": "Restaurant",
+        "utt": "Ich möchte von Frankfurt nach München fahren, aber ich will keine mautpflichtigen Straßen benutzen. Außerdem interessier"
+      },
+      {
+        "id": "gold-e2b83221cb17",
+        "param": "q",
+        "rule": "no_span",
+        "before": "café",
+        "after": "café",
+        "gold": "café",
+        "utt": "¡Perfecto! Así que vamos de Jalalpur Pirwala a Dursh Khela, pasando por una parada para café. Antes de que enciendas el "
+      },
+      {
+        "id": "gold-4d9d821433e7",
+        "param": "q",
+        "rule": "no_span",
+        "before": "chez moi",
+        "after": "chez moi",
+        "gold": "Versailles",
+        "utt": "Bonjour, je pars de chez moi à Versailles et je dois aller au magasin de bricolage de Saint-Quentin-en-Yvelines, puis ra"
+      },
+      {
+        "id": "gold-2d935222857e",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Huai'an",
+        "after": "Huai'an",
+        "gold": "Huai'an",
+        "utt": "Ich möchte eine Route von Huai'an nach Biantang, die die Stadtzentren umgeht. Können Sie das für mich einplanen? Später "
+      },
+      {
+        "id": "gold-5656d701870b",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Restaurant",
+        "after": "Restaurant",
+        "gold": "restaurant",
+        "utt": "Ich möchte eine Route von Huai'an nach Biantang, die die Stadtzentren umgeht. Können Sie das für mich einplanen? Später "
+      },
+      {
+        "id": "gold-41f592dd6455",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurant",
+        "after": "restaurant",
+        "gold": null,
+        "utt": "Tu viens de localiser Greenich et Gatwick pour un trajet de 68 km, mais la station-service trouvée semble bizarrement tr"
+      },
+      {
+        "id": "gold-c6b1c9a403fb",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurants",
+        "after": "restaurants",
+        "gold": "restaurants",
+        "utt": "Dis-toi de m'accompagner jusqu'au point de coordonnées 48.1351, 11.5820 en effectuant un virage à gauche dans 50 mètres,"
+      },
+      {
+        "id": "gold-f289a1e88da3",
+        "param": "q",
+        "rule": "no_span",
+        "before": "parkingu",
+        "after": "parkingu",
+        "gold": "parking",
+        "utt": "Zrozumiałem, że chcę przejechać z Sydney do Melbourne, a po dotarciu na miejsce zapytać o opcje parkingu. Chcę także, że"
+      },
+      {
+        "id": "gold-f8ba819ced21",
+        "param": "q",
+        "rule": "no_span",
+        "before": "coffee",
+        "after": "coffee",
+        "gold": null,
+        "utt": "Hey, I need a route from Canterbury to Dover that avoids tolls, takes some scenic roads if available, includes a coffee "
+      },
+      {
+        "id": "gold-5b09b521aba0",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurants",
+        "after": "restaurants",
+        "gold": "restaurants",
+        "utt": "Okay, I'm driving near Bratislava, Slovakia—specifically at coordinates 48.2082, 16.3738. The navigation just said to tu"
+      }
+    ],
+    "not_locatable": [
+      {
+        "id": "gold-6b1b153bcb29",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "apartamento Europa central",
+        "after": "apartamento Europa central",
+        "gold": "apartamento",
+        "utt": "Oye, necesito que traces una ruta en moto desde mi apartamento hasta otro en Europa central, evitando la hora punta de v"
+      },
+      {
+        "id": "gold-08057752c426",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "Wuhan Xinye",
+        "after": "Wuhan Xinye",
+        "gold": "Wuhan",
+        "utt": "Hallo, die Navigation bitte so einstellen: Führe mich schnellstmöglich von Wuhan nach Xinye über Suizhou."
+      },
+      {
+        "id": "gold-5f5da14188f1",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "Grand Hotel Alten Stadtplatz",
+        "after": "Grand Hotel Alten Stadtplatz",
+        "gold": "Grand Hotel",
+        "utt": "Hallo, ich fahre gerade zum Grand Hotel und möchte eine Route zur Alten Stadtplatz, aber bitte umงleichkeitswege ohne Ma"
+      },
+      {
+        "id": "gold-2a6acda49eaa",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "résidence Nanterre",
+        "after": "résidence Nanterre",
+        "gold": "résidence universitaire de Nanterre",
+        "utt": "Bonjour, je prépare un trajet depuis la résidence universitaire de Nanterre jusqu’à l’université d’Orsay. Je veux éviter"
+      },
+      {
+        "id": "gold-be982ea33484",
+        "param": "origin",
+        "rule": "not_locatable",
+        "before": "13.4050, 52.5200 49.0000, 8.4000",
+        "after": "13.4050, 52.5200 49.0000, 8.4000",
+        "gold": "13.4050,52.5200",
+        "utt": "Ich will von meiner aktuellen Position nach Karlsruhe fahren. Dabei muss ich eine Linksabbiegung in der Nähe von 13.4050"
+      }
+    ],
+    "truncate": [
+      {
+        "id": "gold-30dac77b0147",
+        "param": "origin",
+        "rule": "truncate",
+        "before": "45.764, 4.8357",
+        "after": "45.764",
+        "gold": null,
+        "utt": "Bonjour, je dois conduire de la place de la Concorde à Lyon, aux coordonnées 45.764, 4.8357. Pouvez-vous m'indiquer l'it"
+      },
+      {
+        "id": "gold-aaa34fb7e769",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Detroit, Michigan",
+        "after": "Detroit",
+        "gold": "Detroit, Michigan",
+        "utt": "Hey there, can you start by setting up a route for me to drive from Detroit, Michigan to Pigeon Forge, Tennessee?"
+      },
+      {
+        "id": "gold-d79cef3e503c",
+        "param": "q",
+        "rule": "truncate",
+        "before": "localiser Greenich",
+        "after": "Greenich",
+        "gold": null,
+        "utt": "Tu viens de localiser Greenich et Gatwick pour un trajet de 68 km, mais la station-service trouvée semble bizarrement tr"
+      },
+      {
+        "id": "gold-f20f6c06ba93",
+        "param": "q",
+        "rule": "truncate",
+        "before": "aéroport Charles de Gaulle",
+        "after": "Charles de Gaulle",
+        "gold": "Aéroport Charles de Gaulle",
+        "utt": "Bonjour, je dois aller de l'aéroport Charles de Gaulle à Versailles, mais je veux éviter les péages si possible, à cause"
+      },
+      {
+        "id": "gold-f7ed31584a03",
+        "param": "origin",
+        "rule": "truncate",
+        "before": "48.2082, 16.3738",
+        "after": "48.2082",
+        "gold": "48.2082,16.3738",
+        "utt": "Okay, I'm driving near Bratislava, Slovakia—specifically at coordinates 48.2082, 16.3738. The navigation just said to tu"
+      },
+      {
+        "id": "gold-6d968af0d952",
+        "param": "q",
+        "rule": "truncate",
+        "before": "the Gold Coast",
+        "after": "Gold Coast",
+        "gold": "Gold Coast",
+        "utt": "I’m driving from the Gold Coast to Gympie, and I’d like to take a break every two hours. Also, I’m wondering if there’s "
+      },
+      {
+        "id": "gold-f517e7da0000",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Åre Suecia",
+        "after": "Åre",
+        "gold": null,
+        "utt": "El asistente, busca una ruta hacia Åre, Suecia, considerando que es un camión, hay congestión vial y calor extremo el vi"
+      },
+      {
+        "id": "gold-9c04061e9649",
+        "param": "q",
+        "rule": "truncate",
+        "before": "centrum Portland",
+        "after": "Portland",
+        "gold": "Portland",
+        "utt": "Chcę zaplanować trasę z centrum Portland do Hillsboro, unikając opłat drogowych, jadąc późnym wieczorem przy lekrym desz"
+      },
+      {
+        "id": "gold-4976f53c3187",
+        "param": "q",
+        "rule": "truncate",
+        "before": "downtown Nashville",
+        "after": "Nashville",
+        "gold": "Nashville, TN",
+        "utt": "Salut, j’ai besoin d’indications pour me rendre de downtown Nashville à Gatlinburg, en évitant les routes à péage si pos"
+      },
+      {
+        "id": "gold-b687d00e409d",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Lyon set",
+        "after": "Lyon",
+        "gold": "Paris",
+        "utt": "I've gotten the route from Paris to Lyon set with breaks every 100 km and every 2 hours, plus pauses at each 1,000m, 10,"
+      }
+    ]
+  }
+}

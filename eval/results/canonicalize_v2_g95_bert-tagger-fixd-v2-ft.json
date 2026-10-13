@@ -1,0 +1,264 @@
+{
+  "preds": "eval/results/bert-tagger-fixd-v2-ft_preds.jsonl",
+  "train": [
+    "data/core_train.jsonl",
+    "data/aug_train.jsonl"
+  ],
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "geo": {
+    "pickle": "data/geo_gazetteer.pkl",
+    "available": true,
+    "morfeusz2": true,
+    "rapidfuzz": true,
+    "g3_cutoff": 95.0,
+    "g3_second_max": 88.0,
+    "summary": {
+      "cities": 34160,
+      "altnames_kept": 45034,
+      "unique_keys": 38443,
+      "dropped_ambiguous": 1522,
+      "attribution": "© GeoNames CC-BY 4.0"
+    }
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7296,
+      "slot_recall": 0.7857,
+      "slot_f1": 0.7566,
+      "null_accuracy": 0.9777,
+      "row_em": 0.7674,
+      "tp": 429,
+      "fp": 159,
+      "fn": 117
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7313,
+      "slot_recall": 0.7875,
+      "slot_f1": 0.7584,
+      "null_accuracy": 0.9777,
+      "row_em": 0.7687,
+      "tp": 430,
+      "fp": 158,
+      "fn": 116
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7296,
+      "slot_recall": 0.7857,
+      "slot_f1": 0.7566,
+      "null_accuracy": 0.9732,
+      "row_em": 0.7674,
+      "tp": 429,
+      "fp": 159,
+      "fn": 117
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7313,
+      "slot_recall": 0.7875,
+      "slot_f1": 0.7584,
+      "null_accuracy": 0.9732,
+      "row_em": 0.7687,
+      "tp": 430,
+      "fp": 158,
+      "fn": 116
+    }
+  },
+  "v1_only": {
+    "all_slots": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7296,
+        "slot_recall": 0.7857,
+        "slot_f1": 0.7566,
+        "null_accuracy": 0.9777,
+        "row_em": 0.7674,
+        "tp": 429,
+        "fp": 159,
+        "fn": 117
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7534,
+        "slot_recall": 0.8114,
+        "slot_f1": 0.7813,
+        "null_accuracy": 0.9777,
+        "row_em": 0.7846,
+        "tp": 443,
+        "fp": 145,
+        "fn": 103
+      }
+    },
+    "lang_free": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7296,
+        "slot_recall": 0.7857,
+        "slot_f1": 0.7566,
+        "null_accuracy": 0.9732,
+        "row_em": 0.7674,
+        "tp": 429,
+        "fp": 159,
+        "fn": 117
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7534,
+        "slot_recall": 0.8114,
+        "slot_f1": 0.7813,
+        "null_accuracy": 0.9732,
+        "row_em": 0.7846,
+        "tp": 443,
+        "fp": 145,
+        "fn": 103
+      }
+    }
+  },
+  "per_lang_f1": {
+    "de": {
+      "before": 0.8346,
+      "after": 0.811
+    },
+    "en": {
+      "before": 0.7463,
+      "after": 0.7562
+    },
+    "es": {
+      "before": 0.7848,
+      "after": 0.7511
+    },
+    "fr": {
+      "before": 0.7656,
+      "after": 0.7422
+    },
+    "pl": {
+      "before": 0.6129,
+      "after": 0.7204
+    }
+  },
+  "applied": {
+    "G1_exact_altname": 15,
+    "alias": 14,
+    "pl_fallback": 3,
+    "city2code": 2,
+    "G3_fuzzy": 3,
+    "G4_appendage": 1
+  },
+  "changed_examples": [
+    {
+      "id": "gold-196e11b0a50f",
+      "param": "q",
+      "rule": "G1_exact_altname",
+      "before": "Horlivka",
+      "after": "Horliwka",
+      "gold": "Horlivka"
+    },
+    {
+      "id": "gold-5abffc421414",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-e0cf7a103066",
+      "param": "query",
+      "rule": "G1_exact_altname",
+      "before": "Krakow",
+      "after": "Cracovia",
+      "gold": "Krakow"
+    },
+    {
+      "id": "gold-2d935222857e",
+      "param": "q",
+      "rule": "G1_exact_altname",
+      "before": "Huai'an",
+      "after": "Huai’an",
+      "gold": "Huai'an"
+    },
+    {
+      "id": "gold-073d3f33f46b",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Stockholmu",
+      "after": "Stockholm",
+      "gold": "Stockholm"
+    },
+    {
+      "id": "gold-073d3f33f46b",
+      "param": "q",
+      "rule": "G1_exact_altname",
+      "before": "Stockholm",
+      "after": "Sztokholm",
+      "gold": "Stockholm"
+    },
+    {
+      "id": "gold-f289a1e88da3",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "parkingu",
+      "after": "parking",
+      "gold": "parking"
+    },
+    {
+      "id": "gold-d6246b734c28",
+      "param": "q",
+      "rule": "city2code",
+      "before": "Canterbury",
+      "after": "Canterbury, UK",
+      "gold": "Canterbury, UK"
+    },
+    {
+      "id": "gold-5fff469acf43",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-b5f56be5faf4",
+      "param": "q",
+      "rule": "G1_exact_altname",
+      "before": "Jerez de la Frontera",
+      "after": "Xérès",
+      "gold": "Jerez de la Frontera"
+    },
+    {
+      "id": "gold-97dc26c173aa",
+      "param": "q",
+      "rule": "G1_exact_altname",
+      "before": "Johannesburg",
+      "after": "Johannesbourg",
+      "gold": "Johannesburg"
+    },
+    {
+      "id": "gold-3706630f3d2e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    }
+  ]
+}

@@ -1,0 +1,647 @@
+{
+  "preds": "eval/results/llama-3.2-1b-v2-ft_preds.jsonl",
+  "spans": "/home/kamil/projects/here/slot_filling/data/ner/gliner_core_test_spans.jsonl",
+  "spans_available": true,
+  "train": [
+    "data/core_train.jsonl",
+    "data/aug_train.jsonl"
+  ],
+  "gazetteer": {
+    "aliases": 24,
+    "city2code": 44,
+    "alias_dropped_ambiguous": 3,
+    "alias_dropped_punct": 10,
+    "alias_dropped_rare": 105,
+    "city2code_dropped_weak": 43
+  },
+  "rules_config": {
+    "span_threshold": 0.5,
+    "repair_threshold": 0.6,
+    "fn_repair": true,
+    "geo_fns": [
+      "here_geocode",
+      "nominatim_geocode",
+      "tomtom-geocode"
+    ],
+    "q_params": [
+      "q",
+      "query"
+    ],
+    "repair_labels": [
+      "city",
+      "location",
+      "point of interest",
+      "street address"
+    ],
+    "extend_gate": "extend only for geocode q/query params",
+    "locate": "word-fold contiguous match (_contiguous), no partial"
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7661,
+      "slot_recall": 0.8278,
+      "slot_f1": 0.7958,
+      "null_accuracy": 0.9788,
+      "row_em": 0.7956,
+      "tp": 452,
+      "fp": 138,
+      "fn": 94
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7551,
+      "slot_recall": 0.8187,
+      "slot_f1": 0.7856,
+      "null_accuracy": 0.9788,
+      "row_em": 0.7907,
+      "tp": 447,
+      "fp": 145,
+      "fn": 99
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7661,
+      "slot_recall": 0.8278,
+      "slot_f1": 0.7958,
+      "null_accuracy": 0.9745,
+      "row_em": 0.7956,
+      "tp": 452,
+      "fp": 138,
+      "fn": 94
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7551,
+      "slot_recall": 0.8187,
+      "slot_f1": 0.7856,
+      "null_accuracy": 0.9745,
+      "row_em": 0.7907,
+      "tp": 447,
+      "fp": 145,
+      "fn": 99
+    }
+  },
+  "v1_only": {
+    "all_slots": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7661,
+        "slot_recall": 0.8278,
+        "slot_f1": 0.7958,
+        "null_accuracy": 0.9788,
+        "row_em": 0.7956,
+        "tp": 452,
+        "fp": 138,
+        "fn": 94
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7661,
+        "slot_recall": 0.8278,
+        "slot_f1": 0.7958,
+        "null_accuracy": 0.9788,
+        "row_em": 0.7956,
+        "tp": 452,
+        "fp": 138,
+        "fn": 94
+      }
+    },
+    "lang_free": {
+      "before": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7661,
+        "slot_recall": 0.8278,
+        "slot_f1": 0.7958,
+        "null_accuracy": 0.9745,
+        "row_em": 0.7956,
+        "tp": 452,
+        "fp": 138,
+        "fn": 94
+      },
+      "after": {
+        "n": 817,
+        "parse_rate": 1.0,
+        "slot_precision": 0.7661,
+        "slot_recall": 0.8278,
+        "slot_f1": 0.7958,
+        "null_accuracy": 0.9745,
+        "row_em": 0.7956,
+        "tp": 452,
+        "fp": 138,
+        "fn": 94
+      }
+    }
+  },
+  "per_lang_f1": {
+    "de": {
+      "before": 0.8492,
+      "v1_only": 0.8492,
+      "after": 0.8538
+    },
+    "en": {
+      "before": 0.7961,
+      "v1_only": 0.8058,
+      "after": 0.7961
+    },
+    "es": {
+      "before": 0.7932,
+      "v1_only": 0.7932,
+      "after": 0.7764
+    },
+    "fr": {
+      "before": 0.7752,
+      "v1_only": 0.7752,
+      "after": 0.7519
+    },
+    "pl": {
+      "before": 0.7541,
+      "v1_only": 0.7432,
+      "after": 0.7391
+    }
+  },
+  "q_boundary": {
+    "before": {
+      "fp": 92,
+      "fn": 60
+    },
+    "v1_only": {
+      "fp": 92,
+      "fn": 60
+    },
+    "after": {
+      "fp": 97,
+      "fn": 63
+    }
+  },
+  "applied": {
+    "agree": 346,
+    "fn_repair": 2,
+    "fn_repair_skip_0_cands": 2,
+    "fn_repair_skip_2_cands": 3,
+    "fn_repair_skip_3_cands": 1,
+    "no_span": 35,
+    "not_locatable": 31,
+    "truncate": 16
+  },
+  "change_outcomes": {
+    "fix": 4,
+    "break": 9,
+    "neutral": 5
+  },
+  "canon_applied_v1_only": {
+    "city2code": 1,
+    "alias": 2,
+    "pl_fallback": 2
+  },
+  "canon_applied_after": {
+    "city2code": 1,
+    "alias": 2,
+    "pl_fallback": 2
+  },
+  "changed_examples": {
+    "canon_after": [
+      {
+        "id": "gold-d6246b734c28",
+        "param": "q",
+        "rule": "city2code",
+        "before": "Canterbury",
+        "after": "Canterbury, UK",
+        "gold": "Canterbury, UK"
+      },
+      {
+        "id": "gold-986c5cf1e3cf",
+        "param": "q",
+        "rule": "alias",
+        "before": "restaurante",
+        "after": "restaurant",
+        "gold": "restaurante"
+      },
+      {
+        "id": "gold-0dbe193a9ea0",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Alwary",
+        "after": "Alwar",
+        "gold": "Alwary"
+      },
+      {
+        "id": "gold-6199a434ec02",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Kopenhaga",
+        "after": "Kopenhagen",
+        "gold": null
+      },
+      {
+        "id": "gold-e3d9c3f252aa",
+        "param": "q",
+        "rule": "alias",
+        "before": "restaurante",
+        "after": "restaurant",
+        "gold": "restaurant"
+      }
+    ],
+    "canon_v1": [
+      {
+        "id": "gold-d6246b734c28",
+        "param": "q",
+        "rule": "city2code",
+        "before": "Canterbury",
+        "after": "Canterbury, UK",
+        "gold": "Canterbury, UK"
+      },
+      {
+        "id": "gold-986c5cf1e3cf",
+        "param": "q",
+        "rule": "alias",
+        "before": "restaurante",
+        "after": "restaurant",
+        "gold": "restaurante"
+      },
+      {
+        "id": "gold-0dbe193a9ea0",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Alwary",
+        "after": "Alwar",
+        "gold": "Alwary"
+      },
+      {
+        "id": "gold-6199a434ec02",
+        "param": "q",
+        "rule": "pl_fallback",
+        "before": "Kopenhaga",
+        "after": "Kopenhagen",
+        "gold": null
+      },
+      {
+        "id": "gold-e3d9c3f252aa",
+        "param": "q",
+        "rule": "alias",
+        "before": "restaurante",
+        "after": "restaurant",
+        "gold": "restaurant"
+      }
+    ],
+    "fn_repair": [
+      {
+        "id": "gold-01c51d21f931",
+        "param": "q",
+        "rule": "fn_repair",
+        "before": null,
+        "after": "Western Europe",
+        "gold": "Western Europe",
+        "utt": "Ich muss heute Nachmittag im Berufsverkehr einen Kundenvisit in Western Europe absolvieren; die Distanz liegt bei etwa 7"
+      },
+      {
+        "id": "gold-0b6a868eead7",
+        "param": "q",
+        "rule": "fn_repair",
+        "before": null,
+        "after": "Portland",
+        "gold": "Oregon",
+        "utt": "Dzień dobry, rozumiesz że mam wyznaczyć trasę z centrum Portland na wybrzeże Oregonu, chcę czegoś malowniczego ale bez z"
+      }
+    ],
+    "no_span": [
+      {
+        "id": "gold-6b1b153bcb29",
+        "param": "q",
+        "rule": "no_span",
+        "before": "apartamento",
+        "after": "apartamento",
+        "gold": "apartamento",
+        "utt": "Oye, necesito que traces una ruta en moto desde mi apartamento hasta otro en Europa central, evitando la hora punta de v"
+      },
+      {
+        "id": "gold-26cbcdb0515d",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Główna",
+        "after": "Główna",
+        "gold": null,
+        "utt": "Hola, necesito que instales el sistema de navegación para un viaje en tren desde el estación de Główna de Cracovia hasta"
+      },
+      {
+        "id": "gold-652cbecbabfd",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurant",
+        "after": "restaurant",
+        "gold": "restaurant",
+        "utt": "Je veux partir de Constanţa et atteindre Bieńczyce le plus vite possible, en suivant l’itinéraire le plus rapide. J’aime"
+      },
+      {
+        "id": "gold-3d80ed0b78e2",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Restaurant",
+        "after": "Restaurant",
+        "gold": "Restaurant",
+        "utt": "Ich möchte von Frankfurt nach München fahren, aber ich will keine mautpflichtigen Straßen benutzen. Außerdem interessier"
+      },
+      {
+        "id": "gold-7fb56fbc8095",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Hotel Riverside",
+        "after": "Hotel Riverside",
+        "gold": "Hotel Riverside",
+        "utt": "Okej, muszę przejechać z Hotelu \"Riverside\" na terminal lotniska, ale jak uniknąć opłat drogowych, skoro zależy mi na os"
+      },
+      {
+        "id": "gold-e2b83221cb17",
+        "param": "q",
+        "rule": "no_span",
+        "before": "café",
+        "after": "café",
+        "gold": "café",
+        "utt": "¡Perfecto! Así que vamos de Jalalpur Pirwala a Dursh Khela, pasando por una parada para café. Antes de que enciendas el "
+      },
+      {
+        "id": "gold-d3a9b52c98ae",
+        "param": "q",
+        "rule": "no_span",
+        "before": "chez moi",
+        "after": "chez moi",
+        "gold": "Sarcelles",
+        "utt": "Salut ! Donc pour résumer, je pars de chez moi à Sarcelles pour faire les courses à Enghien-les-Bains, et ensuite je réc"
+      },
+      {
+        "id": "gold-0510e3b4ef5a",
+        "param": "query",
+        "rule": "no_span",
+        "before": "centro de la ciudad",
+        "after": "centro de la ciudad",
+        "gold": "centro de la ciudad",
+        "utt": "Quiero ir del centro de la ciudad al Grand Hotel, pero por favor evita carreteras con peajes. Además, ¿puedes sugerirme "
+      },
+      {
+        "id": "gold-90d1cc95a850",
+        "param": "q",
+        "rule": "no_span",
+        "before": "mon bureau",
+        "after": "mon bureau",
+        "gold": "Cinquième Avenue bureau",
+        "utt": "Je veux aller de mon bureau sur la Cinquième Avenue à ma maison sur Maple Street, en évitant les péages si possible. Pou"
+      },
+      {
+        "id": "gold-2d935222857e",
+        "param": "q",
+        "rule": "no_span",
+        "before": "Huai'an",
+        "after": "Huai'an",
+        "gold": "Huai'an",
+        "utt": "Ich möchte eine Route von Huai'an nach Biantang, die die Stadtzentren umgeht. Können Sie das für mich einplanen? Später "
+      },
+      {
+        "id": "gold-5656d701870b",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurant",
+        "after": "restaurant",
+        "gold": "restaurant",
+        "utt": "Ich möchte eine Route von Huai'an nach Biantang, die die Stadtzentren umgeht. Können Sie das für mich einplanen? Später "
+      },
+      {
+        "id": "gold-41f592dd6455",
+        "param": "q",
+        "rule": "no_span",
+        "before": "restaurant",
+        "after": "restaurant",
+        "gold": null,
+        "utt": "Tu viens de localiser Greenich et Gatwick pour un trajet de 68 km, mais la station-service trouvée semble bizarrement tr"
+      }
+    ],
+    "not_locatable": [
+      {
+        "id": "gold-805f7a8f51d3",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "New York, NY",
+        "after": "New York, NY",
+        "gold": null,
+        "utt": "Cześć, ustawiłem trasę z Nowego Jorku do miejscowości Cheshire, jadąc tak, aby omijać centra miast. Czy to dla Ciebie do"
+      },
+      {
+        "id": "gold-401e7aa15113",
+        "param": "at",
+        "rule": "not_locatable",
+        "before": "52.3676,4.9041",
+        "after": "52.3676,4.9041",
+        "gold": "52.3676,4.9041",
+        "utt": "So, I need to head to the spot at latitude 52.3676, longitude 4.9041, and the first move is a left turn, right? Also, on"
+      },
+      {
+        "id": "gold-6ac53d780986",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "Birmingham, UK",
+        "after": "Birmingham, UK",
+        "gold": "Birmingham, UK",
+        "utt": "Hallo, ich möchte von Birmingham nach Edinburgh fahren. Bitte finde mir eine Route, die keine Mautgebühren beinhaltet un"
+      },
+      {
+        "id": "gold-9c6606731a98",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "Nowy Jork",
+        "after": "Nowy Jork",
+        "gold": null,
+        "utt": "Skoro, chcę przejechać z Nowego Jorku do Atlanty. Chcę uniknąć płatnych autostrad i przejechać wzdłuż malowniczej trasy "
+      },
+      {
+        "id": "gold-730e9fef076b",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "New York, NY",
+        "after": "New York, NY",
+        "gold": null,
+        "utt": "Cześć, chcę ustawić trasę z Nowego Jorku do Bostonu, ale poproś o omijanie Miami i Orlando."
+      },
+      {
+        "id": "gold-4ef60c33edae",
+        "param": "query",
+        "rule": "not_locatable",
+        "before": "New York",
+        "after": "New York",
+        "gold": null,
+        "utt": "Mówisz, że jedziemy z Nowego Jorku do Waszyngtonu D.C. po lotniskach i chciesz 15-minutowej przerwy w połowie trasy. Pot"
+      },
+      {
+        "id": "gold-9becc4e368c3",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "Chicago, IL",
+        "after": "Chicago, IL",
+        "gold": "Chicago, IL",
+        "utt": "Also, ich fahre heute Nacht von Chicago nach Detroit, vermeide unbedingt Autobahnen und mache vorher in Toledo eine Ausf"
+      },
+      {
+        "id": "gold-91e89f6f7938",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "London, UK",
+        "after": "London, UK",
+        "gold": "London",
+        "utt": "Ich möchte von London nach Manchester fahren und dabei wissen, wie lange die Strecke dauert und wie weit sie ist. Außerd"
+      },
+      {
+        "id": "gold-b608695a777a",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "London, UK",
+        "after": "London, UK",
+        "gold": "London, UK",
+        "utt": "Alright, so I'm driving from London to Manchester, right? I just threw in that whole list of other cities like Los Angel"
+      },
+      {
+        "id": "gold-ef3df241122a",
+        "param": "query",
+        "rule": "not_locatable",
+        "before": "Sheffield, UK",
+        "after": "Sheffield, UK",
+        "gold": "Sheffield, UK",
+        "utt": "Bonjour, je voudrais préparer un itinéraire de Sheffield à Liverpool sans utiliser d'autoroutes, avec une escale pour la"
+      },
+      {
+        "id": "gold-d79cef3e503c",
+        "param": "q",
+        "rule": "not_locatable",
+        "before": "Greenwich, UK",
+        "after": "Greenwich, UK",
+        "gold": null,
+        "utt": "Tu viens de localiser Greenich et Gatwick pour un trajet de 68 km, mais la station-service trouvée semble bizarrement tr"
+      },
+      {
+        "id": "gold-fd49fcf5afa3",
+        "param": "query",
+        "rule": "not_locatable",
+        "before": "Bogota",
+        "after": "Bogota",
+        "gold": null,
+        "utt": "Tak, proszę pomóż mi dojechać z Bogoty do Buenaventury, ale tylko po lądzie, chcę uniknąć promów. Ile trwać będzie ta po"
+      }
+    ],
+    "truncate": [
+      {
+        "id": "gold-30877f97ffe7",
+        "param": "q",
+        "rule": "truncate",
+        "before": "our hotel on Maple Street",
+        "after": "Maple Street",
+        "gold": "Maple Street",
+        "utt": "Okay, let's get started. I need to drive from our hotel on Maple Street to Grandma's house on Cedar Lane, but I want to "
+      },
+      {
+        "id": "gold-eea20539caa9",
+        "param": "query",
+        "rule": "truncate",
+        "before": "4.9041, 52.3676",
+        "after": "4.9041",
+        "gold": "4.9041,52.3676",
+        "utt": "Je suis en train de conduire et j’ai besoin d’un virage à gauche à l’emplacement [4.9041, 52.3676]. J’aimerais que l’ass"
+      },
+      {
+        "id": "gold-aaa34fb7e769",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Detroit, Michigan",
+        "after": "Detroit",
+        "gold": "Detroit, Michigan",
+        "utt": "Hey there, can you start by setting up a route for me to drive from Detroit, Michigan to Pigeon Forge, Tennessee?"
+      },
+      {
+        "id": "gold-1bb7a679a319",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Hotel im Stadtzentrum von Portland",
+        "after": "Portland",
+        "gold": null,
+        "utt": "Okay, ich habe die Route von unserem Hotel im Stadtzentrum von Portland zum Crater Lake Lodge gefunden. Das sind etwa 40"
+      },
+      {
+        "id": "gold-2a6acda49eaa",
+        "param": "q",
+        "rule": "truncate",
+        "before": "résidence universitaire de Nanterre",
+        "after": "Nanterre",
+        "gold": "résidence universitaire de Nanterre",
+        "utt": "Bonjour, je prépare un trajet depuis la résidence universitaire de Nanterre jusqu’à l’université d’Orsay. Je veux éviter"
+      },
+      {
+        "id": "gold-f20f6c06ba93",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Aéroport Charles de Gaulle",
+        "after": "Charles de Gaulle",
+        "gold": "Aéroport Charles de Gaulle",
+        "utt": "Bonjour, je dois aller de l'aéroport Charles de Gaulle à Versailles, mais je veux éviter les péages si possible, à cause"
+      },
+      {
+        "id": "gold-f7ed31584a03",
+        "param": "origin",
+        "rule": "truncate",
+        "before": "48.2082,16.3738",
+        "after": "48.2082",
+        "gold": "48.2082,16.3738",
+        "utt": "Okay, I'm driving near Bratislava, Slovakia—specifically at coordinates 48.2082, 16.3738. The navigation just said to tu"
+      },
+      {
+        "id": "gold-f7ed31584a03",
+        "param": "destination",
+        "rule": "truncate",
+        "before": "48.2082,16.3738",
+        "after": "48.2082",
+        "gold": "48.2082,16.3738",
+        "utt": "Okay, I'm driving near Bratislava, Slovakia—specifically at coordinates 48.2082, 16.3738. The navigation just said to tu"
+      },
+      {
+        "id": "gold-6d968af0d952",
+        "param": "q",
+        "rule": "truncate",
+        "before": "the Gold Coast",
+        "after": "Gold Coast",
+        "gold": "Gold Coast",
+        "utt": "I’m driving from the Gold Coast to Gympie, and I’d like to take a break every two hours. Also, I’m wondering if there’s "
+      },
+      {
+        "id": "gold-ef2fed037bf7",
+        "param": "q",
+        "rule": "truncate",
+        "before": "Görlitz skyline",
+        "after": "Görlitz",
+        "gold": "Görlitz skyline",
+        "utt": "Take me to the Görlitz skyline. I'm a trucker on a motorcycle, it's late night in light rain with heavy traffic, and I n"
+      },
+      {
+        "id": "gold-3d86a2e49b66",
+        "param": "q",
+        "rule": "truncate",
+        "before": "centro de Springfield",
+        "after": "Springfield",
+        "gold": "centro de Springfield",
+        "utt": "Hola, necesito que programes una ruta desde el centro de Springfield hasta la cabaña junto al lago. Por favor, ten en cu"
+      },
+      {
+        "id": "gold-9c04061e9649",
+        "param": "q",
+        "rule": "truncate",
+        "before": "centrum Portland",
+        "after": "Portland",
+        "gold": "Portland",
+        "utt": "Chcę zaplanować trasę z centrum Portland do Hillsboro, unikając opłat drogowych, jadąc późnym wieczorem przy lekrym desz"
+      }
+    ]
+  }
+}

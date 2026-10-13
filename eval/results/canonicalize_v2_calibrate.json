@@ -1,0 +1,43 @@
+{
+  "calibrate": [
+    "data/core_train.jsonl"
+  ],
+  "rules_config": {
+    "g1_gated": true,
+    "g1_gate": "G1 fires only when fold(v) not in alt2gids (valid GeoNames name-forms skipped -> g1_skipped_valid)",
+    "g2_gated": true,
+    "g2_gate": "G2 skipped when fold(v) in alt2gids (valid GeoNames name-forms skipped -> g2_skipped_valid); replacement == value is not counted as a fire",
+    "g3_cutoff": 0.0,
+    "g3_second_max": 88.0,
+    "g4_mode": "after_g1_g2_append_admin1_code2_if_ge_1_train_code_vote"
+  },
+  "geo": {
+    "pickle": "data/geo_gazetteer.pkl",
+    "available": true,
+    "morfeusz2": true,
+    "rapidfuzz": true,
+    "g3_cutoff": 0.0,
+    "g3_second_max": 88.0,
+    "summary": {
+      "cities": 34160,
+      "altnames_kept": 45034,
+      "unique_keys": 38443,
+      "dropped_ambiguous": 1522,
+      "attribution": "© GeoNames CC-BY 4.0"
+    }
+  },
+  "g1_skipped_valid": 114,
+  "g2_skipped_valid": 574,
+  "values_examined": 3996,
+  "fires": {},
+  "fire_total": 0,
+  "corruption_count": 0,
+  "corruption_rate": 0.0,
+  "corruption_definition": "fired rewrite != gold (exact string)",
+  "corruption_norm_count": 0,
+  "corruption_norm_rate": 0.0,
+  "corruption_norm_definition": "fired rewrite != gold under norm_val (fold+comma; the metric's equality)",
+  "fires_exact": {},
+  "fires_norm": {},
+  "corruption_examples": []
+}
