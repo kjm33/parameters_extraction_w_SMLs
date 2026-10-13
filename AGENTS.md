@@ -11,6 +11,13 @@ Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
   to the `python-coder` subagent (Task tool) instead of editing files inline. Give it a precise
   spec (inputs/outputs, file paths, conventions) and require a verification command
   (e.g. the venv interpreter run) in its report.
+- When the user asks to explain or summarize results after finishing a task/round (e.g.
+  "explain me the results in simple language", "what worked, what didn't"), follow the global
+  `plain-results-recap` skill format: **What was checked / What worked / What didn't / Bottom
+  line**, plain language with analogies for key concepts, concrete numbers for intuition, and
+  ranked improvement levers. Reference examples:
+  `notes/2026-10-13-round11-plain-language-summary.md`,
+  `notes/2026-10-13-ner-never-the-bottleneck-verbatim-gold-and-intent-errors.md`.
 
 ## Layout
 

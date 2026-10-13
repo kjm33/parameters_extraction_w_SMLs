@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "python": {
+      "command": ["pyright-langserver", "--stdio"],
+      "extensions": ["py"],
+      "initialization": {
+        "python": {
+          "pythonPath": "../function_calling_edge_fine_tuning/train/venv/bin/python"
+        }
+      }
+    }
+  }
+}
