@@ -1,0 +1,198 @@
+{
+  "tag": "r12a",
+  "generated": "2026-10-13T15:31:32",
+  "teachers": {
+    "t1_haiku55": {
+      "n": 500,
+      "called": 500,
+      "parse_rate": 0.966,
+      "grounded_rate": 0.88,
+      "em_rate": 0.332,
+      "em_rate_grounded": 0.3773,
+      "diffs": {
+        "null_to_value": 460,
+        "value_to_null": 24,
+        "value_neq_value": 105
+      },
+      "diff_total": 589,
+      "diff_classes": {
+        "blank_receipt": 17,
+        "word_comma_tail": 15,
+        "q_boundary": 14,
+        "pl_canonical": 5,
+        "appendage_code": 3
+      }
+    },
+    "t2_gpt54mini": {
+      "n": 500,
+      "called": 500,
+      "parse_rate": 1.0,
+      "grounded_rate": 0.916,
+      "em_rate": 0.17,
+      "em_rate_grounded": 0.1856,
+      "diffs": {
+        "null_to_value": 422,
+        "value_to_null": 61,
+        "value_neq_value": 159
+      },
+      "diff_total": 642,
+      "diff_classes": {
+        "q_boundary": 68,
+        "word_comma_tail": 20,
+        "blank_receipt": 16,
+        "appendage_code": 3,
+        "pl_canonical": 2
+      }
+    },
+    "t3_gpt6luna": {
+      "n": 500,
+      "called": 500,
+      "parse_rate": 1.0,
+      "grounded_rate": 0.904,
+      "em_rate": 0.174,
+      "em_rate_grounded": 0.1925,
+      "diffs": {
+        "null_to_value": 468,
+        "value_to_null": 13,
+        "value_neq_value": 194
+      },
+      "diff_total": 675,
+      "diff_classes": {
+        "word_comma_tail": 89,
+        "q_boundary": 44,
+        "blank_receipt": 17,
+        "appendage_code": 3,
+        "pl_canonical": 1
+      }
+    },
+    "t4_glm53flash": {
+      "n": 500,
+      "called": 500,
+      "parse_rate": 1.0,
+      "grounded_rate": 0.896,
+      "em_rate": 0.206,
+      "em_rate_grounded": 0.2299,
+      "diffs": {
+        "null_to_value": 455,
+        "value_to_null": 91,
+        "value_neq_value": 109
+      },
+      "diff_total": 655,
+      "diff_classes": {
+        "q_boundary": 19,
+        "word_comma_tail": 17,
+        "blank_receipt": 17,
+        "appendage_code": 3,
+        "pl_canonical": 2
+      }
+    },
+    "t5_dsv41flash": {
+      "n": 500,
+      "called": 500,
+      "parse_rate": 0.91,
+      "grounded_rate": 0.838,
+      "em_rate": 0.158,
+      "em_rate_grounded": 0.1885,
+      "diffs": {
+        "null_to_value": 387,
+        "value_to_null": 83,
+        "value_neq_value": 111
+      },
+      "diff_total": 581,
+      "diff_classes": {
+        "q_boundary": 27,
+        "word_comma_tail": 20,
+        "blank_receipt": 16,
+        "appendage_code": 3,
+        "pl_canonical": 2
+      }
+    },
+    "t6_ling31flash": {
+      "n": 500,
+      "called": 377,
+      "parse_rate": 0.8143,
+      "grounded_rate": 0.552,
+      "em_rate": 0.104,
+      "em_rate_grounded": 0.1884,
+      "diffs": {
+        "null_to_value": 311,
+        "value_to_null": 9,
+        "value_neq_value": 105
+      },
+      "diff_total": 425,
+      "diff_classes": {
+        "word_comma_tail": 26,
+        "q_boundary": 21,
+        "blank_receipt": 15,
+        "appendage_code": 2
+      }
+    }
+  },
+  "pairwise": {
+    "t1_haiku55~t2_gpt54mini": {
+      "n": 427,
+      "em": 0.3653
+    },
+    "t1_haiku55~t3_gpt6luna": {
+      "n": 422,
+      "em": 0.5095
+    },
+    "t1_haiku55~t4_glm53flash": {
+      "n": 420,
+      "em": 0.5333
+    },
+    "t1_haiku55~t5_dsv41flash": {
+      "n": 395,
+      "em": 0.4
+    },
+    "t1_haiku55~t6_ling31flash": {
+      "n": 264,
+      "em": 0.4848
+    },
+    "t2_gpt54mini~t3_gpt6luna": {
+      "n": 442,
+      "em": 0.3801
+    },
+    "t2_gpt54mini~t4_glm53flash": {
+      "n": 433,
+      "em": 0.3672
+    },
+    "t2_gpt54mini~t5_dsv41flash": {
+      "n": 404,
+      "em": 0.5223
+    },
+    "t2_gpt54mini~t6_ling31flash": {
+      "n": 273,
+      "em": 0.5275
+    },
+    "t3_gpt6luna~t4_glm53flash": {
+      "n": 429,
+      "em": 0.5198
+    },
+    "t3_gpt6luna~t5_dsv41flash": {
+      "n": 400,
+      "em": 0.5125
+    },
+    "t3_gpt6luna~t6_ling31flash": {
+      "n": 269,
+      "em": 0.6134
+    },
+    "t4_glm53flash~t5_dsv41flash": {
+      "n": 398,
+      "em": 0.5402
+    },
+    "t4_glm53flash~t6_ling31flash": {
+      "n": 269,
+      "em": 0.5428
+    },
+    "t5_dsv41flash~t6_ling31flash": {
+      "n": 257,
+      "em": 0.677
+    }
+  },
+  "spotcheck": {
+    "n": 50,
+    "path": "/home/kamil/projects/here/slot_filling/notes/2026-10-13-gold-v3-spotcheck.md",
+    "n_pl": 12
+  }
+}
