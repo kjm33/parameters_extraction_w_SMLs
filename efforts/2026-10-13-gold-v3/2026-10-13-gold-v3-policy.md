@@ -1,7 +1,7 @@
 # Gold-v3 Policy (pre-registered) — Round 12 Phase A
 
 Date: 2026-10-13. Written BEFORE any teacher output is seen (pre-registration). Binding
-decisions come from `plans/2026-10-13_gold-v3-round12-todo.md` (user-approved 2026-10-13).
+decisions come from `efforts/2026-10-13-gold-v3/tasks.md` (user-approved 2026-10-13).
 v2 stays frozen; v3 targets replace v2 targets only after the adoption gate passes.
 
 ## 1. Scope
@@ -33,7 +33,7 @@ acceptance criteria (parse/grounded rate, no systematic annex-violation class, s
 
 **Teacher decision (user, 2026-10-13, after r12a):** T1 haiku-5.5 = primary;
 T4 glm-5.3-flash = second opinion on T1 rejects/audit. Results:
-`notes/2026-10-13-gold-v3-bakeoff-results.md`.
+`efforts/2026-10-13-gold-v3/2026-10-13-gold-v3-bakeoff-results.md`.
 Sampling: (lang × function-name) stratified, seed 20261013, N=500 over the full 16,616
 frame (all five files pooled). Budget guard: hard cap $2/teacher for the bake-off.
 

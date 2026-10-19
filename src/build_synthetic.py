@@ -1,6 +1,6 @@
 """Synthetic slot-filling data via templated generation + validator loop (Data-Turnstile style).
 
-plans/2026-10-10_improvement-todo.md task 2:
+efforts/2026-10-10-related-work-improvements/tasks.md task 2:
   - Templated utterances per (function, lang) seeded from core vocab (places) and the
     enum keyword lexicon (ENUM_STEMS) — every constraint phrase is written to contain
     the stem that grounds it.

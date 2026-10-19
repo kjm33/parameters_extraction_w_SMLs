@@ -1,6 +1,8 @@
 # TODO — Improvements from Related-Work Research
 
-Generated 2026-10-10 from `reports/2026-10-10_related-work-slot-filling.md`.
+> Status: done (2026-10-10 → 2026-10-11) for items 1–4; items 5–10 not executed → BACKLOG.md. Retrofitted into SDD 2026-10-19 (original `efforts/2026-10-10-related-work-improvements/tasks.md`).
+
+Generated 2026-10-10 from `efforts/2026-10-10-related-work-improvements/2026-10-10_related-work-slot-filling.md`.
 Updated 2026-10-10: teacher = OpenAI free tier (keys verified working, see below).
 Updated 2026-10-11: items 1–3 executed (see `reports/RESULTS.md` Round 4); item 4 in flight.
 Baseline to beat: Llama-3.2-1B+LoRA, slot F1 0.7515, row EM 0.667 (en/de ~0.785,

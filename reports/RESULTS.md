@@ -62,7 +62,7 @@ candidate at ≥ edge-v2 + 0.5.
 
 ## Round 9 (2026-10-12) — span-list formulation (pointers instead of strings)
 
-Plan + pre-registered rules: `notes/2026-10-12-spanlist-round9.md`. Same winner recipe
+Plan + pre-registered rules: `efforts/2026-10-12-spanlist-formulation/2026-10-12-spanlist-round9.md`. Same winner recipe
 (llama-3.2-1b LoRA, core+aug v2), but free-text param values become `[first,last]`
 1-based word-index pairs pointing into the utterance; enums stay canonical literals;
 nulls stay null. Two prompt variants: plain vs **numbered** (`1|word 2|word …` so indices
@@ -313,7 +313,7 @@ combiner (plausible small gain on enum slots), selection-over-candidates for `q`
 
 Files: `eval/results/jev_enum_val{,_rows}.jsonl`, `eval/results/jev_verify_llama-1b-merged-test{,_rows}.jsonl`.
 
-## Addendum: classical-NLP assistance (span snapping + NER hints, `plans/PLAN_NER.md`)
+## Addendum: classical-NLP assistance (span snapping + NER hints, `efforts/2026-10-10-classical-nlp-assistance/tasks.md`)
 
 Question: do classic NLP tricks (span alignment, prompt-injected NER spans) help the tiny
 slot-filler? Error analysis motivated both: ~66 q-span-boundary errors, 128 hallucinated
@@ -382,7 +382,7 @@ Files: `eval/results/snap_spans_report.json`, `eval/results/{baseline-hinted,ner
 
 ## Round 4 (2026-10-11) — teacher distillation, synthetic data, constrained decoding, negative training
 
-Motivation: `plans/2026-10-10_improvement-todo.md` (top-3 research-ranked improvements) + the
+Motivation: `efforts/2026-10-10-related-work-improvements/tasks.md` (top-3 research-ranked improvements) + the
 128 true hallucinated FP slots from Round 3 error analysis. All runs use the identical
 llama-3.2-1b LoRA recipe as the 0.7515 reference; core_test n=817.
 
@@ -469,7 +469,7 @@ Files: `src/build_{distill,synthetic,negatives}.py`, `data/{distill,distill2,syn
 
 ## Round 5 (2026-10-11) — BIO-tagging formulation (param names as output vocabulary)
 
-Plan + full analysis: `notes/2026-10-11-tagging-formulation-round4.md`. Two user ideas
+Plan + full analysis: `efforts/2026-10-11-bio-tagging-formulation/2026-10-11-tagging-formulation-round4.md`. Two user ideas
 combined: (1) parameter names injected so the model attends to schema-relevant input parts,
 (2) recast generation as per-word tagging (utterance → one tag per whitespace word) instead of
 JSON synthesis. Decision rules fixed before running: Track A (llama LoRA emitting tags) adopts
@@ -537,7 +537,7 @@ for 1B decoders. Artifacts kept: `data/*_tags.jsonl`, `src/build_tags.py`,
 
 ## Round 6 (2026-10-12) — BERT tagger improvements: post-processing + data ablations
 
-Plan: `notes/2026-10-11-bert-tagger-improvements-round6.md`. Goal: lift the round-5
+Plan: `efforts/2026-10-11-bert-tagger-rounds6-7/2026-10-11-bert-tagger-improvements-round6.md`. Goal: lift the round-5
 BERT tagger (0.7152) toward the JSON winner (0.7515) via (B1) `, XX` suffix handling,
 (B2) train-derived canonicalization, (B3) data/capacity ablations, (B4) conditional CRF.
 Decision rules (pre-registered): adopt as edge candidate at F1 ≥ 0.735, replace winner
@@ -607,7 +607,7 @@ Files: `eval/canonicalize.py`, `data/distill_train_tags.jsonl`,
 
 ## Round 8 (2026-10-12) — mmBERT backbone swap for the edge tagger
 
-Plan: `notes/2026-10-12-mmbert-tagger-round8.md` (rules pre-registered before the run).
+Plan: `efforts/2026-10-12-mmbert-backbone/2026-10-12-mmbert-tagger-round8.md` (rules pre-registered before the run).
 Prompt: "different models, e.g. ModernBERT". Vanilla ModernBERT is English-only → unfit;
 the multilingual successor **mmBERT** (`jhu-clsp/mmBERT-base`: ModernBERT arch, 22L,
 RoPE + unpadding, Gemma-2 tokenizer, 3T tokens, 1,833 langs; authors' own caveat: on
@@ -666,8 +666,8 @@ Files: `train/runs/mmbert-tagger-fixd-v2/`, `eval/results/mmbert-tagger-fixd-v2-
 
 ## Round 11 (2026-10-12) — external NER systems, ontologies, post-hoc post-processing
 
-Research: `notes/2026-10-12-external-ner-ontologies-research.md`; plan with pre-registered
-acceptance: `plans/2026-10-12_external-ner-ontology-todo.md`. Constraint: strictly offline
+Research: `efforts/2026-10-12-external-ner-ontologies/2026-10-12-external-ner-ontologies-research.md`; plan with pre-registered
+acceptance: `efforts/2026-10-12-external-ner-ontologies/tasks.md`. Constraint: strictly offline
 at inference; external NER post-hoc only (round-3 lesson). Baselines: winner-v2 lang-free
 0.7958/0.7956; edge tagger v1-canon 0.7813/0.7846.
 

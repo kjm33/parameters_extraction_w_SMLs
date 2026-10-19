@@ -4,7 +4,7 @@ Context: after the round-3 wikineural prompt-hint failure, evaluate what EXTERNA
 (dedicated NER systems, gazetteers/ontologies, other NLP techniques) could add to the slot
 filling stack. Question from user: which external NER systems, taxonomies/ontologies (e.g.
 DBpedia), and other NLP techniques are useful for extracting information from navigation
-user prompts. Companion TODO: `plans/2026-10-12_external-ner-ontology-todo.md`.
+user prompts. Companion TODO: `efforts/2026-10-12-external-ner-ontologies/tasks.md`.
 
 Online research done 2026-10-12 via direct URL fetches (the web-search backend returned
 noise all session; every fact below was verified on the project page / HF model card /

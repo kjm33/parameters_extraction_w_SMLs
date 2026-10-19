@@ -3,7 +3,22 @@
 Train small local LLMs (edge-viable after Q4 quantization) for **slot filling / parameter extraction** for an in-car
 navigation assistant: given (user utterance, selected function schema) → JSON with one key
 per parameter, value from the utterance or `null`. 5 languages (en/de/pl/fr/es).
-Plan + decisions: `plans/PLAN.md`. Final comparison: `reports/RESULTS.md`.
+Plan + decisions: `efforts/2026-10-07-baseline-pipeline/tasks.md`. Final comparison: `reports/RESULTS.md`.
+
+## Where the project state lives (read this first each session)
+
+| Question | Answer |
+|---|---|
+| Where are we now? | **`STATE.md`** — one screen: active efforts, live numbers, blocked, next steps |
+| What has been done? | **`efforts/README.md`** index → `efforts/YYYY-MM-DD-<slug>/` (spec.md + tasks.md + outcome.md per effort) |
+| What needs to be done? | **`BACKLOG.md`** |
+| Live numbers? | `reports/RESULTS.md` (canonical tables) + `data/v3_stats.json` (gold-v3) |
+
+Session rules: **start** by reading STATE.md; **end** by updating the owning effort's
+tasks.md + STATE.md/BACKLOG.md while your context is still loaded (the 30-second anti-drift
+rule). New work >~½ day / multi-file / interface-touching → follow the `sdd`
+skill (effort dir from `efforts/_TEMPLATE/`, spec review before implementation,
+plain-language outcome.md at close-out). Smaller tasks: just do them, log a line.
 
 ## Workflow
 

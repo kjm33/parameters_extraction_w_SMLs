@@ -1,5 +1,7 @@
 # PLAN — slot_filling: Tiny-LLM Parameter Extraction for Car Navigation
 
+> Status: done (2026-10-07 → 2026-10-10). Retrofitted into SDD 2026-10-19 (original `plans/PLAN.md`). Acceptance/outcome: see spec.md / outcome.md in this dir.
+
 Status: approved (2026-10-07). Decisions confirmed with user:
 1. Non-extractable slots → **null them out** (honest extraction; downstream fills derived slots).
 2. Models: user gave Qwen2.5-0.5B / Llama-3.2-1B as *examples*, asked for other small-model

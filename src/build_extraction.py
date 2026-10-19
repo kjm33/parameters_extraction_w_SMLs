@@ -1,7 +1,7 @@
 """Build slot-filling extraction rows from fcft verified dialogs + gold sets.
 
 For every assistant tool_call: emit (utterance=last user msg before the call,
-function schema, raw args, target). Target policy (per plans/PLAN.md):
+function schema, raw args, target). Target policy (per efforts/2026-10-07-baseline-pipeline/tasks.md):
   - every schema param gets a key (schema order), value = arg value if extractable
     from the utterance, else null
   - verbatim strings: case/diacritic-folded substring OR all >=3-char tokens present

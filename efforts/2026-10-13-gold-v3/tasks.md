@@ -1,5 +1,7 @@
 # TODO — Round 12: Gold-v3 regeneration + 3B decoder + cascade
 
+> Status: ACTIVE (since 2026-10-13). Phase A done — ADOPTION GATE PENDING (user 50-row spot-check, see `2026-10-13-gold-v3-spotcheck.md`); Phases B/C/D not started. Retrofitted into SDD 2026-10-19 (original `efforts/2026-10-13-gold-v3/tasks.md`).
+
 Generated 2026-10-13. Approved plan (user decisions recorded below). Companion diagnosis:
 round-11 gold-noise census (`notes/2026-10-13-round11-plain-language-summary.md` + fresh
 measurements in the round-12 planning discussion).
@@ -40,7 +42,7 @@ $7.81 sync/$3.90 batch; claude-haiku-5.5 ~$0.97; gemini-2.5-flash-lite ~$0.89.
 
 ## Phase A — Gold-v3
 
-- [x] **A0. Pre-registered policy doc** `notes/2026-10-13-gold-v3-policy.md`: verbatim-first;
+- [x] **A0. Pre-registered policy doc** `efforts/2026-10-13-gold-v3/2026-10-13-gold-v3-policy.md`: verbatim-first;
       appendage rule = only-if-spoken DEFAULT (data-driven flip to always-for-US allowed
       from A2 evidence BEFORE freezing v3; decision documented in the note); avoid_features
       from utterance INTENT not reference call (mention ≠ extraction; polarity

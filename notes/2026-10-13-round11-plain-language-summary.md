@@ -2,8 +2,8 @@
 
 Date: 2026-10-13
 Scope: what was checked, what worked, what didn't in the external NER / ontology / post-processing round
-(fully documented in `reports/RESULTS.md` § Round 11; technical details in `notes/2026-10-12-external-ner-ontologies-research.md`
-and outcome blocks in `plans/2026-10-12_external-ner-ontology-todo.md`).
+(fully documented in `reports/RESULTS.md` § Round 11; technical details in `efforts/2026-10-12-external-ner-ontologies/2026-10-12-external-ner-ontologies-research.md`
+and outcome blocks in `efforts/2026-10-12-external-ner-ontologies/tasks.md`).
 
 ## What we checked
 

@@ -1,6 +1,6 @@
 """Teacher distillation: annotate leftover instruction_extraction texts with gpt-5.4-mini.
 
-Pipeline (plans/2026-10-10_improvement-todo.md task 1):
+Pipeline (efforts/2026-10-10-related-work-improvements/tasks.md task 1):
   1. Candidate pool = instruction_extraction texts (v3 + dialogues driver turns) NOT
      consumed by build_augment (fold-prefix exclusion vs aug files), shingle-deduped vs
      core_train, self-deduped. Focus langs: pl/es/fr (the measured weakness).

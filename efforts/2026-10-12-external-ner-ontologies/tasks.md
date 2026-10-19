@@ -1,6 +1,8 @@
 # TODO — External NER / ontology / NLP resources (post-hoc stack)
 
-Generated 2026-10-12 from `notes/2026-10-12-external-ner-ontologies-research.md`
+> Status: done (2026-10-12 → 2026-10-13), lane closed; items 7–10 not executed → BACKLOG.md. Retrofitted into SDD 2026-10-19 (original `efforts/2026-10-12-external-ner-ontologies/tasks.md`).
+
+Generated 2026-10-12 from `efforts/2026-10-12-external-ner-ontologies/2026-10-12-external-ner-ontologies-research.md`
 (online-verified research). Constraint: **strictly offline at inference** (local dumps +
 models only; downloads at build time). Lesson from round-3: external NER is used POST-HOC
 only — never as prompt hints. DBpedia excluded (CC-BY-SA); Wikidata CC0 preferred.

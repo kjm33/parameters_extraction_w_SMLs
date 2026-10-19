@@ -1,4 +1,4 @@
-"""Hammer-style negative training rows (plans/2026-10-10_improvement-todo.md task 4).
+"""Hammer-style negative training rows (efforts/2026-10-10-related-work-improvements/tasks.md task 4).
 
 Targets the measured true-hallucination FP modes of the baseline (128 slots on test):
   B1  avoid_features predicted where gold is null (29)  -> road-type MENTIONS with

@@ -92,5 +92,5 @@ replaces v2 as headline.
 4. t5 usable only with re-ask loop + batch tier; not worth it vs t1+t4 pricing.
 5. t6 infra-infeasible at full scale; keep first-attempt data as evidence.
 
-Pending: 50-row manual spot-check (notes/2026-10-13-gold-v3-spotcheck.md) — user verdicts
+Pending: 50-row manual spot-check (efforts/2026-10-13-gold-v3/2026-10-13-gold-v3-spotcheck.md) — user verdicts
 decide the adoption gate (≥95% agreement) and confirm flip #2 before freezing v3.

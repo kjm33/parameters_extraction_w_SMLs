@@ -1,5 +1,7 @@
 # PLAN_NER — Classical-NLP assistance for the tiny slot-filler (approved)
 
+> Status: done (2026-10-10 → 2026-10-11). Retrofitted into SDD 2026-10-19 (original `plans/PLAN_NER.md`). Verdict: both interventions dropped.
+
 Question: does classic NLP (NER / span alignment / lemmatization) help small models with
 slot filling? Baseline to beat: llama-3.2-1b LoRA F1 0.7515 / row EM 0.667 on core_test
 (n=817). Error motivation: ~66 q-span-boundary errors (classic NER territory), ~128

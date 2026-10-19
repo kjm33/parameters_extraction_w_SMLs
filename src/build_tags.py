@@ -1,4 +1,4 @@
-"""Build BIO-tag targets for the tagging formulation (round 4, notes/2026-10-11).
+"""Build BIO-tag targets for the tagging formulation (round 4, efforts/2026-10-11-bio-tagging-formulation/).
 
 For every row of core_{train,val,test} / aug_{train,val}: emit a copy with `bio_tags` —
 one tag per whitespace word of the utterance, plus an optional leading `lang:<v>`

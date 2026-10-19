@@ -2,7 +2,7 @@
 # Round 8: mmBERT tagger — mmbert-tagger-fixd-v2 train + eval + lang-free canon score.
 # Backbone jhu-clsp/mmBERT-base; identical recipe/data/eval as bert-tagger-fixd-v2
 # (core+aug+distill tags v2, 5 epochs, bs 16, lr 5e-5, seed 42). Decision rules in
-# notes/2026-10-12-mmbert-tagger-round8.md (pre-registered).
+# efforts/2026-10-12-mmbert-backbone/2026-10-12-mmbert-tagger-round8.md (pre-registered).
 set -u
 PY=../function_calling_edge_fine_tuning/train/venv/bin/python
 export HF_HOME=/var/tmp/fcft_hf_cache

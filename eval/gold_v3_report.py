@@ -6,7 +6,7 @@ slot-level diff counts (null->value / value->null / value!=value) tagged by
 noise class (appendage_code, word_comma_tail, q_boundary, blank_receipt,
 pl_canonical), plus pairwise inter-teacher row EM. With --spotcheck N writes a
 lang-stratified manual review sheet (pl rows >= 12, diff-prioritized) to
-notes/2026-10-13-gold-v3-spotcheck.md.
+efforts/2026-10-13-gold-v3/2026-10-13-gold-v3-spotcheck.md.
 
 Usage:
   python3 eval/gold_v3_report.py --tag r12a --spotcheck 50
