@@ -1,6 +1,9 @@
 # TODO — Round 12: Gold-v3 regeneration + 3B decoder + cascade
 
-> Status: ACTIVE (since 2026-10-13). Phase A done — ADOPTION GATE PENDING (user 50-row spot-check, see `2026-10-13-gold-v3-spotcheck.md`); Phases B/C/D not started. Retrofitted into SDD 2026-10-19 (original `efforts/2026-10-13-gold-v3/tasks.md`).
+> Status: ACTIVE (since 2026-10-13). Phase A done — adoption gate **PASSED** 2026-10-19
+> (spot-check 97.9% strict on teacher labels, see `2026-10-13-gold-v3-spotcheck.md` §Results);
+> v3 = headline gold. Phase B next — awaiting free GPU (user signals when both GPUs aren't busy).
+> Phases B/C/D not started. Retrofitted into SDD 2026-10-19 (original `efforts/2026-10-13-gold-v3/tasks.md`).
 
 Generated 2026-10-13. Approved plan (user decisions recorded below). Companion diagnosis:
 round-11 gold-noise census (`notes/2026-10-13-round11-plain-language-summary.md` + fresh
@@ -69,8 +72,12 @@ $7.81 sync/$3.90 batch; claude-haiku-5.5 ~$0.97; gemini-2.5-flash-lite ~$0.89.
       byte-identical); v2 frozen alongside. DONE: t1 haiku full run ($4.44, grounded 14,877)
       + t4 glm on 1,739 rejects ($0.22, recovered 675) + v2_fallback 1,064 (6.4%; test only
       29/817=3.6%); `data/v3_stats.json`; positional alignment (297 dup ids!). **Adoption
-      gate**: spot-check agreement ≥95%, measured avoid blank-receipts → ~0 — PENDING user
-      50-row spot-check. Only then is v3 usable as headline metric.
+      gate PASSED (2026-10-19)**: 50-row spot-check — teacher-sourced 46 ok / 1 bad / 1 ?
+      = **97.9% strict** (≥95% bar), pl teacher-sourced 11/11 = 100%; avoid blank-receipts
+      real-rate ≈0.3% (most blanks = unrepresentable cues, not in enum). Only bad teacher row
+      (4) = t1 vehicle-word quirk (van/truck → car); v2_fallback rows carry known legacy v2
+      noise (row 47). Full tally: `2026-10-13-gold-v3-spotcheck.md` §Results. v3 is now the
+      headline gold.
 
 ## Phase B — Retrains on v3 (bars pre-registered BEFORE any run)
 

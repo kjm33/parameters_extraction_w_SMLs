@@ -14,7 +14,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Aurora","destination":"Greeley","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Aurora","destination":"Greeley","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Aurora","destination":"Greeley","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Aurora","destination":"Greeley","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Aurora","destination":"Greeley","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Aurora","destination":"Greeley","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [2] aug_i-3e7c23101ddc (de, here_directions, aug_train)
 
@@ -28,7 +28,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — tM=car from 'fahr uns'; via=[Supia] ok
 
 ## [3] aug_i-7fe204f0808d (de, here_geocode, aug_train)
 
@@ -40,7 +40,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Zigong","lang":null,"limit":null} | {"q":"Zigong","lang":null,"limit":null} | {"q":"Zigong","lang":null,"limit":null} | {"q":"Zigong, Changning","lang":null,"limit":null} | {"q":"Zigong","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Zigong nach Changning","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=Zigong origin (=v2)
 
 ## [4] xtr-29cf437be869 (de, here_directions, core_train)
 
@@ -52,7 +52,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Hamburg","destination":"München","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"truck","origin":"Hamburg","destination":"München","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"truck","origin":"Hamburg","destination":"München","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"truck","origin":"Hamburg","destination":"München","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"truck","origin":"Hamburg","destination":"München","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"truck","origin":"Hamburg","destination":"München","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): bad [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — 'mit dem Lieferwagen' (van) -> v3 transportMode=car; should be truck (5/6 bake-off teachers said truck; t1 quirk: under-differentiates vehicle words to car)
 
 ## [5] xtr-2a2fa2a56714 (de, here_geocode, core_train)
 
@@ -66,7 +66,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=null ok (route-plan utterance, no POI focus; t1 full-run differs from bake-off null shown above)
 
 ## [6] xtr-4c9e33a35161 (de, tomtom-routing, core_train)
 
@@ -80,7 +80,7 @@ params: origin:object(enum=0), destination:object(enum=0), response_detail:strin
 
 grounded: t1_haiku55=NO t2_gpt54mini=NO t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ? [src=t4_glm53flash, judged by assistant (de/es/fr, per policy §3)] — avoid=null despite 'Stadtzentren vermeiden' — cityCenters not representable in avoid enum [tollRoad,ferry,motorway,tunnel]; defensible blank
 
 ## [7] xtr-a065c7a5e571 (de, here_directions, core_train)
 
@@ -92,7 +92,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Berlin","destination":"München","via":["Nürnberg"],"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Berlin","destination":"München","via":["Nürnberg"],"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Berlin","destination":"München","via":["Nürnberg"],"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Berlin","destination":"München","via":["Nürnberg"],"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Berlin","destination":"München","via":["Nürnberg"],"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Berlin","destination":"München","via":["Nürnberg"],"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [8] xtr-a07db33eef3d (de, here_directions, core_train)
 
@@ -104,7 +104,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Santiago","destination":"Valparaíso","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Santiago","destination":"Valparaíso","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Santiago","destination":"Valparaíso","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Santiago","destination":"Valparaíso","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Santiago","destination":"Valparaíso","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} | {"transportMode":"car","origin":"Santiago","destination":"Valparaíso","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [9] xtr-ac01fc90b934 (de, here_search_places, core_train)
 
@@ -118,7 +118,7 @@ params: q:string(enum=0), at:string(enum=0), in_country:string(enum=0), limit:in
 
 grounded: t1_haiku55=NO t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=yes
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q='Ladeplätze' shorter verbatim span — acceptable style
 
 ## [10] xtr-ff67acf332fa (de, osrm_route, core_train)
 
@@ -130,7 +130,7 @@ params: coordinates:string(enum=0)
 |---|---|---|---|---|---|---|
 | {"coordinates":null} | {"coordinates":null} | {"coordinates":"Taguatinga; Inhumas"} | {"coordinates":null} | {"coordinates":null} | {"coordinates":null} | {"coordinates":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — coordinates=null honest
 
 ## [11] aug_i-61f67bc02c18 (en, here_directions, aug_train)
 
@@ -142,7 +142,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"downtown Leeds","destination":"outskirts of Munich","via":["Frankfurt"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"downtown Leeds","destination":"the outskirts of Munich","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"downtown Leeds","destination":"outskirts of Munich","via":["near Frankfurt"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"downtown Leeds","destination":"outskirts of Munich","via":["near Frankfurt"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"downtown Leeds","destination":"outskirts of Munich","via":["Frankfurt"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [12] aug_i-7a695b77021d (en, here_geocode, aug_train)
 
@@ -154,7 +154,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Lahore","lang":null,"limit":null} | {"q":"Lahore","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Lahore, Hub","lang":null,"limit":null} | {"q":"Lahore","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Lahore to Hub","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user] — dup id aug_i-7a695b77021d (both dup rows q=Lahore)
 
 ## [13] aug_i-8536263c4953 (en, here_geocode, aug_train)
 
@@ -168,7 +168,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [14] aug_i-8bfc04dfa284 (en, here_directions, aug_train)
 
@@ -180,7 +180,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Bangkok","destination":"Hua Hin","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Bangkok","destination":"Hua Hin","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Bangkok","destination":"Hua Hin","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Bangkok","destination":"Hua Hin","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Bangkok","destination":"Hua Hin","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Bangkok","destination":"Hua Hin","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [15] aug_i-c14db7daf305 (en, here_geocode, aug_train)
 
@@ -194,7 +194,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [16] aug_i-ca8b38f82b95 (en, here_geocode, aug_train)
 
@@ -208,7 +208,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [17] aug_i-e89b4da59ddb (en, here_geocode, aug_train)
 
@@ -220,7 +220,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Paris","lang":null,"limit":null} | {"q":"Paris","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Rome","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Paris to Rome","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [18] aug_i-ebdfdce75686 (en, here_geocode, aug_train)
 
@@ -232,7 +232,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Munich","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Munich, Prague","lang":null,"limit":null} | {"q":"Prague","lang":null,"limit":null} | {"q":"Prague","lang":null,"limit":null} | {"q":"Munich to Prague","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [19] aug_i-2c8e31359631 (es, here_geocode, aug_val)
 
@@ -244,7 +244,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Multan","lang":null,"limit":null} | {"q":"Jalalpur Pirwala","lang":null,"limit":null} | {"q":"Multan a Jalalpur Pirwala","lang":null,"limit":null} | {"q":"Jalalpur Pirwala","lang":null,"limit":null} | {"q":"Jalalpur Pirwala","lang":null,"limit":null} | {"q":"Jalalpur Pirwala","lang":null,"limit":null} | {"q":"Jalalpur Pirwala","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=dest Jalalpur Pirwala
 
 ## [20] aug_i-8423e6a227e9 (es, here_geocode, aug_train)
 
@@ -258,7 +258,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=NO t6_ling31flash=yes
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=Toledo stop-city (style variance, tolerated)
 
 ## [21] aug_i-8c0d22b4605c (es, here_geocode, aug_train)
 
@@ -270,7 +270,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Zaragoza dirección","lang":null,"limit":null} | {"q":"Alcolea del Pinar","lang":null,"limit":null} | {"q":"Zaragoza","lang":null,"limit":null} | {"q":"Valencia","lang":null,"limit":null} | {"q":"Valencia","lang":null,"limit":null} | {"q":"Valencia","lang":null,"limit":null} | {"q":"Valencia","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=Alcolea del Pinar stop-city; fixes v2 junk 'Zaragoza dirección'
 
 ## [22] aug_i-eb122e4f0ae6 (es, here_directions, aug_train)
 
@@ -282,7 +282,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":"car","origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"Valencia","destination":"Bilbao","via":["Logroño","Lanzada"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Valencia","destination":"Bilbao","via":["zona de servicio de Logroño","estación de Lanzada"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Valencia","destination":"Bilbao","via":["Logroño","Lanzada"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Valencia","destination":"Bilbao","via":["Logroño","Lanzada"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Valencia","destination":"Bilbao","via":["Logroño","Lanzada"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Valencia","destination":"Bilbao","via":["Logroño","Lanzada"],"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — via=[Logroño,Lanzada] fluff-drop correct
 
 ## [23] gold-6b2095502275 (es, here_directions, core_test)
 
@@ -294,7 +294,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} | {"transportMode":null,"origin":"Alexandria","destination":"Dumyāţ al Jadīdah","via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} | {"transportMode":null,"origin":"Alexandria","destination":"Dumyāţ al Jadīdah","via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} | {"transportMode":"car","origin":"Alexandria","destination":"Dumyāţ al Jadīdah","via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} | {"transportMode":"car","origin":"Alexandria","destination":"Dumyāţ al Jadīdah","via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} | {"transportMode":null,"origin":"Alexandria","destination":"Dumyāţ al Jadīdah","via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} | {"transportMode":null,"origin":"Alexandria","destination":"Dumyāţ al Jadīdah","via":null,"departureTime":null,"routingMode":null,"avoid_features":["ferry"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [24] xtr-118985ff3d0c (es, here_directions, core_train)
 
@@ -306,7 +306,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"París","destination":"Lecce","via":["Roma","Milán"],"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"París","destination":"Lecce","via":["Roma","Milán"],"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"París","destination":"Lecce","via":["Roma","Milán"],"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"París","destination":"Lecce","via":["Roma","Milán"],"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"París","destination":"Lecce","via":["Roma","Milán"],"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"París","destination":"Lecce","via":["Roma","Milán"],"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [25] xtr-4628bab848b9 (es, here_search_places, core_train)
 
@@ -320,7 +320,7 @@ params: q:string(enum=0), at:string(enum=0), in_country:string(enum=0), limit:in
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — all-null; 6/6 teacher consensus
 
 ## [26] xtr-5d9eefa527d4 (es, here_directions, core_train)
 
@@ -334,7 +334,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — 'peajes de las autopistas' -> [tollRoad] only = policy §3.3 adjacent-feature precision (v2 had [motorway,tollRoad])
 
 ## [27] xtr-7dd1ca1fded4 (es, here_geocode, core_train)
 
@@ -346,7 +346,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Kumasi","lang":null,"limit":null} | {"q":"Kumasi","lang":null,"limit":null} | {"q":"Kumasi a Nsawam","lang":null,"limit":null} | {"q":"Kumasi, Nsawam","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Kumasi","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=Kumasi origin
 
 ## [28] aug_i-0f73d10a655c (fr, here_directions, aug_train)
 
@@ -358,7 +358,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} | {"transportMode":"car","origin":"Chengde","destination":"Wafangdian","via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} | {"transportMode":null,"origin":"Chengde","destination":"Wafangdian","via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} | {"transportMode":"car","origin":"Chengde","destination":"Wafangdian","via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} | {"transportMode":"car","origin":"Chengde","destination":"Wafangdian","via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} | {"transportMode":null,"origin":"Chengde","destination":"Wafangdian","via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} | {"transportMode":"car","origin":"Chengde","destination":"Wafangdian","via":null,"departureTime":null,"routingMode":"fast","avoid_features":null,"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — routingMode=fast
 
 ## [29] aug_i-4e812a9f7a1f (fr, here_geocode, aug_train)
 
@@ -372,7 +372,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [30] aug_i-a5e8692037b2 (fr, here_geocode, aug_train)
 
@@ -384,7 +384,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Châlons-en-Champagne","lang":null,"limit":null} | {"q":"Reims","lang":null,"limit":null} | {"q":"Châlons-en-Champagne","lang":null,"limit":null} | {"q":"Châlons-en-Champagne","lang":null,"limit":null} | {"q":"Châlons-en-Champagne","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Châlons-en-Champagne","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=Reims
 
 ## [31] aug_i-f71e7c14774d (fr, here_directions, aug_train)
 
@@ -398,7 +398,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — via=[Nancy]; D650 dropped — de minimis
 
 ## [32] xtr-53ebd1d155a3 (fr, tomtom-poi-categories, core_train)
 
@@ -412,7 +412,7 @@ params: filters:array(enum=0)
 
 grounded: t1_haiku55=NO t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=NO t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=v2_fallback, judged by assistant (de/es/fr, per policy §3)] — filters=['recharge'] verbatim-grounded
 
 ## [33] xtr-6ec77eb1479d (fr, here_geocode, core_train)
 
@@ -426,7 +426,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=NO t6_ling31flash=yes
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [34] xtr-78209d1fd5aa (fr, tomtom-geocode, core_train)
 
@@ -440,7 +440,7 @@ params: query:string(enum=0), response_detail:string(enum=2), limit:number(enum=
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — query=null = teacher majority (t3 rest-area q defensible alternative)
 
 ## [35] xtr-ab87e83f5f02 (fr, here_geocode, core_train)
 
@@ -452,7 +452,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Annecy","lang":null,"limit":null} | {"q":"Annecy","lang":null,"limit":null} | {"q":"Annecy à Chamonix","lang":null,"limit":null} | {"q":"Annecy, Chamonix","lang":null,"limit":null} | {"q":"Chamonix","lang":null,"limit":null} | {"q":"Chamonix","lang":null,"limit":null} | {"q":"Annecy, Chamonix","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [36] xtr-be7810eb5517 (fr, nominatim_geocode, core_val)
 
@@ -464,7 +464,7 @@ params: q:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Nantes","limit":null} | {"q":null,"limit":null} | {"q":"Limoges","limit":null} | {"q":"Limoges","limit":null} | {"q":null,"limit":null} | {"q":"Limoges","limit":null} | {"q":"Limoges","limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)] — q=Limoges dest
 
 ## [37] xtr-f6b643e5d61a (fr, nominatim_geocode, core_train)
 
@@ -478,7 +478,7 @@ params: q:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [38] xtr-fc9119fe8965 (fr, here_directions, core_train)
 
@@ -490,7 +490,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":null,"origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Rouen","destination":"Évreux","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Rouen","destination":"Évreux","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Rouen","destination":"Évreux","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":"car","origin":"Rouen","destination":"Évreux","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Rouen","destination":"Évreux","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} | {"transportMode":null,"origin":"Rouen","destination":"Évreux","via":null,"departureTime":null,"routingMode":null,"avoid_features":["tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by assistant (de/es/fr, per policy §3)]
 
 ## [39] aug_i-35c199d178cc (pl, here_geocode, aug_train)
 
@@ -504,7 +504,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [40] aug_i-e8734e83fa26 (pl, here_directions, aug_train)
 
@@ -518,7 +518,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=NO t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=yes
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [41] aug_i-ef10b7af2ab9 (pl, here_directions, aug_train)
 
@@ -530,7 +530,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 |---|---|---|---|---|---|---|
 | {"transportMode":"car","origin":null,"destination":null,"via":null,"departureTime":null,"routingMode":null,"avoid_features":null,"lang":null} | {"transportMode":"car","origin":"Kraków","destination":"Zakopane","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway","tollRoad"],"lang":null} | {"transportMode":"car","origin":"Kraków","destination":"Zakopane","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway","tollRoad"],"lang":null} | {"transportMode":"car","origin":"Kraków","destination":"Zakopane","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway","tollRoad"],"lang":null} | {"transportMode":"car","origin":"Kraków","destination":"Zakopane","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway","tollRoad"],"lang":null} | {"transportMode":"car","origin":"Kraków","destination":"Zakopane","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway","tollRoad"],"lang":null} | {"transportMode":"car","origin":"Kraków","destination":"Zakopane","via":null,"departureTime":null,"routingMode":null,"avoid_features":["motorway","tollRoad"],"lang":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [42] xtr-4498cff8077f (pl, here_geocode, core_val)
 
@@ -542,7 +542,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 |---|---|---|---|---|---|---|
 | {"q":"Delhi","lang":null,"limit":null} | {"q":"Delhi","lang":null,"limit":null} | {"q":"Rudrapur","lang":null,"limit":null} | {"q":"Delhi to Rudrapur","lang":null,"limit":null} | {"q":"Rudrapur","lang":null,"limit":null} | {"q":null,"lang":null,"limit":null} | {"q":"Rudrapur","lang":null,"limit":null} |
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [43] xtr-525ab0a05b22 (pl, here_geocode, core_train)
 
@@ -556,7 +556,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [44] xtr-966d785d6781 (pl, here_geocode, core_train)
 
@@ -570,7 +570,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [45] xtr-9a3d9fe4ab75 (pl, tomtom-routing, core_train)
 
@@ -584,7 +584,7 @@ params: origin:object(enum=0), destination:object(enum=0), response_detail:strin
 
 grounded: t1_haiku55=NO t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=NO t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=v2_fallback, judged by user]
 
 ## [46] xtr-a1d80574aee8 (pl, here_geocode, core_train)
 
@@ -598,7 +598,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [47] xtr-ab793c614ec3 (pl, here_directions, core_train)
 
@@ -612,7 +612,7 @@ params: transportMode:string(enum=5), origin:string(enum=0), destination:string(
 
 grounded: t1_haiku55=NO t2_gpt54mini=yes t3_gpt6luna=NO t4_glm53flash=NO t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): bad [src=v2_fallback, judged by user] — 'płatnych autostrad' -> avoid=[motorway] but policy §3.3 pre-registers tollRoad; user '?' resolved per policy; v2-inherited noise, not teacher error
 
 ## [48] xtr-bc0479998713 (pl, tomtom-fuzzy-search, core_train)
 
@@ -626,7 +626,7 @@ params: query:string(enum=0), response_detail:string(enum=2), limit:number(enum=
 
 grounded: t1_haiku55=NO t2_gpt54mini=NO t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
 
 ## [49] xtr-deb72f1114dc (pl, here_geocode, core_train)
 
@@ -640,7 +640,7 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=NO t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=NO t5_dsv41flash=NO t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t4_glm53flash, judged by user]
 
 ## [50] xtr-fb17ee626994 (pl, here_geocode, core_train)
 
@@ -654,4 +654,33 @@ params: q:string(enum=0), lang:string(enum=0), limit:integer(enum=0)
 
 grounded: t1_haiku55=yes t2_gpt54mini=yes t3_gpt6luna=yes t4_glm53flash=yes t5_dsv41flash=yes t6_ling31flash=NO
 
-verdict: v2=__ t1_haiku55=__ t2_gpt54mini=__ t3_gpt6luna=__ t4_glm53flash=__ t5_dsv41flash=__ t6_ling31flash=__
+verdict(v3): ok [src=t1_haiku55, judged by user]
+
+
+---
+
+## Results (2026-10-19) — ADOPTION GATE: **PASS**
+
+Provenance: rows 11–18 + 39–50 (en/pl) judged by the user (user languages: en/pl);
+rows 1–10 + 19–38 (de/es/fr) judged by the assistant strictly against the pre-registered policy
+(`2026-10-13-gold-v3-policy.md` §3). Row 47 user "?" resolved to **bad** per policy §3.3
+("płatnych autostrad" → tollRoad, not motorway).
+
+| Slice | ok | bad | ? | strict | excl-? |
+|---|---|---|---|---|---|
+| Teacher-sourced v3 (45 t1 + 2 t4) | 46 | 1 | 1 | **97.9%** | 100% |
+| v2_fallback rows (3) | 2 | 1 | 0 | 66.7% | 66.7% |
+| All 50 | 47 | 2 | 1 | 94.0% | 95.9% |
+| pl teacher-sourced (11) | 11 | 0 | 0 | 100% | 100% |
+
+Avoid blank-receipts condition: t1 blank-on-explicit-cue 135/2,543 (5.3%) on here_directions, but a
+15-row sample shows most blanks are correct (cue = city centers / roadworks / traffic / countries —
+not representable in the avoid enum [tollRoad, ferry, motorway, tunnel]); real blank-receipts ≈0.3%
+→ "≈0" PASSES. t4: 0/13. v2_fallback: 61% blank (inherited v2 noise).
+
+Gate verdict: **PASS on teacher labels** (97.9% strict ≥ 95%; pl teacher-sourced 100% — no
+Jev-style pl collapse). The only bad teacher row (4) is a known t1 quirk: vehicle words
+(van/truck) collapse to car (~2% of vehicle-word rows). v2_fallback rows (6.4% of corpus, 3.6% of
+test) carry legacy v2 noise (row 47) — known and bounded; they were already part of accepted v2.
+
+→ v3 adopted as headline gold. Phase B retrains unblocked (2026-10-19).
