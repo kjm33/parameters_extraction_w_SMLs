@@ -1,0 +1,27 @@
+{
+  "attribution": "© GeoNames CC-BY 4.0",
+  "source": "https://download.geonames.org/export/dump/",
+  "download_dates": {
+    "cities15000.zip": "2026-10-12 20:47",
+    "alternateNames.zip": "2026-10-12 20:47",
+    "admin1CodesASCII.txt": "2026-10-12 20:47",
+    "countryInfo.txt": "2026-10-12 20:47"
+  },
+  "source_rows": {
+    "cities15000": 34160,
+    "alternateNames": 19220617,
+    "admin1CodesASCII": 3865,
+    "countryInfo": 252
+  },
+  "kept": {
+    "cities": 34160,
+    "altnames": 45034,
+    "altname_keys": 39965,
+    "key2canon": 38443,
+    "admin1_table": 3865,
+    "admin1_codes": 165
+  },
+  "dropped_ambiguous_folds": 1522,
+  "pickle": "data/geo_gazetteer.pkl",
+  "pickle_bytes": 5468491
+}

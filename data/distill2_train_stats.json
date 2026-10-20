@@ -1,0 +1,40 @@
+{
+  "label": "distill2_train",
+  "rows": 1100,
+  "per_function": {
+    "here_directions": 1100
+  },
+  "per_lang": {
+    "es": 424,
+    "pl": 224,
+    "fr": 452
+  },
+  "slot_kept_rate": 0.1949,
+  "top_kept_params": {
+    "here_directions.avoid_features": 1002,
+    "here_directions.lang": 540,
+    "here_directions.transportMode": 89,
+    "here_directions.routingMode": 75,
+    "here_directions.departureTime": 9
+  },
+  "teacher": {
+    "model": "gpt-5.4-mini",
+    "outcome_counts": {
+      "reject": 2598,
+      "ok": 1157,
+      "skipped_budget": 3234
+    },
+    "usage": {
+      "key1": {
+        "requests": 3755,
+        "prompt": 1330925,
+        "completion": 172050
+      },
+      "key3": {
+        "requests": 0,
+        "prompt": 0,
+        "completion": 0
+      }
+    }
+  }
+}

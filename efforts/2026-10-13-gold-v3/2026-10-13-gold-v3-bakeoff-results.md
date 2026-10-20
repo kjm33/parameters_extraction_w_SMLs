@@ -59,8 +59,10 @@ families). EM vs v2 is depressed *by construction* on these rows for every teach
 
 ## Freeze (v3full, 2026-10-13)
 
-t1 full: 16,616 rows, $4.44, parse 0.971, grounded 14,877 (0.895). t4 pass on the 1,739
-rejects: $0.22, recovered 675. Final `data/*_v3.jsonl` (positional alignment — 297 dup ids
+t1 full: 16,616 rows, $4.44, parse 0.971, grounded 14,877 (0.895) → dump
+`eval/results/goldv3/t1_haiku55_v3full_preds.jsonl`. t4 pass on the 1,739 rejects: $0.22,
+recovered 675 → dump `eval/results/goldv3/t4_glm53flash_v3full_preds.jsonl`. Final
+`data/*_v3.jsonl` (positional alignment — 297 dup ids
 with different content make id-joins unsafe; `src/freeze_gold_v3.py`):
 
 | file | rows | t1 | t4 | v2_fallback | EM vs v2 |

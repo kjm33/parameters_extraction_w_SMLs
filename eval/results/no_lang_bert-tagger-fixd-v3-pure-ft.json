@@ -1,0 +1,166 @@
+{
+  "preds": "eval/results/bert-tagger-fixd-v3-pure-ft_preds.jsonl",
+  "canon": true,
+  "gazetteer": {
+    "aliases": 70,
+    "city2code": 4,
+    "alias_dropped_ambiguous": 2,
+    "alias_dropped_punct": 1,
+    "alias_dropped_rare": 242,
+    "city2code_dropped_weak": 4
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7556,
+      "slot_recall": 0.642,
+      "slot_f1": 0.6942,
+      "null_accuracy": 0.9722,
+      "row_em": 0.4553,
+      "tp": 841,
+      "fp": 272,
+      "fn": 469
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7799,
+      "slot_recall": 0.6626,
+      "slot_f1": 0.7165,
+      "null_accuracy": 0.9722,
+      "row_em": 0.4688,
+      "tp": 868,
+      "fp": 245,
+      "fn": 442
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7556,
+      "slot_recall": 0.642,
+      "slot_f1": 0.6942,
+      "null_accuracy": 0.9646,
+      "row_em": 0.4553,
+      "tp": 841,
+      "fp": 272,
+      "fn": 469
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7799,
+      "slot_recall": 0.6626,
+      "slot_f1": 0.7165,
+      "null_accuracy": 0.9646,
+      "row_em": 0.4688,
+      "tp": 868,
+      "fp": 245,
+      "fn": 442
+    }
+  },
+  "applied": {
+    "pl_fallback": 5,
+    "alias": 33
+  },
+  "changed_examples": [
+    {
+      "id": "gold-730e9fef076b",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Bostonu",
+      "after": "Boston",
+      "gold": "Boston"
+    },
+    {
+      "id": "gold-5abffc421414",
+      "param": "q",
+      "rule": "alias",
+      "before": "Katowic",
+      "after": "Katowice",
+      "gold": "Katowice"
+    },
+    {
+      "id": "gold-a13f0e59241a",
+      "param": "origin",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-a13f0e59241a",
+      "param": "destination",
+      "rule": "alias",
+      "before": "Katowic",
+      "after": "Katowice",
+      "gold": "Katowice"
+    },
+    {
+      "id": "gold-5e12eb1b7d05",
+      "param": "q",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-90c3ba8fb357",
+      "param": "origin",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-90c3ba8fb357",
+      "param": "destination",
+      "rule": "alias",
+      "before": "Zakopanego",
+      "after": "Zakopane",
+      "gold": "Zakopane"
+    },
+    {
+      "id": "gold-6a9f0e774a19",
+      "param": "destination",
+      "rule": "pl_fallback",
+      "before": "Krakowie",
+      "after": "Kraków",
+      "gold": null
+    },
+    {
+      "id": "gold-1f3fb783035d",
+      "param": "origin",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Poznań"
+    },
+    {
+      "id": "gold-1f3fb783035d",
+      "param": "destination",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-bc19e1a74b69",
+      "param": "origin",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-bc19e1a74b69",
+      "param": "destination",
+      "rule": "alias",
+      "before": "Zakopanego",
+      "after": "Zakopane",
+      "gold": "Zakopane"
+    }
+  ]
+}

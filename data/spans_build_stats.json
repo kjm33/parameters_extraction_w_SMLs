@@ -1,0 +1,82 @@
+{
+  "join_sep": " ",
+  "files": {
+    "core_test": {
+      "contig": 365,
+      "free_span_params": 394,
+      "roundtrip_ok": 767,
+      "enum_literals": 137,
+      "enum_span_found": 153,
+      "enum_span_missed": 0,
+      "disc": 6,
+      "appendage": 23,
+      "unaligned_fallback": 12,
+      "rows": 817,
+      "roundtrip_rate": 0.9388
+    }
+  },
+  "unaligned_examples": [
+    {
+      "param": "q",
+      "value": "Cinquième Avenue bureau",
+      "utterance": "Je veux aller de mon bureau sur la Cinquième Avenue à ma maison sur Maple Street, en évitant les péages si possible. Pou"
+    },
+    {
+      "param": "at",
+      "value": "11.5820,48.1351",
+      "utterance": "Dis-toi de m'accompagner jusqu'au point de coordonnées 48.1351, 11.5820 en effectuant un virage à gauche dans 50 mètres,"
+    },
+    {
+      "param": "q",
+      "value": "Denfert-Rochereau",
+      "utterance": "Ich möchte den RER B nehmen und dann an Denfert‑Rochereau in die M6 umsteigen. Außerdem wollte ich fragen, ob es morgen "
+    },
+    {
+      "param": "q",
+      "value": "AP-2 autoroute",
+      "utterance": "Bon, on a environ 620 km à faire en passant par les autoroutes AP-2 et AP-7, ça devrait aller en six heures. Par contre,"
+    },
+    {
+      "param": "q",
+      "value": "dom",
+      "utterance": "Muszę odjechać dziś wieczorem z domu do biura, unikając opłat drogowych. Chciałbym też porównać ten przebieg z innym dos"
+    },
+    {
+      "param": "origin",
+      "value": "52.5200,13.4050",
+      "utterance": "Hey, I'd like to drive from Berlin Mitte, near the Reichstag at 52.5200,13.4050, over to Warsaw's Old Town at 52.2297,21"
+    },
+    {
+      "param": "destination",
+      "value": "52.2297,21.0122",
+      "utterance": "Hey, I'd like to drive from Berlin Mitte, near the Reichstag at 52.5200,13.4050, over to Warsaw's Old Town at 52.2297,21"
+    },
+    {
+      "param": "countries",
+      "value": [
+        "ES"
+      ],
+      "utterance": "Hola, quiero que calcules una ruta desde Sevilla hasta Málaga que evite peajes y tenga una parada para comer en Ronda. ¿"
+    },
+    {
+      "param": "q",
+      "value": "Madrid centro",
+      "utterance": "Necesito una ruta desde el centro de Madrid hasta Valencia, evitando peajes tanto como sea posible y haciendo una parada"
+    },
+    {
+      "param": "q",
+      "value": "Madrid centro",
+      "utterance": "Necesito una ruta desde el centro de Madrid hasta Valencia, evitando peajes tanto como sea posible y haciendo una parada"
+    },
+    {
+      "param": "q",
+      "value": "Lanxi",
+      "utterance": "I’m looking to drive from Harbin to Lanxi—about 70 km—using the fastest route possible."
+    },
+    {
+      "param": "q",
+      "value": "NY",
+      "utterance": "Czy to możliwe, abyśconductował mnie z Nowego Jorku do Bostonu, planując przerwę co każde 100 mil oraz zaraz po każdej g"
+    }
+  ]
+}

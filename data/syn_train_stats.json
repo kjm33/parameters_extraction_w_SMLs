@@ -1,0 +1,25 @@
+{
+  "label": "syn_train",
+  "rows": 5700,
+  "per_function": {
+    "here_geocode": 3130,
+    "here_directions": 2570
+  },
+  "per_lang": {
+    "de": 1146,
+    "fr": 1132,
+    "pl": 1137,
+    "en": 1143,
+    "es": 1142
+  },
+  "slot_kept_rate": 0.2946,
+  "top_kept_params": {
+    "here_geocode.q": 3120,
+    "here_geocode.lang": 1480,
+    "here_geocode.limit": 1402,
+    "here_directions.avoid_features": 1120,
+    "here_directions.lang": 848,
+    "here_directions.transportMode": 430,
+    "here_directions.routingMode": 424
+  }
+}

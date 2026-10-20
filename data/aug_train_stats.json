@@ -1,0 +1,23 @@
+{
+  "label": "aug_train",
+  "rows": 5818,
+  "per_function": {
+    "here_geocode": 3788,
+    "here_directions": 2030
+  },
+  "per_lang": {
+    "de": 996,
+    "en": 2130,
+    "fr": 842,
+    "es": 847,
+    "pl": 1003
+  },
+  "slot_kept_rate": 0.2125,
+  "top_kept_params": {
+    "here_geocode.q": 3788,
+    "here_directions.avoid_features": 1228,
+    "here_directions.transportMode": 514,
+    "here_directions.routingMode": 337
+  },
+  "benchmark": "v2 (2026-10-12, round 7): lang param forced null in targets (lang-dropped); core rebuilt via build_extraction, aug/distill normalized in place"
+}

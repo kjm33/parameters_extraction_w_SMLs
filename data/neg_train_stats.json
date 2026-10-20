@@ -1,0 +1,31 @@
+{
+  "rows_wanted": 1100,
+  "tries": 1519,
+  "families": {
+    "B2_chatter_place": 372,
+    "reject": 403,
+    "B3_vehicle": 240,
+    "A_cross": 260,
+    "B1_avoid_use": 228,
+    "guard_B3": 15,
+    "guard_B2": 1
+  },
+  "per_lang": {
+    "es": 169,
+    "pl": 210,
+    "fr": 165,
+    "de": 386,
+    "en": 170
+  },
+  "per_fn": {
+    "here_geocode": 166,
+    "here_directions": 468,
+    "here_search_places": 160,
+    "tomtom-geocode": 155,
+    "nominatim_geocode": 151
+  },
+  "nonnull_slots": {
+    "q": 187,
+    "query": 73
+  }
+}

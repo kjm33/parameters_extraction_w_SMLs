@@ -1,0 +1,51 @@
+{
+  "label": "core_val",
+  "rows": 489,
+  "per_function": {
+    "here_geocode": 145,
+    "tomtom-nearby": 8,
+    "tomtom-geocode": 24,
+    "tomtom-routing": 28,
+    "here_directions": 134,
+    "here_traffic_incidents": 12,
+    "osrm_route": 21,
+    "here_search_places": 27,
+    "open_meteo_forecast": 18,
+    "nominatim_geocode": 35,
+    "tomtom-poi-search": 6,
+    "tomtom-traffic": 9,
+    "here_reverse_geocode": 2,
+    "tomtom-ev-routing": 3,
+    "tomtom-waypoint-routing": 5,
+    "tomtom-fuzzy-search": 6,
+    "tomtom-area-search": 1,
+    "tomtom-poi-categories": 2,
+    "tomtom-reachable-range": 3
+  },
+  "per_lang": {
+    "de": 108,
+    "en": 25,
+    "es": 103,
+    "fr": 129,
+    "pl": 124
+  },
+  "slot_kept_rate": 0.0664,
+  "top_kept_params": {
+    "here_geocode.q": 137,
+    "here_directions.avoid_features": 67,
+    "nominatim_geocode.q": 32,
+    "tomtom-geocode.query": 21,
+    "here_directions.routingMode": 17,
+    "here_directions.transportMode": 10,
+    "here_search_places.q": 8,
+    "tomtom-routing.routeType": 4,
+    "tomtom-poi-search.query": 2,
+    "tomtom-fuzzy-search.query": 2,
+    "tomtom-routing.travelMode": 2,
+    "tomtom-fuzzy-search.language": 2,
+    "tomtom-geocode.countrySet": 1,
+    "here_reverse_geocode.at": 1,
+    "tomtom-waypoint-routing.routeType": 1
+  },
+  "benchmark": "v2 (2026-10-12, round 7): lang param forced null in targets (lang-dropped); core rebuilt via build_extraction, aug/distill normalized in place"
+}

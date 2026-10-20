@@ -1,0 +1,23 @@
+{
+  "label": "aug_val",
+  "rows": 306,
+  "per_function": {
+    "here_geocode": 208,
+    "here_directions": 98
+  },
+  "per_lang": {
+    "de": 66,
+    "pl": 49,
+    "fr": 46,
+    "en": 99,
+    "es": 46
+  },
+  "slot_kept_rate": 0.2188,
+  "top_kept_params": {
+    "here_geocode.q": 208,
+    "here_directions.avoid_features": 50,
+    "here_directions.transportMode": 34,
+    "here_directions.routingMode": 16
+  },
+  "benchmark": "v2 (2026-10-12, round 7): lang param forced null in targets (lang-dropped); core rebuilt via build_extraction, aug/distill normalized in place"
+}

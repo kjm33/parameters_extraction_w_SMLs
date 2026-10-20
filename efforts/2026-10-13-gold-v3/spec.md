@@ -20,7 +20,8 @@ and prototype the detection cascade.
 ## Expected results
 
 - Phase A: policy doc + teacher pipeline + 6-teacher bake-off + disagreement report +
-  frozen `data/{core,aug}_{train,val,test}_v3.jsonl` — **done, adoption gate pending**.
+  frozen v3 splits — `data/*_v3.jsonl`, 5 files (core train/val/test + aug train/val;
+  no aug_test) — **done, adoption gate pending**.
 - Phase B: retrains on v3 with pre-registered replacement bars (3B replaces 1B winner only
   if > +0.5; 4B only if 3B ≥ +1.5).
 - Phase C: cascade prototype (existing combiner at ~15% escalation + trio vote).
@@ -45,3 +46,9 @@ and prototype the detection cascade.
 - `tasks.md` (live checkboxes + binding user decisions), `2026-10-13-gold-v3-policy.md`,
   `2026-10-13-gold-v3-bakeoff-results.md`, `2026-10-13-gold-v3-spotcheck.md` (the pending
   spot-check), `data/v3_stats.json`, `logs/goldv3_usage.jsonl`.
+- Raw teacher dumps feeding the freeze (naming pattern
+  `eval/results/goldv3/<teacher>_<tag>_preds.jsonl`, see `src/build_gold_v3.py` docstring):
+  `eval/results/goldv3/t1_haiku55_v3full_preds.jsonl` (primary teacher, 16,616 rows) and
+  `eval/results/goldv3/t4_glm53flash_v3full_preds.jsonl` (rejects pass). Bake-off dumps use
+  tag `r12a` (one per teacher). Paths also hardcoded in `src/freeze_gold_v3.py`
+  (`T1_PREDS`/`T4_PREDS_DEFAULT`).

@@ -1,0 +1,166 @@
+{
+  "preds": "eval/results/bert-tagger-fixd-v3-ft_preds.jsonl",
+  "canon": true,
+  "gazetteer": {
+    "aliases": 70,
+    "city2code": 4,
+    "alias_dropped_ambiguous": 2,
+    "alias_dropped_punct": 1,
+    "alias_dropped_rare": 242,
+    "city2code_dropped_weak": 4
+  },
+  "all_slots": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7937,
+      "slot_recall": 0.655,
+      "slot_f1": 0.7177,
+      "null_accuracy": 0.9763,
+      "row_em": 0.4884,
+      "tp": 858,
+      "fp": 223,
+      "fn": 452
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.8178,
+      "slot_recall": 0.6748,
+      "slot_f1": 0.7394,
+      "null_accuracy": 0.9763,
+      "row_em": 0.5006,
+      "tp": 884,
+      "fp": 197,
+      "fn": 426
+    }
+  },
+  "lang_free": {
+    "before": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.7937,
+      "slot_recall": 0.655,
+      "slot_f1": 0.7177,
+      "null_accuracy": 0.9699,
+      "row_em": 0.4884,
+      "tp": 858,
+      "fp": 223,
+      "fn": 452
+    },
+    "after": {
+      "n": 817,
+      "parse_rate": 1.0,
+      "slot_precision": 0.8178,
+      "slot_recall": 0.6748,
+      "slot_f1": 0.7394,
+      "null_accuracy": 0.9699,
+      "row_em": 0.5006,
+      "tp": 884,
+      "fp": 197,
+      "fn": 426
+    }
+  },
+  "applied": {
+    "pl_fallback": 8,
+    "alias": 30
+  },
+  "changed_examples": [
+    {
+      "id": "gold-9c6606731a98",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Atlanty",
+      "after": "Atlanta",
+      "gold": null
+    },
+    {
+      "id": "gold-730e9fef076b",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Bostonu",
+      "after": "Boston",
+      "gold": "Boston"
+    },
+    {
+      "id": "gold-415ee20f4fe1",
+      "param": "q",
+      "rule": "pl_fallback",
+      "before": "Spandauer Straße, Berlinie",
+      "after": "Spandauer Straße, Berlin",
+      "gold": "Spandauer Straße, Berlin"
+    },
+    {
+      "id": "gold-5abffc421414",
+      "param": "q",
+      "rule": "alias",
+      "before": "Katowic",
+      "after": "Katowice",
+      "gold": "Katowice"
+    },
+    {
+      "id": "gold-a13f0e59241a",
+      "param": "origin",
+      "rule": "alias",
+      "before": "Wrocławia",
+      "after": "Wrocław",
+      "gold": "Wrocław"
+    },
+    {
+      "id": "gold-a13f0e59241a",
+      "param": "destination",
+      "rule": "alias",
+      "before": "Katowic",
+      "after": "Katowice",
+      "gold": "Katowice"
+    },
+    {
+      "id": "gold-4103340aba09",
+      "param": "destination",
+      "rule": "pl_fallback",
+      "before": "Oregonu",
+      "after": "Oregon",
+      "gold": "wybrzeże Oregonu"
+    },
+    {
+      "id": "gold-5fff469acf43",
+      "param": "q",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": null
+    },
+    {
+      "id": "gold-90c3ba8fb357",
+      "param": "origin",
+      "rule": "alias",
+      "before": "Krakowa",
+      "after": "Kraków",
+      "gold": "Kraków"
+    },
+    {
+      "id": "gold-90c3ba8fb357",
+      "param": "destination",
+      "rule": "alias",
+      "before": "Zakopanego",
+      "after": "Zakopane",
+      "gold": "Zakopane"
+    },
+    {
+      "id": "gold-6a9f0e774a19",
+      "param": "destination",
+      "rule": "pl_fallback",
+      "before": "Krakowie",
+      "after": "Kraków",
+      "gold": null
+    },
+    {
+      "id": "gold-3706630f3d2e",
+      "param": "q",
+      "rule": "alias",
+      "before": "Poznania",
+      "after": "Poznań",
+      "gold": "Krotoszyn"
+    }
+  ]
+}

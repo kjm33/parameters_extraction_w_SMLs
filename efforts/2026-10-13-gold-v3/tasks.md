@@ -68,8 +68,10 @@ $7.81 sync/$3.90 batch; claude-haiku-5.5 ~$0.97; gemini-2.5-flash-lite ~$0.89.
       class (blank-receipts, appendages, word-commas, q-boundary, pl canonical); pairwise
       inter-teacher EM; KEY finding: v2 nulls spoken origin/destination/transportMode on
       ALL here_directions rows (~28%) — flip #2.
-- [x] **A3. Freeze v3**: `data/{core,aug}_{train,val,test}_v3.jsonl` (targets only; prompts
-      byte-identical); v2 frozen alongside. DONE: t1 haiku full run ($4.44, grounded 14,877)
+- [x] **A3. Freeze v3**: `data/*_v3.jsonl` — core_{train,val,test} + aug_{train,val}, 5 files
+      (no aug_test; targets only; prompts byte-identical); v2 frozen alongside. Raw teacher
+      dumps: `eval/results/goldv3/t1_haiku55_v3full_preds.jsonl` (16,616 rows) + t4 rejects
+      pass `eval/results/goldv3/t4_glm53flash_v3full_preds.jsonl`. DONE: t1 haiku full run ($4.44, grounded 14,877)
       + t4 glm on 1,739 rejects ($0.22, recovered 675) + v2_fallback 1,064 (6.4%; test only
       29/817=3.6%); `data/v3_stats.json`; positional alignment (297 dup ids!). **Adoption
       gate PASSED (2026-10-19)**: 50-row spot-check — teacher-sourced 46 ok / 1 bad / 1 ?
@@ -84,7 +86,18 @@ $7.81 sync/$3.90 batch; claude-haiku-5.5 ~$0.97; gemini-2.5-flash-lite ~$0.89.
 - [ ] 1B winner recipe on v3 → new reference R_v3 (llama-3.2-1b LoRA, core+aug v3).
 - [ ] llama-3.2-3B on v3 (first 3B v2-family run): **replace winner if > 1B-v3 +0.5**;
       within ±0.5 keep 1B (edge cost); gemma-3-4b only if 3B > 1B by ≥+1.5.
-- [ ] Optional cheap lane: rebuild `*_tags_v3` + retrain edge tagger (~30 min GPU).
+- [x] Optional cheap lane: rebuild `*_tags_v3` + retrain edge tagger (~30 min GPU).
+      DONE 2026-10-19 — **negative, lane closed on v3**: v3 tags roundtrip ceiling **0.6949**
+      (v2: 0.9622; new `enum-unaligned` class = 4,387 — intent-derived enum values, e.g.
+      "płatnych autostrad"→tollRoad, "drive"→car, are not surface-recoverable from BIO tags;
+      join_sep flipped to ', ', razor-thin 11,547 vs 11,540 → `data/tags_build_stats_v3.json`,
+      evals need `--stats data/tags_build_stats_v3.json` — flag added to eval_tagger.py).
+      Retrains (wikineural base, champion recipe): bert-tagger-fixd-v3 (champion mix
+      core+aug v3 tags + distill v2 tags, 21,937 rows) lang-free+canon **0.7394/0.5006**
+      vs v2 champion 0.7813/0.7846 — EM halves, pl F1 collapses to 0.4881; -pure variant
+      (no distill) worse 0.7165/0.4688 (distill still helps +2.3 F1). Structural cap, not a
+      training failure. **Edge lane must ride the JSON decoder under v3.**
+      Script: `scripts/run_round12_tagger_v3.sh`; results: `eval/results/no_lang_bert-tagger-fixd-v3{,-pure}-ft.json`.
 - [ ] Detector/h90 infra only if the winner model changes.
 
 ## Phase C — Cascade prototype (independent of B)

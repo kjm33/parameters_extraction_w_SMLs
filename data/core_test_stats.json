@@ -1,0 +1,41 @@
+{
+  "label": "core_test",
+  "rows": 817,
+  "per_function": {
+    "here_geocode": 301,
+    "here_search_places": 43,
+    "nominatim_geocode": 83,
+    "here_directions": 264,
+    "tomtom-geocode": 44,
+    "osrm_route": 44,
+    "here_reverse_geocode": 1,
+    "open_meteo_forecast": 35,
+    "tomtom-traffic": 2
+  },
+  "per_lang": {
+    "en": 154,
+    "de": 173,
+    "pl": 166,
+    "es": 154,
+    "fr": 170
+  },
+  "slot_kept_rate": 0.1305,
+  "top_kept_params": {
+    "here_geocode.q": 260,
+    "here_directions.avoid_features": 98,
+    "nominatim_geocode.q": 75,
+    "tomtom-geocode.query": 37,
+    "here_search_places.q": 21,
+    "here_directions.routingMode": 20,
+    "here_directions.transportMode": 19,
+    "here_directions.destination": 4,
+    "here_search_places.at": 3,
+    "here_directions.origin": 3,
+    "here_geocode.limit": 2,
+    "here_reverse_geocode.at": 1,
+    "here_directions.via": 1,
+    "tomtom-geocode.countries": 1,
+    "here_search_places.limit": 1
+  },
+  "benchmark": "v2 (2026-10-12, round 7): lang param forced null in targets (lang-dropped); core rebuilt via build_extraction, aug/distill normalized in place"
+}

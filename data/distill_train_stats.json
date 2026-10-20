@@ -1,0 +1,44 @@
+{
+  "label": "distill_train",
+  "rows": 6933,
+  "per_function": {
+    "here_geocode": 5776,
+    "here_directions": 1157
+  },
+  "per_lang": {
+    "fr": 2469,
+    "pl": 2373,
+    "es": 2091
+  },
+  "slot_kept_rate": 0.5019,
+  "top_kept_params": {
+    "here_geocode.q": 5776,
+    "here_geocode.lang": 5776,
+    "here_directions.avoid_features": 1035,
+    "here_directions.lang": 551,
+    "here_directions.transportMode": 109,
+    "here_directions.routingMode": 80,
+    "here_directions.departureTime": 15
+  },
+  "teacher": {
+    "model": "gpt-5.4-mini",
+    "outcome_counts": {
+      "ok": 7297,
+      "reject": 1779,
+      "skipped_budget": 5210
+    },
+    "usage": {
+      "key1": {
+        "requests": 2994,
+        "prompt": 1065244,
+        "completion": 137791
+      },
+      "key3": {
+        "requests": 0,
+        "prompt": 0,
+        "completion": 0
+      }
+    }
+  },
+  "benchmark": "v2 (2026-10-12, round 7): lang param forced null in targets (lang-dropped); core rebuilt via build_extraction, aug/distill normalized in place"
+}

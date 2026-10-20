@@ -34,6 +34,8 @@ def main():
     ap.add_argument("--bf16", action="store_true")
     ap.add_argument("--tag", default="bert-tagger-ft")
     ap.add_argument("--dump", action="store_true")
+    ap.add_argument("--stats", default="data/tags_build_stats.json",
+                    help="tags build stats (join_sep); use tags_build_stats_v3.json for *_v3_tags files")
     a = ap.parse_args()
     import os
     if not a.cpu:
@@ -61,7 +63,7 @@ def main():
         rows = rows[:a.limit]
     print(f"bert-tagger rows={len(rows)} device={device}")
 
-    join_stats = json.loads((ROOT / "data" / "tags_build_stats.json").read_text())
+    join_stats = json.loads((ROOT / a.stats).read_text())
     join_sep = join_stats.get("join_sep", ", ")
 
     preds = []

@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-10-13T18:03:18",
+  "t4_preds": "/home/kamil/projects/here/slot_filling/eval/results/goldv3/t4_glm53flash_v3full_preds.jsonl",
+  "per_file": {
+    "core_train": {
+      "rows": 9186,
+      "by_src": {
+        "t1_haiku55": 7781,
+        "v2_fallback": 867,
+        "t4_glm53flash": 538
+      },
+      "em_vs_v2": 0.4631
+    },
+    "core_val": {
+      "rows": 489,
+      "by_src": {
+        "t1_haiku55": 414,
+        "v2_fallback": 51,
+        "t4_glm53flash": 24
+      },
+      "em_vs_v2": 0.4826
+    },
+    "core_test": {
+      "rows": 817,
+      "by_src": {
+        "t1_haiku55": 756,
+        "v2_fallback": 29,
+        "t4_glm53flash": 32
+      },
+      "em_vs_v2": 0.4064
+    },
+    "aug_train": {
+      "rows": 5818,
+      "by_src": {
+        "t1_haiku55": 5628,
+        "v2_fallback": 114,
+        "t4_glm53flash": 76
+      },
+      "em_vs_v2": 0.2585
+    },
+    "aug_val": {
+      "rows": 306,
+      "by_src": {
+        "t1_haiku55": 298,
+        "v2_fallback": 3,
+        "t4_glm53flash": 5
+      },
+      "em_vs_v2": 0.2614
+    }
+  },
+  "overall": {
+    "rows": 16616,
+    "by_src": {
+      "t1_haiku55": 14877,
+      "v2_fallback": 1064,
+      "t4_glm53flash": 675
+    }
+  },
+  "em_vs_v2": {
+    "overall": 0.3855,
+    "by_src": {
+      "t1_haiku55": 0.3356,
+      "v2_fallback": 1.0,
+      "t4_glm53flash": 0.5185
+    }
+  },
+  "fallback_top_fns": {
+    "tomtom-routing": 367,
+    "here_directions": 330,
+    "here_geocode": 101,
+    "tomtom-waypoint-routing": 62,
+    "tomtom-poi-search": 44,
+    "osrm_route": 34,
+    "here_search_places": 26,
+    "tomtom-reachable-range": 25,
+    "tomtom-nearby": 17,
+    "tomtom-poi-categories": 17
+  },
+  "duplicate_id_rows": 594,
+  "legacy_key_rows": 46
+}

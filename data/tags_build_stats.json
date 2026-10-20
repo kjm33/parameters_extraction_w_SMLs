@@ -1,0 +1,190 @@
+{
+  "join_sep": " ",
+  "joiner_votes": {
+    ", ": 22660,
+    " ": 22671
+  },
+  "unaligned_examples": [
+    {
+      "param": "countries",
+      "value": "DE",
+      "utterance": "Ja, ich fahre also von Stuttgart nach Paris und brauche auf dem Weg dorthin noch eine Ladestation für mein Elektroauto. "
+    },
+    {
+      "param": "q",
+      "value": "A2 Südeuropa",
+      "utterance": "Hallo, ich bin gerade am Sonntagnachmittag auf dem Weg mit meinem E-Van für die Zustellrunden in Südeuropa. Da gerade au"
+    },
+    {
+      "param": "q",
+      "value": "bornes de recharge électrique rapide",
+      "utterance": "Bonjour, je pars de la fac de Lyon à Vaulx-en-Velin, destination le campus de Grenoble. Mais il faut absolument éviter l"
+    },
+    {
+      "param": "q",
+      "value": "parking",
+      "utterance": "Hej, potrafiąście podsunąć trasę z Chicago do Detroit? Dodam do tego prośbę o sprawdzenie miejsc parkingowych na miejscu"
+    },
+    {
+      "param": "language",
+      "value": "es",
+      "utterance": "Necesito que me lleves desde la Estación Sur hasta el Hotel Waterfront, evitando autopistas de peaje. Además, me gustarí"
+    },
+    {
+      "param": "language",
+      "value": "es",
+      "utterance": "Ok, quiero ir de Madrid a Valencia, pero necesito hacer una parada en el camino para cargar el coche eléctrico. ¿Puedes "
+    },
+    {
+      "param": "countries",
+      "value": "AT",
+      "utterance": "Allez, allume ça : je pars de mon garage à Vienne en direction de la Forêt de Bolzano, avec pour impératif d'arriver ava"
+    },
+    {
+      "param": "countries",
+      "value": "NG",
+      "utterance": "Hallo, ich muss uns Navigationshilfe für die Fahrt von Onitsha nach dem Stadtzentrum von Okrika beschaffen, wobei wir un"
+    },
+    {
+      "param": "q",
+      "value": "Restaurant",
+      "utterance": "Hallo! Ich möchte morgen früh eine Route von Heidelberg nach Nürnberg planen. Bitte beachte dabei drei Dinge: keine Maut"
+    },
+    {
+      "param": "q",
+      "value": "Styrisparken camping Luleå",
+      "utterance": "Oye, ¿puedes calcularme la ruta desde el camping en Styrisparken hasta el centro de Luleå este Viernes? Asegúrate de que"
+    },
+    {
+      "param": "countrySet",
+      "value": "FR",
+      "utterance": "Hey, I need to drive from Paris to Barcelona today. Can you set up a route that avoids all tolls and reminds me to take "
+    },
+    {
+      "param": "query",
+      "value": "aparcamiento Berlín",
+      "utterance": "Hola, necesito que me calcutes la mejor ruta desde Viena hasta Berlín; ¿podrías darme las instrucciones, incluyendo cómo"
+    },
+    {
+      "param": "query",
+      "value": "Schwarzwald Panoramastraße",
+      "utterance": "Fahr mich bitte von Köln nach Zürich. Ich möchte über die Panoramastraße im Schwarzwald fahren, aber achte darauf, dass "
+    },
+    {
+      "param": "countries",
+      "value": "US",
+      "utterance": "Estoy conduciendo de NYC a Boulder, CO y tengo unos 4 o 5 días para completar esta ruta de unas 27 horas. Antes de empez"
+    },
+    {
+      "param": "countries",
+      "value": "US",
+      "utterance": "¡Entendido, voy a conducir de NYC a Boulder, CO en unos 4-5 días para cubrir las 27 horas de viaje. Antes de arrancar, ¿"
+    },
+    {
+      "param": "countrySet",
+      "value": "IN",
+      "utterance": "Ich möchte von Chennai nach Kovūr fahren, mit Ladestopps für mein Elektroauto und bitte ohne Autobahnen. Wie lange dauer"
+    },
+    {
+      "param": "language",
+      "value": "es",
+      "utterance": "Voy a ir desde la estación Victoria hasta el aeropuerto Heathrow, evitando las autopistas de peaje, y me gustaría saber "
+    },
+    {
+      "param": "language",
+      "value": "es",
+      "utterance": "Voy a ir desde la estación Victoria hasta el aeropuerto Heathrow, evitando las autopistas de peaje, y me gustaría saber "
+    },
+    {
+      "param": "language",
+      "value": "es",
+      "utterance": "¡Hola! Necesito conducir desde la Estación Victoria en Londres hasta el Aeropuerto de Heathrow, pero quiero evitar todas"
+    },
+    {
+      "param": "query",
+      "value": "EV charging",
+      "utterance": "Hey, I need to drive from Paris to London. Can you calculate the route? Also, since I'm driving an electric car, please "
+    }
+  ],
+  "files": {
+    "core_train": {
+      "classes": {
+        "contig": 3724,
+        "enum-lexicon": 2117,
+        "disc": 72,
+        "unaligned": 151,
+        "appendage": 98,
+        "enum-contig": 2,
+        "rows": 9186
+      },
+      "roundtrip_ok_comma": 8446,
+      "roundtrip_ok_space": 8460,
+      "roundtrip_rate_comma": 0.9194,
+      "roundtrip_rate_space": 0.921
+    },
+    "core_val": {
+      "classes": {
+        "contig": 195,
+        "enum-lexicon": 107,
+        "appendage": 5,
+        "unaligned": 4,
+        "disc": 2,
+        "rows": 489
+      },
+      "roundtrip_ok_comma": 447,
+      "roundtrip_ok_space": 447,
+      "roundtrip_rate_comma": 0.9141,
+      "roundtrip_rate_space": 0.9141
+    },
+    "core_test": {
+      "classes": {
+        "contig": 365,
+        "enum-lexicon": 153,
+        "disc": 6,
+        "appendage": 23,
+        "unaligned": 12,
+        "rows": 817
+      },
+      "roundtrip_ok_comma": 753,
+      "roundtrip_ok_space": 750,
+      "roundtrip_rate_comma": 0.9217,
+      "roundtrip_rate_space": 0.918
+    },
+    "aug_train": {
+      "classes": {
+        "contig": 3753,
+        "enum-lexicon": 2015,
+        "unaligned": 1,
+        "disc": 1,
+        "rows": 5818
+      },
+      "roundtrip_ok_comma": 5795,
+      "roundtrip_ok_space": 5795,
+      "roundtrip_rate_comma": 0.996,
+      "roundtrip_rate_space": 0.996
+    },
+    "aug_val": {
+      "classes": {
+        "contig": 204,
+        "enum-lexicon": 101,
+        "rows": 306
+      },
+      "roundtrip_ok_comma": 306,
+      "roundtrip_ok_space": 306,
+      "roundtrip_rate_comma": 1.0,
+      "roundtrip_rate_space": 1.0
+    },
+    "distill_train": {
+      "classes": {
+        "contig": 5791,
+        "enum-lexicon": 1272,
+        "rows": 6933
+      },
+      "roundtrip_ok_comma": 6913,
+      "roundtrip_ok_space": 6913,
+      "roundtrip_rate_comma": 0.9971,
+      "roundtrip_rate_space": 0.9971
+    }
+  },
+  "benchmark": "v2 (2026-10-12, round 7): lang param forced null in targets (lang-dropped); core rebuilt via build_extraction, aug/distill normalized in place"
+}

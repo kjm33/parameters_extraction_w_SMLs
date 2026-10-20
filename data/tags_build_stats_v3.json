@@ -1,0 +1,180 @@
+{
+  "join_sep": ", ",
+  "joiner_votes": {
+    ", ": 11547,
+    " ": 11540
+  },
+  "unaligned_examples": [
+    {
+      "param": "coordinates",
+      "value": "Konin;Bydgoszcz",
+      "utterance": "Cześć, ustaw mnie na trasę z Konina do Bydgoszczy, ale nie chodź główną drogą – szukam jakieś malowniczej lokalnej drogi"
+    },
+    {
+      "param": "q",
+      "value": "borne de recharge rapide",
+      "utterance": "Bonjour, je pars de la fac de Lyon à Vaulx-en-Velin, destination le campus de Grenoble. Mais il faut absolument éviter l"
+    },
+    {
+      "param": "q",
+      "value": "parking",
+      "utterance": "Hej, potrafiąście podsunąć trasę z Chicago do Detroit? Dodam do tego prośbę o sprawdzenie miejsc parkingowych na miejscu"
+    },
+    {
+      "param": "query",
+      "value": "buen restaurante cerca del Hotel Waterfront",
+      "utterance": "Necesito que me lleves desde la Estación Sur hasta el Hotel Waterfront, evitando autopistas de peaje. Además, me gustarí"
+    },
+    {
+      "param": "coordinates",
+      "value": "Madrid;Valencia",
+      "utterance": "Ok, quiero ir de Madrid a Valencia, pero necesito hacer una parada en el camino para cargar el coche eléctrico. ¿Puedes "
+    },
+    {
+      "param": "coordinates",
+      "value": "Uşak;Giresun",
+      "utterance": "Cześć, potrzebuję zaplanować trasę z Uşak do Giresun, unikając autostrad, i będę wdzięczny za informację o wymaganym cza"
+    },
+    {
+      "param": "coordinates",
+      "value": "Berlin;München",
+      "utterance": "Hallo! Ich würde gerne meine Umzugsroute von Berlin nach München rechner lassen. Bitte programmiere den Weg so, dass er "
+    },
+    {
+      "param": "destination",
+      "value": "Puerta del Sol, Madryt",
+      "utterance": "Okej, ruszamy do Madrytu na Puerta del Sol. Kierownik mówi, że zaraz skręcamy w prawo, więc będę uważny w odwróceniu kie"
+    },
+    {
+      "param": "query",
+      "value": "Puerta del Sol, Madryt",
+      "utterance": "Okej, ruszamy do Madrytu na Puerta del Sol. Kierownik mówi, że zaraz skręcamy w prawo, więc będę uważny w odwróceniu kie"
+    },
+    {
+      "param": "q",
+      "value": "parken in München",
+      "utterance": "Ich möchte von Berlin nach München fahren, dabei keine Autobahnen benutzen, einen Stop in Würzburg einplanen und die näc"
+    },
+    {
+      "param": "q",
+      "value": "aeropuerto de Lisboa",
+      "utterance": "Hola, necesito que me calcules la ruta más rápida hacia el aeropuerto desde Lisboa."
+    },
+    {
+      "param": "coordinates",
+      "value": "Jinzhou;Szanghaj",
+      "utterance": "Cześć! Planujmy trasę z Jinzhou do Szanghaju tak, aby uniknąć promów. Co proponujesz jako najlepszą drogę?"
+    },
+    {
+      "param": "destination",
+      "value": "Zaragoza",
+      "utterance": "El conductor quiere que lo guíe desde Bilbao hasta Zaragoza必经la carretera panorámica junto al embalse y evitando por com"
+    },
+    {
+      "param": "at",
+      "value": "40.4168,-3.7038",
+      "utterance": "Attends, je n'ai pas encore d'adresse de destination. Il s'agit de tourner à gauche aux coordonnées [-3.7038, 40.4168] ?"
+    },
+    {
+      "param": "at",
+      "value": "40.4168,-3.7038",
+      "utterance": "Attends, je n'ai pas encore d'adresse de destination. Il s'agit de tourner à gauche aux coordonnées [-3.7038, 40.4168] ?"
+    },
+    {
+      "param": "query",
+      "value": "Centrum, Saint John",
+      "utterance": "Hey, I need directions from Ottawa to Saint John. Can you avoid highways after midnight, and for the destination, just a"
+    },
+    {
+      "param": "query",
+      "value": "Restaurant Doilungdêqên",
+      "utterance": "Könntest du mir bitte eine Route von Kolkata nach Doilungdêqên mit Pausen alle drei Stunden vorschlagen und mir ein gute"
+    },
+    {
+      "param": "query",
+      "value": "Nanjing to Deqing",
+      "utterance": "Cześć! Skup się na zadaniu: planuj najszybszą trasę liczącą około 240 km, która zabierze mnie z Nanjing do Deqing."
+    },
+    {
+      "param": "countrySet",
+      "value": "DE",
+      "utterance": "Cześć! Chciałbym, abyś poprowadził mnie z Poznania do Berlina, ale chciałbym unikać płatnych odcinków. Jadę vanem na LPG"
+    },
+    {
+      "param": "q",
+      "value": "miejsca na tankowanie LPG",
+      "utterance": "Cześć! Chciałbym, abyś poprowadził mnie z Poznania do Berlina, ale chciałbym unikać płatnych odcinków. Jadę vanem na LPG"
+    }
+  ],
+  "files": {
+    "core_train_v3": {
+      "classes": {
+        "contig": 9327,
+        "enum-unaligned": 2358,
+        "enum-lexicon": 2096,
+        "disc": 61,
+        "unaligned": 89,
+        "enum-contig": 4,
+        "rows": 9186
+      },
+      "roundtrip_ok_comma": 6495,
+      "roundtrip_ok_space": 6490,
+      "roundtrip_rate_comma": 0.7071,
+      "roundtrip_rate_space": 0.7065
+    },
+    "core_val_v3": {
+      "classes": {
+        "contig": 498,
+        "enum-unaligned": 131,
+        "enum-lexicon": 104,
+        "disc": 2,
+        "unaligned": 5,
+        "rows": 489
+      },
+      "roundtrip_ok_comma": 339,
+      "roundtrip_ok_space": 338,
+      "roundtrip_rate_comma": 0.6933,
+      "roundtrip_rate_space": 0.6912
+    },
+    "core_test_v3": {
+      "classes": {
+        "contig": 916,
+        "disc": 3,
+        "enum-unaligned": 230,
+        "enum-lexicon": 174,
+        "unaligned": 6,
+        "rows": 817
+      },
+      "roundtrip_ok_comma": 580,
+      "roundtrip_ok_space": 579,
+      "roundtrip_rate_comma": 0.7099,
+      "roundtrip_rate_space": 0.7087
+    },
+    "aug_train_v3": {
+      "classes": {
+        "contig": 7773,
+        "enum-unaligned": 1586,
+        "enum-lexicon": 2171,
+        "disc": 10,
+        "unaligned": 10,
+        "rows": 5818
+      },
+      "roundtrip_ok_comma": 3919,
+      "roundtrip_ok_space": 3919,
+      "roundtrip_rate_comma": 0.6736,
+      "roundtrip_rate_space": 0.6736
+    },
+    "aug_val_v3": {
+      "classes": {
+        "contig": 406,
+        "enum-unaligned": 82,
+        "enum-lexicon": 111,
+        "rows": 306
+      },
+      "roundtrip_ok_comma": 214,
+      "roundtrip_ok_space": 214,
+      "roundtrip_rate_comma": 0.6993,
+      "roundtrip_rate_space": 0.6993
+    }
+  }
+}

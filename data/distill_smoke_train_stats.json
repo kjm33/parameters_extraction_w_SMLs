@@ -1,0 +1,39 @@
+{
+  "label": "distill_smoke_train",
+  "rows": 21,
+  "per_function": {
+    "here_geocode": 13,
+    "here_directions": 8
+  },
+  "per_lang": {
+    "fr": 11,
+    "es": 6,
+    "pl": 4
+  },
+  "slot_kept_rate": 0.3592,
+  "top_kept_params": {
+    "here_geocode.q": 13,
+    "here_geocode.lang": 13,
+    "here_directions.avoid_features": 8,
+    "here_directions.lang": 3
+  },
+  "teacher": {
+    "model": "gpt-5.4-mini",
+    "outcome_counts": {
+      "ok": 41,
+      "reject": 19
+    },
+    "usage": {
+      "key1": {
+        "requests": 36,
+        "prompt": 12837,
+        "completion": 1659
+      },
+      "key3": {
+        "requests": 0,
+        "prompt": 0,
+        "completion": 0
+      }
+    }
+  }
+}

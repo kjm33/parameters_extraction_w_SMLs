@@ -3,8 +3,7 @@ __pycache__/
 *.py[cod]
 .venv/
 
-# Generated datasets (rebuild: src/build_extraction.py, src/build_augment.py)
-data/
+# NOTE: data/ datasets are tracked in git as of 2026-10-20 (user request)
 
 # Training artifacts: adapters, merged checkpoints (21G)
 train/runs/
